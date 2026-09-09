@@ -13,6 +13,7 @@ import {
   date,
   check,
   uniqueIndex,
+  type AnyPgColumn,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
@@ -22,6 +23,7 @@ import { sql } from "drizzle-orm";
 
 // AAMC sections. CARS has no content model (see design doc §1.4).
 export const sectionEnum = pgEnum("section", ["cp", "bb", "ps", "cars"]);
+export type Section = (typeof sectionEnum.enumValues)[number];
 
 export const itemTypeEnum = pgEnum("item_type", ["discrete", "passage"]);
 
@@ -52,6 +54,7 @@ export const planBlockKindEnum = pgEnum("plan_block_kind", [
   "full_length",
   "teaching",
 ]);
+export type PlanBlockKind = (typeof planBlockKindEnum.enumValues)[number];
 
 export const planBlockStatusEnum = pgEnum("plan_block_status", [
   "pending",
@@ -91,6 +94,8 @@ export const concepts = pgTable("concepts", {
   aamcCategory: text("aamc_category").notNull(), // e.g. "1A", "5B"
   name: text("name").notNull(),
   estLearnMinutes: integer("est_learn_minutes").notNull().default(10),
+  // relative real-exam frequency, used by the priority score (§4); 1 = average
+  examWeight: real("exam_weight").notNull().default(1),
 });
 
 // prerequisite DAG edges: prereqId must be mastered before dependentId (§2, §4)
@@ -213,7 +218,9 @@ export const sessions = pgTable("sessions", {
   userId: integer("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
-  planBlockId: integer("plan_block_id"), // FK added after plan_blocks is defined below
+  planBlockId: integer("plan_block_id").references((): AnyPgColumn => planBlocks.id, {
+    onDelete: "set null",
+  }),
   kind: sessionKindEnum("kind").notNull(),
   startedAt: timestamp("started_at", { withTimezone: true }).notNull().defaultNow(),
   endedAt: timestamp("ended_at", { withTimezone: true }),
@@ -284,6 +291,7 @@ export const skillState = pgTable(
     sirsSkill: smallint("sirs_skill").notNull(), // 1..4
     theta: real("theta").notNull().default(0),
     sigma: real("sigma").notNull().default(1),
+    attemptCount: integer("attempt_count").notNull().default(0),
   },
   (t) => [
     uniqueIndex("skill_state_user_skill_idx").on(t.userId, t.sirsSkill),
@@ -312,15 +320,19 @@ export const pacing = pgTable(
 // Plans (§4 "The planning engine") — nightly macro-loop output
 // ---------------------------------------------------------------------------
 
-export const plans = pgTable("plans", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  weekOf: date("week_of").notNull(),
-  generatedAt: timestamp("generated_at", { withTimezone: true }).notNull().defaultNow(),
-  rationale: jsonb("rationale"), // per-block "why" explanations, §4 "Explainability"
-});
+export const plans = pgTable(
+  "plans",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    weekOf: date("week_of").notNull(),
+    generatedAt: timestamp("generated_at", { withTimezone: true }).notNull().defaultNow(),
+    rationale: jsonb("rationale"), // per-block "why" explanations, §4 "Explainability"
+  },
+  (t) => [uniqueIndex("plans_user_week_idx").on(t.userId, t.weekOf)],
+);
 
 export const planBlocks = pgTable("plan_blocks", {
   id: serial("id").primaryKey(),

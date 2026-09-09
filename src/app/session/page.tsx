@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   CONFIDENCE_LABELS,
   ERROR_TAG_LABELS,
@@ -9,16 +10,30 @@ import {
   type ErrorTag,
   type SessionItem,
 } from "@/lib/types";
+import { TutorChat } from "@/components/TutorChat";
 
 const DEMO_USER_ID = 1;
 
 type Phase = "loading" | "answering" | "confidence" | "review" | "done" | "empty";
 
 export default function SessionPage() {
+  return (
+    <Suspense fallback={<CenteredMessage>Loading session…</CenteredMessage>}>
+      <SessionPlayer />
+    </Suspense>
+  );
+}
+
+function SessionPlayer() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const planBlockId = searchParams.get("block") ? Number(searchParams.get("block")) : null;
+
   const [items, setItems] = useState<SessionItem[]>([]);
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>("loading");
   const [sessionId, setSessionId] = useState<number | null>(null);
+  const [blockRationale, setBlockRationale] = useState<string | null>(null);
 
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [eliminatedIds, setEliminatedIds] = useState<number[]>([]);
@@ -32,13 +47,32 @@ export default function SessionPage() {
 
   useEffect(() => {
     async function init() {
+      let sessionKind = "practice";
+      let itemsUrl = "/api/items";
+
+      if (planBlockId) {
+        const blockRes = await fetch(`/api/plan-blocks/${planBlockId}`);
+        if (blockRes.ok) {
+          const block = await blockRes.json();
+          if (block.kind === "full_length") {
+            router.replace(`/full-length?block=${planBlockId}`);
+            return;
+          }
+          setBlockRationale(block.rationaleText ?? null);
+          sessionKind = block.kind === "review" ? "review" : "practice";
+          if (block.targetConceptIds?.length > 0) {
+            itemsUrl = `/api/items?conceptIds=${block.targetConceptIds.join(",")}`;
+          }
+        }
+      }
+
       const [sessionRes, itemsRes] = await Promise.all([
         fetch("/api/sessions", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userId: DEMO_USER_ID, kind: "practice" }),
+          body: JSON.stringify({ userId: DEMO_USER_ID, kind: sessionKind, planBlockId }),
         }),
-        fetch("/api/items"),
+        fetch(itemsUrl),
       ]);
       const session = await sessionRes.json();
       const loadedItems: SessionItem[] = await itemsRes.json();
@@ -48,7 +82,8 @@ export default function SessionPage() {
       setPhase(loadedItems.length > 0 ? "answering" : "empty");
     }
     init();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [planBlockId]);
 
   const resetForNextItem = useCallback(() => {
     setSelectedOptionId(null);
@@ -117,6 +152,13 @@ export default function SessionPage() {
     setSubmitting(false);
 
     if (index + 1 >= items.length) {
+      if (planBlockId) {
+        await fetch(`/api/plan-blocks/${planBlockId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "done" }),
+        });
+      }
       setPhase("done");
     } else {
       setIndex((i) => i + 1);
@@ -136,6 +178,7 @@ export default function SessionPage() {
     eliminatedIds,
     index,
     items.length,
+    planBlockId,
     resetForNextItem,
   ]);
 
@@ -170,9 +213,14 @@ export default function SessionPage() {
     return (
       <CenteredMessage>
         <p className="text-xl mb-4">Session complete — {items.length} items.</p>
-        <Link href="/diagnostics" className="underline text-neutral-300 hover:text-white">
-          View diagnostics →
-        </Link>
+        <div className="flex gap-4 justify-center">
+          <Link href="/today" className="underline text-neutral-300 hover:text-white">
+            Back to Today
+          </Link>
+          <Link href="/diagnostics" className="underline text-neutral-300 hover:text-white">
+            View diagnostics →
+          </Link>
+        </div>
       </CenteredMessage>
     );
   }
@@ -183,6 +231,7 @@ export default function SessionPage() {
       <div className="flex items-center justify-between px-6 py-3 text-sm text-neutral-500 border-b border-neutral-900">
         <span>
           Item {index + 1} of {items.length}
+          {blockRationale && <span className="text-neutral-600"> — {blockRationale}</span>}
         </span>
         {flagged && <span className="text-amber-400">flagged</span>}
       </div>
@@ -296,6 +345,8 @@ export default function SessionPage() {
                   </div>
                 </div>
               )}
+
+              {!reveal.correct && <TutorChat itemId={currentItem.id} />}
 
               <button
                 onClick={handleNext}

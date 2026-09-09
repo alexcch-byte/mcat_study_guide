@@ -23,6 +23,20 @@ interface QuadrantPoint {
   createdAt: string;
 }
 
+interface PacingRow {
+  section: string;
+  medianSec: number | null;
+  p90Sec: number | null;
+  rushedRate: number | null;
+  overdwellRate: number | null;
+}
+
+interface StaminaPoint {
+  position: number;
+  accuracy: number;
+  n: number;
+}
+
 const SECTION_LABELS: Record<string, string> = {
   cp: "Chem/Phys",
   bb: "Bio/Biochem",
@@ -41,16 +55,21 @@ function thetaColor(theta: number): string {
 export default function DiagnosticsPage() {
   const [concepts, setConcepts] = useState<ConceptHeat[]>([]);
   const [points, setPoints] = useState<QuadrantPoint[]>([]);
+  const [pacingRows, setPacingRows] = useState<PacingRow[]>([]);
+  const [stamina, setStamina] = useState<Record<string, StaminaPoint[]>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/diagnostics?userId=${DEMO_USER_ID}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setConcepts(data.conceptHeatmap);
-        setPoints(data.quadrantPoints);
-        setLoading(false);
-      });
+    Promise.all([
+      fetch(`/api/diagnostics?userId=${DEMO_USER_ID}`).then((r) => r.json()),
+      fetch(`/api/pacing?userId=${DEMO_USER_ID}`).then((r) => r.json()),
+    ]).then(([diag, pacingData]) => {
+      setConcepts(diag.conceptHeatmap);
+      setPoints(diag.quadrantPoints);
+      setPacingRows(pacingData.pacing);
+      setStamina(pacingData.stamina);
+      setLoading(false);
+    });
   }, []);
 
   const bySection = concepts.reduce<Record<string, ConceptHeat[]>>((acc, c) => {
@@ -72,9 +91,14 @@ export default function DiagnosticsPage() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-semibold">Diagnostics</h1>
-          <Link href="/" className="text-sm text-neutral-400 hover:text-white underline">
-            ← Home
-          </Link>
+          <div className="flex gap-4 text-sm text-neutral-400">
+            <Link href="/score" className="hover:text-white underline">
+              Score projection
+            </Link>
+            <Link href="/today" className="hover:text-white underline">
+              ← Today
+            </Link>
+          </div>
         </div>
 
         {loading ? (
@@ -155,6 +179,69 @@ export default function DiagnosticsPage() {
                   </Fragment>
                 ))}
               </div>
+            </section>
+
+            <section className="mt-12">
+              <h2 className="text-lg font-medium mb-2">Pacing</h2>
+              <p className="text-xs text-neutral-500 mb-4">
+                Rushed = wrong on the fastest 10% of answers. Overdwell = time spent beyond the
+                slowest 10% — usually an unclear stem, not a hard concept (§3).
+              </p>
+              {pacingRows.length === 0 ? (
+                <p className="text-neutral-500 text-sm">Not enough attempts yet.</p>
+              ) : (
+                <div className="grid grid-cols-2 gap-3 max-w-xl">
+                  {pacingRows.map((p) => (
+                    <div key={p.section} className="p-3 rounded-lg border border-neutral-800 bg-neutral-900">
+                      <p className="text-sm font-medium mb-1">{SECTION_LABELS[p.section] ?? p.section}</p>
+                      <p className="text-xs text-neutral-500">
+                        median {p.medianSec?.toFixed(0) ?? "–"}s · p90 {p.p90Sec?.toFixed(0) ?? "–"}s
+                      </p>
+                      <p className="text-xs text-neutral-500">
+                        rushed {((p.rushedRate ?? 0) * 100).toFixed(0)}% · overdwell{" "}
+                        {((p.overdwellRate ?? 0) * 100).toFixed(0)}%
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            <section className="mt-12">
+              <h2 className="text-lg font-medium mb-2">Stamina</h2>
+              <p className="text-xs text-neutral-500 mb-4">
+                Accuracy by question position within full-length sections — the signal that drives
+                full-length scheduling (§3).
+              </p>
+              {Object.values(stamina).every((s) => s.length === 0) ? (
+                <p className="text-neutral-500 text-sm">
+                  No full-length sessions yet — take one at{" "}
+                  <Link href="/full-length" className="underline hover:text-white">
+                    /full-length
+                  </Link>
+                  .
+                </p>
+              ) : (
+                <div className="space-y-4 max-w-xl">
+                  {Object.entries(stamina)
+                    .filter(([, curve]) => curve.length > 0)
+                    .map(([section, curve]) => (
+                      <div key={section}>
+                        <p className="text-sm text-neutral-400 mb-1">{SECTION_LABELS[section] ?? section}</p>
+                        <div className="flex items-end gap-0.5 h-16">
+                          {curve.map((pt) => (
+                            <div
+                              key={pt.position}
+                              title={`position ${pt.position}: ${(pt.accuracy * 100).toFixed(0)}% (n=${pt.n})`}
+                              className="flex-1 bg-neutral-700"
+                              style={{ height: `${Math.max(4, pt.accuracy * 100)}%` }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              )}
             </section>
           </>
         )}

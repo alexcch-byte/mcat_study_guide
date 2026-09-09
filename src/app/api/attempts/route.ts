@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { attempts, itemConcepts, itemOptions, items } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { recordEloUpdate } from "@/lib/mastery";
+import { recordEloUpdate, recordFsrsUpdate, recordSkillStateUpdate } from "@/lib/mastery";
 import { z } from "zod";
 
 // Fixed error-tag taxonomy, §3 "Error tagging" — never free text.
@@ -72,7 +72,14 @@ export async function POST(request: Request) {
       correct,
       conceptWeights,
     });
+    await recordFsrsUpdate({
+      userId: body.userId,
+      correct,
+      confidence: body.confidence,
+      conceptIds: conceptWeights.map((c) => c.conceptId),
+    });
   }
+  await recordSkillStateUpdate({ userId: body.userId, itemId: body.itemId, correct });
 
   return NextResponse.json({
     attempt,

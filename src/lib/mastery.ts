@@ -10,8 +10,9 @@
  * (weighted by edge strength) so the DAG lets sparse data borrow strength.
  */
 import { db } from "@/db";
-import { concepts, conceptEdges, items, mastery } from "@/db/schema";
+import { concepts, conceptEdges, items, itemSkills, mastery, skillState } from "@/db/schema";
 import { and, eq, or } from "drizzle-orm";
+import { review, ratingFromAttempt } from "@/lib/fsrs";
 
 const PREREQ_PROPAGATION_FRACTION = 0.3;
 const K_ITEM_BASE = 16;
@@ -26,7 +27,7 @@ function kUser(attemptCount: number): number {
   return 8 + 32 / (1 + attemptCount / 10);
 }
 
-async function getOrCreateMastery(userId: number, conceptId: number) {
+export async function getOrCreateMastery(userId: number, conceptId: number) {
   const [existing] = await db
     .select()
     .from(mastery)
@@ -132,4 +133,88 @@ export async function recordEloUpdate(params: {
           : item.status,
     })
     .where(eq(items.id, itemId));
+}
+
+async function getOrCreateSkillState(userId: number, sirsSkill: number) {
+  const [existing] = await db
+    .select()
+    .from(skillState)
+    .where(and(eq(skillState.userId, userId), eq(skillState.sirsSkill, sirsSkill)));
+  if (existing) return existing;
+
+  const [created] = await db
+    .insert(skillState)
+    .values({ userId, sirsSkill })
+    .onConflictDoNothing()
+    .returning();
+  if (created) return created;
+
+  const [row] = await db
+    .select()
+    .from(skillState)
+    .where(and(eq(skillState.userId, userId), eq(skillState.sirsSkill, sirsSkill)));
+  return row;
+}
+
+/**
+ * CARS has no content model (§1.4), so its "mastery" is tracked as a
+ * parallel SIRS skill model instead of concept theta. Same Elo mechanics,
+ * no propagation, no item-difficulty feedback (that's Elo's job above).
+ */
+export async function recordSkillStateUpdate(params: { userId: number; itemId: number; correct: boolean }) {
+  const { userId, itemId, correct } = params;
+  const skillRows = await db.select().from(itemSkills).where(eq(itemSkills.itemId, itemId));
+  if (skillRows.length === 0) return;
+
+  const [item] = await db.select().from(items).where(eq(items.id, itemId));
+  if (!item) return;
+
+  for (const { sirsSkill } of skillRows) {
+    const s = await getOrCreateSkillState(userId, sirsSkill);
+    const expected = expectedScore(item.difficultyB, s.theta);
+    const delta = kUser(s.attemptCount) * ((correct ? 1 : 0) - expected);
+    await db
+      .update(skillState)
+      .set({
+        theta: s.theta + delta,
+        sigma: Math.max(0.3, s.sigma - 0.04),
+        attemptCount: s.attemptCount + 1,
+      })
+      .where(eq(skillState.id, s.id));
+  }
+}
+
+/**
+ * FSRS review scheduling (§3 "Retention"), applied only to the concepts an
+ * item directly targets — unlike Elo, review due-ness doesn't propagate up
+ * the prerequisite DAG (recalling item X says nothing about when Y is due).
+ */
+export async function recordFsrsUpdate(params: {
+  userId: number;
+  correct: boolean;
+  confidence: number;
+  conceptIds: number[];
+  now?: Date;
+}) {
+  const { userId, correct, confidence, conceptIds, now = new Date() } = params;
+  const rating = ratingFromAttempt(correct, confidence);
+
+  for (const conceptId of conceptIds) {
+    const m = await getOrCreateMastery(userId, conceptId);
+    const result = review(
+      { stability: m.stability, difficulty: m.difficulty, lastSeen: m.lastSeen },
+      rating,
+      now,
+    );
+    await db
+      .update(mastery)
+      .set({
+        stability: result.stability,
+        difficulty: result.difficulty,
+        nextDue: result.nextDue,
+        lastSeen: now,
+        updatedAt: now,
+      })
+      .where(eq(mastery.id, m.id));
+  }
 }

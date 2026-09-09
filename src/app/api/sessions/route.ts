@@ -6,6 +6,7 @@ import { z } from "zod";
 const bodySchema = z.object({
   userId: z.number().int(),
   kind: z.enum(["practice", "review", "teaching", "full_length"]).default("practice"),
+  planBlockId: z.number().int().nullable().optional(),
 });
 
 export async function POST(request: Request) {
@@ -13,7 +14,7 @@ export async function POST(request: Request) {
 
   const [session] = await db
     .insert(sessions)
-    .values({ userId: body.userId, kind: body.kind })
+    .values({ userId: body.userId, kind: body.kind, planBlockId: body.planBlockId ?? null })
     .returning();
 
   return NextResponse.json(session);
