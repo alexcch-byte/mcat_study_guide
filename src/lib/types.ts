@@ -30,6 +30,11 @@ export interface SessionPassage {
   body: string;
 }
 
+export interface SessionConcept {
+  id: number;
+  name: string;
+}
+
 export interface SessionItem {
   id: number;
   type: "discrete" | "passage";
@@ -37,6 +42,7 @@ export interface SessionItem {
   passageId: number | null;
   passage: SessionPassage | null;
   options: SessionOption[];
+  concepts: SessionConcept[];
 }
 
 export interface RevealedOption {

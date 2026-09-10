@@ -14,7 +14,12 @@ import { TutorChat } from "@/components/TutorChat";
 
 const DEMO_USER_ID = 1;
 
-type Phase = "loading" | "answering" | "confidence" | "review" | "done" | "empty";
+// §4 "Session composition (micro loop)" stop rule: 5 consecutive misses in
+// one concept switches to a teaching module instead of grinding further.
+const CONSECUTIVE_MISS_THRESHOLD = 5;
+const TEACHING_CHECK_SIZE = 3;
+
+type Phase = "loading" | "answering" | "confidence" | "review" | "done" | "empty" | "teaching";
 
 export default function SessionPage() {
   return (
@@ -42,13 +47,20 @@ function SessionPlayer() {
   const [reveal, setReveal] = useState<CheckResponse | null>(null);
   const [errorTag, setErrorTag] = useState<ErrorTag | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [teachingConcept, setTeachingConcept] = useState<{ id: number; name: string } | null>(null);
+  // Rolling log of recent misses (stem + reasoning), recapped on the
+  // teaching screen — it's rendered, so it's state rather than a ref.
+  const [recentMisses, setRecentMisses] = useState<{ stem: string; correctReasoning: string | null }[]>([]);
 
   const startedAtRef = useRef<number>(0);
+  // Per-concept consecutive-miss streaks for the stop rule — never rendered,
+  // just read inside the submit handler, so a ref is fine here.
+  const missStreakByConceptRef = useRef<Map<number, number>>(new Map());
 
   useEffect(() => {
     async function init() {
       let sessionKind = "practice";
-      let itemsUrl = "/api/items";
+      const itemsParams = new URLSearchParams({ userId: String(DEMO_USER_ID) });
 
       if (planBlockId) {
         const blockRes = await fetch(`/api/plan-blocks/${planBlockId}`);
@@ -61,7 +73,7 @@ function SessionPlayer() {
           setBlockRationale(block.rationaleText ?? null);
           sessionKind = block.kind === "review" ? "review" : "practice";
           if (block.targetConceptIds?.length > 0) {
-            itemsUrl = `/api/items?conceptIds=${block.targetConceptIds.join(",")}`;
+            itemsParams.set("conceptIds", block.targetConceptIds.join(","));
           }
         }
       }
@@ -72,12 +84,14 @@ function SessionPlayer() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId: DEMO_USER_ID, kind: sessionKind, planBlockId }),
         }),
-        fetch(itemsUrl),
+        fetch(`/api/items?${itemsParams.toString()}`),
       ]);
       const session = await sessionRes.json();
       const loadedItems: SessionItem[] = await itemsRes.json();
       setSessionId(session.id);
       setItems(loadedItems);
+      missStreakByConceptRef.current = new Map();
+      setRecentMisses([]);
       startedAtRef.current = performance.now();
       setPhase(loadedItems.length > 0 ? "answering" : "empty");
     }
@@ -149,7 +163,38 @@ function SessionPlayer() {
         errorTag: reveal?.correct ? null : errorTag,
       }),
     });
+
+    // Stop rule (§4): 5 consecutive misses in one concept ends the grind and
+    // switches to a teaching module for that concept instead.
+    const streaks = missStreakByConceptRef.current;
+    let triggeredConceptId: number | null = null;
+    for (const c of currentItem.concepts) {
+      if (reveal?.correct) {
+        streaks.set(c.id, 0);
+      } else {
+        const next = (streaks.get(c.id) ?? 0) + 1;
+        streaks.set(c.id, next);
+        if (next >= CONSECUTIVE_MISS_THRESHOLD && triggeredConceptId == null) triggeredConceptId = c.id;
+      }
+    }
+    if (!reveal?.correct) {
+      setRecentMisses((prev) =>
+        [...prev, { stem: currentItem.stem, correctReasoning: reveal?.correctReasoning ?? null }].slice(
+          -CONSECUTIVE_MISS_THRESHOLD,
+        ),
+      );
+    }
+
     setSubmitting(false);
+
+    if (triggeredConceptId != null) {
+      const conceptName =
+        currentItem.concepts.find((c) => c.id === triggeredConceptId)?.name ?? "this concept";
+      streaks.set(triggeredConceptId, 0); // reset so resuming practice later doesn't immediately retrigger
+      setTeachingConcept({ id: triggeredConceptId, name: conceptName });
+      setPhase("teaching");
+      return;
+    }
 
     if (index + 1 >= items.length) {
       if (planBlockId) {
@@ -182,6 +227,38 @@ function SessionPlayer() {
     resetForNextItem,
   ]);
 
+  // After the concept module (recapped from recent misses), a short 3-item
+  // check on just that concept — then the block ends rather than resuming
+  // the original grind (§4: "an immediate switch ... rather than grinding").
+  const startTeachingCheck = useCallback(async () => {
+    if (!teachingConcept) return;
+    setPhase("loading");
+    const [sessionRes, itemsRes] = await Promise.all([
+      fetch("/api/sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: DEMO_USER_ID, kind: "teaching", planBlockId }),
+      }),
+      fetch(
+        `/api/items?${new URLSearchParams({
+          userId: String(DEMO_USER_ID),
+          conceptIds: String(teachingConcept.id),
+          count: String(TEACHING_CHECK_SIZE),
+        }).toString()}`,
+      ),
+    ]);
+    const session = await sessionRes.json();
+    const loadedItems: SessionItem[] = await itemsRes.json();
+    setSessionId(session.id);
+    setItems(loadedItems);
+    setIndex(0);
+    setBlockRationale(`Teaching check — ${teachingConcept.name}`);
+    setTeachingConcept(null);
+    setRecentMisses([]);
+    resetForNextItem();
+    setPhase(loadedItems.length > 0 ? "answering" : "done");
+  }, [teachingConcept, planBlockId, resetForNextItem]);
+
   // Keyboard-first controls (§6 design notes): 1-4 for answers/confidence, spacebar to flag.
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -208,6 +285,35 @@ function SessionPlayer() {
   }
   if (phase === "empty") {
     return <CenteredMessage>No active items in the bank yet.</CenteredMessage>;
+  }
+  if (phase === "teaching" && teachingConcept) {
+    return (
+      <CenteredMessage>
+        <div className="max-w-xl text-left">
+          <p className="text-lg mb-2">
+            Let&apos;s stop and teach <span className="font-semibold">{teachingConcept.name}</span> properly.
+          </p>
+          <p className="text-sm text-neutral-400 mb-4">
+            Five misses in a row here means more of the same items won&apos;t help. Here&apos;s what tripped you up
+            each time:
+          </p>
+          <ul className="space-y-3 mb-6 text-sm text-neutral-300">
+            {recentMisses.map((m, i) => (
+              <li key={i} className="border-l-2 border-neutral-700 pl-3">
+                <p className="text-neutral-500 mb-1">{m.stem}</p>
+                {m.correctReasoning && <p>{m.correctReasoning}</p>}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={startTeachingCheck}
+            className="px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950"
+          >
+            Start 3-item check
+          </button>
+        </div>
+      </CenteredMessage>
+    );
   }
   if (phase === "done") {
     return (

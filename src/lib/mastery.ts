@@ -18,7 +18,7 @@ const PREREQ_PROPAGATION_FRACTION = 0.3;
 const K_ITEM_BASE = 16;
 const CALIBRATION_EXPOSURE_THRESHOLD = 30;
 
-function expectedScore(bItem: number, thetaConcept: number): number {
+export function expectedScore(bItem: number, thetaConcept: number): number {
   return 1 / (1 + Math.pow(10, (bItem - thetaConcept) / 400));
 }
 
