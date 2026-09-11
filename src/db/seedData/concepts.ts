@@ -19,6 +19,10 @@ export const concepts: ConceptDef[] = [
   { name: "circuits_and_ohms_law", section: "cp", aamcCategory: "4C", estLearnMinutes: 12 },
   { name: "waves_sound_and_optics", section: "cp", aamcCategory: "4D", estLearnMinutes: 12 },
   { name: "fluids_and_pressure", section: "cp", aamcCategory: "4B", estLearnMinutes: 10 },
+  { name: "stoichiometry_and_limiting_reagent", section: "cp", aamcCategory: "5A", estLearnMinutes: 12 },
+  { name: "solutions_and_colligative_properties", section: "cp", aamcCategory: "5D", estLearnMinutes: 12 },
+  { name: "nuclear_decay_and_half_life", section: "cp", aamcCategory: "4F", estLearnMinutes: 10 },
+  { name: "work_energy_and_power", section: "cp", aamcCategory: "4A", estLearnMinutes: 10 },
 
   // --- Bio/Biochem -----------------------------------------------------------
   { name: "amino_acid_structure", section: "bb", aamcCategory: "1A", estLearnMinutes: 10 },
@@ -33,6 +37,10 @@ export const concepts: ConceptDef[] = [
   { name: "mitosis_and_the_cell_cycle", section: "bb", aamcCategory: "2B", estLearnMinutes: 10 },
   { name: "muscle_contraction", section: "bb", aamcCategory: "2C", estLearnMinutes: 12 },
   { name: "hormone_signaling", section: "bb", aamcCategory: "2D", estLearnMinutes: 12 },
+  { name: "lipid_structure_and_membranes", section: "bb", aamcCategory: "1A", estLearnMinutes: 12 },
+  { name: "nervous_system_signaling", section: "bb", aamcCategory: "2E", estLearnMinutes: 14 },
+  { name: "immune_system_basics", section: "bb", aamcCategory: "2F", estLearnMinutes: 12 },
+  { name: "population_genetics_hardy_weinberg", section: "bb", aamcCategory: "3B", estLearnMinutes: 14 },
 
   // --- Psych/Soc -----------------------------------------------------------
   { name: "attribution_theory", section: "ps", aamcCategory: "7A", estLearnMinutes: 10 },
@@ -47,6 +55,10 @@ export const concepts: ConceptDef[] = [
   { name: "psychosocial_development_stages", section: "ps", aamcCategory: "6C", estLearnMinutes: 12 },
   { name: "sensation_vs_perception", section: "ps", aamcCategory: "6D", estLearnMinutes: 10 },
   { name: "group_dynamics_and_groupthink", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
+  { name: "motivation_and_drive_theory", section: "ps", aamcCategory: "6A", estLearnMinutes: 12 },
+  { name: "personality_trait_theory", section: "ps", aamcCategory: "7D", estLearnMinutes: 12 },
+  { name: "health_belief_model", section: "ps", aamcCategory: "9B", estLearnMinutes: 12 },
+  { name: "social_facilitation_and_deindividuation", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
 
   // --- CARS ------------------------------------------------------------------
   // No content model applies (§1.4) — these are SIRS skill labels, not concepts.
@@ -76,4 +88,13 @@ export const conceptEdges: ConceptEdgeDef[] = [
   { prereq: "social_identity_theory", dependent: "stereotypes_and_prejudice", strength: 0.6 },
   { prereq: "social_identity_theory", dependent: "group_dynamics_and_groupthink", strength: 0.5 },
   { prereq: "stereotypes_and_prejudice", dependent: "socioeconomic_status_and_health", strength: 0.3 },
+  { prereq: "log_math_estimation", dependent: "stoichiometry_and_limiting_reagent", strength: 0.4 },
+  { prereq: "gas_laws_and_kinetic_theory", dependent: "solutions_and_colligative_properties", strength: 0.4 },
+  { prereq: "kinematics_and_forces", dependent: "work_energy_and_power", strength: 0.5 },
+  { prereq: "cell_membrane_transport", dependent: "nervous_system_signaling", strength: 0.5 },
+  { prereq: "amino_acid_structure", dependent: "immune_system_basics", strength: 0.2 },
+  { prereq: "mendelian_genetics", dependent: "population_genetics_hardy_weinberg", strength: 0.6 },
+  { prereq: "attribution_theory", dependent: "personality_trait_theory", strength: 0.2 },
+  { prereq: "socioeconomic_status_and_health", dependent: "health_belief_model", strength: 0.4 },
+  { prereq: "group_dynamics_and_groupthink", dependent: "social_facilitation_and_deindividuation", strength: 0.4 },
 ];

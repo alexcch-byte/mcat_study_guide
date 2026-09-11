@@ -125,4 +125,124 @@ export const passages: PassageDef[] = [
     topic: "music theory",
     body: `A rest in a musical score is sometimes treated as an absence, a gap between the notes that actually matter. Composers who use silence deliberately resist this framing: a well-placed rest is not an absence of music but a specific compositional choice, shaping the listener's expectation of what comes next and controlling the emotional weight of the sound that follows it. The difference between a phrase that ends and a phrase that is interrupted often comes down entirely to the length and placement of the silence around it. To hear a rest as merely the absence of notes, on this view, is analogous to reading punctuation as merely the absence of letters — technically true, but missing that the gap is doing constructive work rather than simply marking where work has stopped.`,
   },
+
+  // --- Chem/Phys (batch 2) -----------------------------------------------------
+  {
+    key: "cp_calorimetry",
+    section: "cp",
+    title: "Determining a metal's specific heat by calorimetry",
+    topic: "thermodynamics",
+    body: `A student heats a 50 g sample of an unknown metal to 95°C and then drops it into 100 g of water at 22°C inside an insulated calorimeter. The mixture reaches a final equilibrium temperature of 26°C. Assuming no heat is lost to the surroundings or the calorimeter itself, the heat lost by the metal as it cools must equal the heat gained by the water as it warms. The student uses the known specific heat of water (4.18 J/g·°C) and the measured temperature changes to solve for the metal's unknown specific heat, then compares the result to a reference table to identify the metal.`,
+  },
+  {
+    key: "cp_projectile_lab",
+    section: "cp",
+    title: "A projectile launch lab",
+    topic: "kinematics",
+    body: `A lab group launches a small ball horizontally off the edge of a table with an initial speed of 3.0 m/s, aiming to predict where it will land on the floor below. They reason that the ball's horizontal and vertical motions can be analyzed independently: horizontally, the ball moves at a constant 3.0 m/s with no horizontal acceleration (ignoring air resistance), while vertically, it accelerates downward at g starting from zero vertical velocity, exactly as if it had simply been dropped from the same height. The group measures the table height, calculates the time to fall using only the vertical motion equations, and then multiplies that time by the constant horizontal speed to predict the landing distance from the table's edge.`,
+  },
+
+  // --- Bio/Biochem (batch 2) -----------------------------------------------------
+  {
+    key: "bb_action_potential",
+    section: "bb",
+    title: "Propagation of an action potential along an axon",
+    topic: "neurophysiology",
+    body: `A neuron at rest maintains a membrane potential of about -70 mV, with sodium (Na+) concentrated outside the cell and potassium (K+) concentrated inside, a gradient maintained by the sodium-potassium pump. When a stimulus depolarizes the membrane past a threshold (around -55 mV), voltage-gated Na+ channels open, and Na+ rushes into the cell, rapidly driving the membrane potential positive. Shortly after, voltage-gated Na+ channels inactivate while voltage-gated K+ channels open, allowing K+ to flow out and repolarize the membrane, often briefly overshooting the resting potential (hyperpolarization) before the membrane settles back to rest. This entire sequence at one point on the membrane triggers depolarization at the immediately adjacent patch of membrane, propagating the action potential down the length of the axon without any loss of signal strength.`,
+  },
+  {
+    key: "bb_immune_response",
+    section: "bb",
+    title: "Primary versus secondary immune response",
+    topic: "immunology",
+    body: `When the immune system first encounters a novel pathogen, B and T lymphocytes specific to that pathogen's antigens must be located and activated from a large, mostly naive pool, a process that takes roughly one to two weeks before antibody levels peak — the primary response. During this response, some activated B cells differentiate into long-lived memory B cells rather than short-lived antibody-secreting plasma cells. If the same pathogen is encountered again, these memory cells allow a secondary response that is both faster (peaking in just a few days) and larger in magnitude than the primary response, typically clearing the pathogen before symptoms become severe. Vaccination exploits this mechanism by safely generating a primary response and a pool of memory cells in advance of any real exposure.`,
+  },
+
+  // --- Psych/Soc (batch 2) -----------------------------------------------------
+  {
+    key: "ps_health_behavior_study",
+    section: "ps",
+    title: "Predicting adherence to a new medication regimen",
+    topic: "health psychology",
+    body: `Researchers surveyed patients newly prescribed a daily medication for a chronic condition, measuring each patient's perceived susceptibility to complications if they skipped doses, their perceived severity of those complications, their perceived benefits of adherence, and the perceived barriers (cost, inconvenience, side effects) to taking the medication consistently. Patients who rated both perceived susceptibility and perceived severity as high, and who rated perceived benefits as outweighing perceived barriers, were substantially more likely to report consistent adherence at a three-month follow-up than patients with any other combination of these ratings. Notably, patients who rated the condition as severe but did not see themselves as personally susceptible to complications showed adherence rates barely above patients who rated both severity and susceptibility as low.`,
+  },
+  {
+    key: "ps_social_facilitation_study",
+    section: "ps",
+    title: "Audience effects on task performance",
+    topic: "social psychology",
+    body: `Researchers had participants complete two types of tasks — one well-practiced and simple (signing their own name repeatedly) and one novel and complex (tracing a shape visible only in a mirror) — either alone or in the presence of an audience of observers. On the simple, well-practiced task, participants performed faster and with fewer errors when observed than when alone. On the novel, complex task, the pattern reversed: observed participants performed slower and made more errors than participants working alone. The researchers also found that when participants performed the same tasks as an anonymous member of a large group rather than as identifiable individuals, performance on the simple task no longer improved, and effort on both tasks declined compared to working alone.`,
+  },
+
+  // --- CARS (batch 2) --------------------------------------------------------------
+  {
+    key: "cars_paradox_of_choice",
+    section: "cars",
+    title: "The paradox of choice",
+    topic: "decision theory",
+    body: `More options are usually assumed to make a decision-maker better off, since additional alternatives can only be ignored, never mandatory. But this assumption treats the act of choosing itself as costless, when in practice evaluating each additional option consumes time, attention, and confidence. Beyond some point, additional alternatives can leave a chooser not better equipped but more anxious about having overlooked a superior option, and more prone to regret whatever is eventually chosen. If this is right, the traditional economic picture of choice — where an ideal decision-maker simply selects the best of all available options — understates a real cost that scales with the size of the option set itself, a cost that no amount of information about the individual options can offset.`,
+  },
+  {
+    key: "cars_built_environment",
+    section: "cars",
+    title: "Designing streets for behavior, not just traffic",
+    topic: "public health",
+    body: `Traffic engineers have long designed streets primarily to move vehicles efficiently, treating pedestrian and cyclist safety as a constraint to be satisfied rather than a design goal in its own right. Public health researchers studying injury rates have increasingly challenged this priority, arguing that a street's design does more to determine driver behavior than posted speed limits or signage ever could: a wide, straight street with few visual obstructions invites higher speeds regardless of what the speed limit sign says, while a narrower street with parked cars, trees, and tighter turns naturally slows traffic by making higher speeds feel effortful and risky to the driver. On this view, a persistent speeding problem is best treated not as a matter of insufficient enforcement or driver discipline, but as evidence that the street itself was designed for a different, faster kind of use than the one now considered desirable.`,
+  },
+  {
+    key: "cars_humor_theory",
+    section: "cars",
+    title: "What makes a joke funny",
+    topic: "aesthetics",
+    body: `Theories of humor have long struggled to explain why an incongruity — a punchline that violates what a listener expected — is sometimes funny and sometimes merely confusing or unsettling. One influential answer holds that incongruity alone is not sufficient; the violation must also be resolved as benign, understood by the listener as ultimately safe, harmless, or not a real threat to anyone's well-being, once its logic is worked out. Under this view, the same incongruous premise can land as comedy or as horror depending entirely on whether the surrounding context signals safety or danger, which would explain why identical jokes can fail completely when told in a context that makes the underlying violation feel genuinely threatening rather than playful.`,
+  },
+  {
+    key: "cars_ship_of_theseus",
+    section: "cars",
+    title: "Identity over time and the Ship of Theseus",
+    topic: "philosophy",
+    body: `The ancient puzzle of the Ship of Theseus asks whether a ship remains the same ship after every one of its original planks has been replaced, one at a time, during routine repairs. Most people's intuitions say yes — gradual replacement seems compatible with persistence of identity — yet the same intuition falters when a further twist is added: suppose the discarded original planks are collected and reassembled into a second ship. Now there appear to be two candidates for the "real" ship of Theseus, and no principled way to award the title to one over the other using only the criteria that made the first scenario feel unproblematic. The puzzle suggests that ordinary judgments about identity over time may rest on criteria — spatiotemporal continuity, sameness of material — that quietly diverge once pushed to their limits, rather than tracking any single underlying fact about what identity really consists in.`,
+  },
+  {
+    key: "cars_anthropomorphism",
+    section: "cars",
+    title: "Why we anthropomorphize machines",
+    topic: "philosophy of mind",
+    body: `Users of voice assistants and chatbots routinely say "please" and "thank you" to software they know is not conscious, and many report genuine discomfort at the idea of being rude to it. One explanation dismisses this as simple confusion, a failure to fully internalize that no one is home behind the interface. A more interesting explanation holds that the politeness is not really about the machine at all: it is a form of self-regulation, a way of maintaining habits of civility that the speaker does not want to see erode even in contexts where, strictly speaking, no one can be wronged by their absence. On this second account, anthropomorphizing a chatbot is less a mistake about what the chatbot is and more a decision about what kind of person the user wants to remain, regardless of who or what is listening.`,
+  },
+  {
+    key: "cars_gift_economics",
+    section: "cars",
+    title: "The economics of gift-giving",
+    topic: "economics",
+    body: `Economists have long noted an apparent inefficiency in gift-giving: a giver spends money to buy something the recipient would often not have chosen for themselves, producing, on average, less satisfaction per dollar than if the recipient had simply been given cash to spend as they wished. Yet gift-giving persists and is not obviously irrational, which suggests the standard efficiency calculation is measuring the wrong thing. An alternative account holds that a gift's value lies substantially in what choosing it reveals about the giver's attention to the recipient's particular tastes, a signal that cash — precisely because it requires no such attention — cannot send. Under this account, the "inefficiency" economists measure is not a flaw in gift-giving but the cost of purchasing a signal that a more efficient transfer could never provide.`,
+  },
+  {
+    key: "cars_collective_memory",
+    section: "cars",
+    title: "Collective memory and oral tradition",
+    topic: "history",
+    body: `Communities without written records have often been assumed by outsiders to possess only a hazy, unreliable sense of their own past, since oral transmission seems obviously more prone to distortion than a fixed written text. Anthropologists studying oral tradition in practice have complicated this assumption, documenting cases where genealogies or historical accounts passed down orally across many generations remained remarkably stable, preserved by formal recitation practices, communal correction of errors during retelling, and social investment in getting the account right. This suggests the reliability of a historical record depends less on whether it is written or spoken and more on whether a community has built institutions — of whatever form — dedicated to checking and preserving it, a possibility the written/oral distinction alone obscures.`,
+  },
+  {
+    key: "cars_imperfection_aesthetics",
+    section: "cars",
+    title: "The appeal of visible imperfection",
+    topic: "aesthetics",
+    body: `Certain aesthetic traditions deliberately incorporate visible flaws — an asymmetry left uncorrected, a crack in ceramic filled with visible gold lacquer rather than hidden — treating the imperfection as part of the object's value rather than a defect to be concealed. A purely functional account struggles to explain this, since the flaw contributes nothing to the object's use. A more promising account holds that the visible imperfection serves as a record of the object's particular history — its making, its use, its survival — in a way a flawless, mass-producible version could not, converting a mark of wear into a kind of evidence that the object has actually lived a life rather than merely existing as an interchangeable specimen of its type.`,
+  },
+  {
+    key: "cars_rhetoric_of_apology",
+    section: "cars",
+    title: "What makes an apology land",
+    topic: "rhetoric",
+    body: `Public apologies are frequently criticized as insincere even when they include the expected components — an acknowledgment of wrongdoing, an expression of regret, and a statement of intent to do better. This suggests that sincerity, whatever it is, is not simply a matter of including the right verbal ingredients. One account locates the missing element in costliness: an apology is judged sincere to the extent that it imposes some genuine cost on the person offering it — a real sacrifice, a real change in behavior, a real risk to reputation — since only a costly signal is hard for an insincere apologizer to fake cheaply. On this account, an apology that costs the speaker nothing beyond the words themselves will tend to be received as strategic regardless of how carefully its language is crafted, because listeners are implicitly pricing the apology's cost, not just parsing its content.`,
+  },
+  {
+    key: "cars_maps_and_power",
+    section: "cars",
+    title: "Maps as arguments, not neutral records",
+    topic: "geography",
+    body: `A map is often treated as a neutral, technical translation of physical space onto paper, faithful to the terrain it represents. Critical geographers have challenged this view, pointing out that every map involves choices — what to include, what to omit, which projection to use, whose place names to adopt — that are not dictated by the terrain itself but by the purposes and priorities of whoever made the map. A map drawn to aid a colonial administration will foreground different features than one drawn to aid a hiker, even of the identical terrain, and neither is simply "more accurate" in some purpose-independent sense. This reframes cartography as an inherently rhetorical practice: a map does not just show where things are, it argues, through its selective inclusions, for a particular way of understanding a place.`,
+  },
 ];
