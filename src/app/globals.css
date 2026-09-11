@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: toggled by adding/removing `dark` on <html> (see
+   ThemeToggle + the inline anti-flash script in layout.tsx), rather than
+   relying solely on prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -12,11 +17,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 body {

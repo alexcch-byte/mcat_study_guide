@@ -52,17 +52,17 @@ export function TutorChat({ itemId }: { itemId: number }) {
 
   if (!open) {
     return (
-      <button onClick={handleOpen} className="text-sm text-neutral-400 hover:text-white underline">
+      <button onClick={handleOpen} className="text-sm text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white underline">
         Teach me this
       </button>
     );
   }
 
   return (
-    <div className="border border-neutral-800 rounded-lg p-4 bg-neutral-900/60">
+    <div className="border border-neutral-200 rounded-lg p-4 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/60">
       <div className="flex items-center justify-between mb-3">
-        <p className="text-xs uppercase tracking-wide text-neutral-500">Tutor</p>
-        <button onClick={() => setOpen(false)} className="text-xs text-neutral-600 hover:text-neutral-300">
+        <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-500">Tutor</p>
+        <button onClick={() => setOpen(false)} className="text-xs text-neutral-400 hover:text-neutral-700 dark:text-neutral-600 dark:hover:text-neutral-300">
           close
         </button>
       </div>
@@ -72,14 +72,16 @@ export function TutorChat({ itemId }: { itemId: number }) {
           <p
             key={i}
             className={`text-sm leading-relaxed ${
-              m.role === "assistant" ? "text-neutral-200" : "text-neutral-400 text-right"
+              m.role === "assistant"
+                ? "text-neutral-700 dark:text-neutral-200"
+                : "text-neutral-500 text-right dark:text-neutral-400"
             }`}
           >
             {m.content}
           </p>
         ))}
-        {loading && <p className="text-sm text-neutral-600">…</p>}
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {loading && <p className="text-sm text-neutral-400 dark:text-neutral-600">…</p>}
+        {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
       </div>
 
       <div className="flex gap-2">
@@ -91,12 +93,12 @@ export function TutorChat({ itemId }: { itemId: number }) {
           }}
           placeholder="Your answer…"
           disabled={loading}
-          className="flex-1 bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-neutral-600"
+          className="flex-1 bg-white border border-neutral-300 rounded-lg px-3 py-2 text-sm text-neutral-900 focus:outline-none focus:border-neutral-500 dark:bg-neutral-950 dark:border-neutral-800 dark:text-neutral-100 dark:focus:border-neutral-600"
         />
         <button
           onClick={handleSend}
           disabled={loading || !input.trim()}
-          className="px-3 py-2 rounded-lg bg-neutral-100 text-neutral-950 text-sm disabled:opacity-30"
+          className="px-3 py-2 rounded-lg bg-neutral-900 text-white text-sm disabled:opacity-30 dark:bg-neutral-100 dark:text-neutral-950"
         >
           Send
         </button>

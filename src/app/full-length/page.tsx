@@ -11,6 +11,7 @@ import {
   type SessionItem,
 } from "@/lib/types";
 import { TutorChat } from "@/components/TutorChat";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const DEMO_USER_ID = 1;
 
@@ -219,14 +220,17 @@ function FullLengthPlayer() {
       <Centered>
         <div className="max-w-md text-left">
           <h1 className="text-2xl font-semibold mb-4 text-center">Full-length simulation</h1>
-          <p className="text-sm text-neutral-400 mb-6 text-center">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-6 text-center">
             Real section timing, no pause, no per-item feedback. You&apos;ll review everything
             afterward — reviewing the test is worth more than taking it.
           </p>
           <div className="space-y-2 mb-8">
             {sections.map((s) => (
-              <div key={s.section} className="flex justify-between text-sm border-b border-neutral-900 py-2">
-                <span className="text-neutral-300">{s.label}</span>
+              <div
+                key={s.section}
+                className="flex justify-between text-sm border-b border-neutral-200 dark:border-neutral-900 py-2"
+              >
+                <span className="text-neutral-700 dark:text-neutral-300">{s.label}</span>
                 <span className="text-neutral-500">
                   {s.items.length} items · {formatClock(s.budgetSeconds)}
                 </span>
@@ -235,7 +239,7 @@ function FullLengthPlayer() {
           </div>
           <button
             onClick={() => beginSection(0)}
-            className="w-full px-5 py-3 rounded-lg bg-neutral-100 text-neutral-950 font-medium"
+            className="w-full px-5 py-3 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950 font-medium"
           >
             Begin
           </button>
@@ -253,7 +257,7 @@ function FullLengthPlayer() {
         {!isLastBreak && (
           <button
             onClick={() => beginSection(sectionIndex + 1)}
-            className="px-5 py-2 rounded-lg border border-neutral-800 hover:border-neutral-500"
+            className="px-5 py-2 rounded-lg border border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-500"
           >
             Continue now
           </button>
@@ -265,22 +269,27 @@ function FullLengthPlayer() {
   if (phase === "section" && currentSection && currentItem) {
     const answer = answers.get(currentItem.id);
     return (
-      <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
-        <div className="flex items-center justify-between px-6 py-3 text-sm border-b border-neutral-900">
+      <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 flex flex-col">
+        <div className="flex items-center justify-between px-6 py-3 text-sm border-b border-neutral-200 dark:border-neutral-900">
           <span className="text-neutral-500">{currentSection.label}</span>
           <span className="font-mono">{formatClock(secondsLeft)}</span>
-          <span className="text-neutral-500">
-            {itemIndex + 1} / {currentSection.items.length}
-            {answer?.flagged && <span className="text-amber-400 ml-2">flagged</span>}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-neutral-500">
+              {itemIndex + 1} / {currentSection.items.length}
+              {answer?.flagged && <span className="text-amber-600 dark:text-amber-400 ml-2">flagged</span>}
+            </span>
+            <ThemeToggle />
+          </div>
         </div>
 
         <div className="flex-1 flex justify-center px-6 py-10">
           <div className="w-full max-w-2xl">
             {currentItem.passage && (
-              <div className="mb-6 p-4 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
+              <div className="mb-6 p-4 rounded-lg bg-neutral-50 border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
                 {currentItem.passage.title && (
-                  <div className="font-semibold text-neutral-200 mb-2">{currentItem.passage.title}</div>
+                  <div className="font-semibold text-neutral-900 dark:text-neutral-200 mb-2">
+                    {currentItem.passage.title}
+                  </div>
                 )}
                 {currentItem.passage.body}
               </div>
@@ -293,11 +302,11 @@ function FullLengthPlayer() {
                   onClick={() => selectOption(opt.id)}
                   className={`w-full text-left px-4 py-3 rounded-lg border transition-colors ${
                     answer?.optionId === opt.id
-                      ? "border-neutral-100 bg-neutral-900"
-                      : "border-neutral-800 hover:border-neutral-600"
+                      ? "border-neutral-900 bg-neutral-100 dark:border-neutral-100 dark:bg-neutral-900"
+                      : "border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
                   }`}
                 >
-                  <span className="text-neutral-500 w-5 inline-block">{i + 1}.</span> {opt.text}
+                  <span className="text-neutral-400 dark:text-neutral-500 w-5 inline-block">{i + 1}.</span> {opt.text}
                 </button>
               ))}
             </div>
@@ -307,25 +316,28 @@ function FullLengthPlayer() {
                 <button
                   onClick={() => goTo(itemIndex - 1)}
                   disabled={itemIndex === 0}
-                  className="px-4 py-2 rounded-lg border border-neutral-800 disabled:opacity-30"
+                  className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 disabled:opacity-30"
                 >
                   Back
                 </button>
-                <button onClick={toggleFlag} className="px-4 py-2 rounded-lg border border-neutral-800">
+                <button
+                  onClick={toggleFlag}
+                  className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800"
+                >
                   Flag
                 </button>
               </div>
               {itemIndex + 1 < currentSection.items.length ? (
                 <button
                   onClick={() => goTo(itemIndex + 1)}
-                  className="px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950 font-medium"
+                  className="px-5 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950 font-medium"
                 >
                   Next
                 </button>
               ) : (
                 <button
                   onClick={advanceAfterSection}
-                  className="px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950 font-medium"
+                  className="px-5 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950 font-medium"
                 >
                   End section
                 </button>
@@ -433,10 +445,13 @@ function ReviewPass({
       <Centered>
         <p className="text-xl mb-4">Full-length reviewed — {items.length} items.</p>
         <div className="flex gap-4 justify-center">
-          <Link href="/score" className="underline text-neutral-300 hover:text-white">
+          <Link href="/score" className="underline text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">
             Score projection →
           </Link>
-          <Link href="/diagnostics" className="underline text-neutral-300 hover:text-white">
+          <Link
+            href="/diagnostics"
+            className="underline text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+          >
             Diagnostics
           </Link>
         </div>
@@ -447,15 +462,20 @@ function ReviewPass({
   if (!item) return null;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
-      <div className="px-6 py-3 text-sm text-neutral-500 border-b border-neutral-900">
-        Review {index + 1} of {items.length}
+    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 flex flex-col">
+      <div className="flex items-center justify-between px-6 py-3 text-sm text-neutral-500 border-b border-neutral-200 dark:border-neutral-900">
+        <span>
+          Review {index + 1} of {items.length}
+        </span>
+        <ThemeToggle />
       </div>
       <div className="flex-1 flex justify-center px-6 py-10">
         <div className="w-full max-w-2xl">
           {item.passage && (
-            <div className="mb-6 p-4 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
-              {item.passage.title && <div className="font-semibold text-neutral-200 mb-2">{item.passage.title}</div>}
+            <div className="mb-6 p-4 rounded-lg bg-neutral-50 border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
+              {item.passage.title && (
+                <div className="font-semibold text-neutral-900 dark:text-neutral-200 mb-2">{item.passage.title}</div>
+              )}
               {item.passage.body}
             </div>
           )}
@@ -465,15 +485,18 @@ function ReviewPass({
               const revealedOpt = reveal?.options.find((o) => o.id === opt.id);
               let cls = "w-full text-left px-4 py-3 rounded-lg border";
               if (reveal) {
-                if (revealedOpt?.isCorrect) cls += " border-emerald-600 bg-emerald-950/40";
-                else if (answer?.optionId === opt.id) cls += " border-red-600 bg-red-950/40";
-                else cls += " border-neutral-800";
+                if (revealedOpt?.isCorrect) cls += " border-emerald-500 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40";
+                else if (answer?.optionId === opt.id) cls += " border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-950/40";
+                else cls += " border-neutral-200 dark:border-neutral-800";
               } else {
-                cls += answer?.optionId === opt.id ? " border-neutral-100 bg-neutral-900" : " border-neutral-800";
+                cls +=
+                  answer?.optionId === opt.id
+                    ? " border-neutral-900 bg-neutral-100 dark:border-neutral-100 dark:bg-neutral-900"
+                    : " border-neutral-200 dark:border-neutral-800";
               }
               return (
                 <div key={opt.id} className={cls}>
-                  <span className="text-neutral-500 w-5 inline-block">{i + 1}.</span> {opt.text}
+                  <span className="text-neutral-400 dark:text-neutral-500 w-5 inline-block">{i + 1}.</span> {opt.text}
                 </div>
               );
             })}
@@ -481,13 +504,13 @@ function ReviewPass({
 
           {!reveal && (
             <div className="mt-8">
-              <p className="text-sm text-neutral-400 mb-3">How confident were you?</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">How confident were you?</p>
               <div className="grid grid-cols-4 gap-2">
                 {CONFIDENCE_LABELS.map((label, i) => (
                   <button
                     key={label}
                     onClick={() => handleConfidence(i + 1)}
-                    className="px-3 py-2 rounded-lg border border-neutral-800 hover:border-neutral-500 text-sm"
+                    className="px-3 py-2 rounded-lg border border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-500 text-sm"
                   >
                     {i + 1}. {label}
                   </button>
@@ -498,22 +521,24 @@ function ReviewPass({
 
           {reveal && (
             <div className="mt-8 space-y-4">
-              <p className={reveal.correct ? "text-emerald-400" : "text-red-400"}>
+              <p className={reveal.correct ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}>
                 {reveal.correct ? "Correct" : "Incorrect"}
               </p>
               {reveal.correctReasoning && (
-                <p className="text-sm text-neutral-400 leading-relaxed">{reveal.correctReasoning}</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{reveal.correctReasoning}</p>
               )}
               {!reveal.correct && (
                 <div>
-                  <p className="text-sm text-neutral-400 mb-2">Why did you miss it?</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">Why did you miss it?</p>
                   <div className="flex flex-wrap gap-2">
                     {(Object.keys(ERROR_TAG_LABELS) as ErrorTag[]).map((tag) => (
                       <button
                         key={tag}
                         onClick={() => setErrorTag(tag)}
                         className={`px-3 py-1.5 rounded-full border text-xs ${
-                          errorTag === tag ? "border-neutral-100 bg-neutral-800" : "border-neutral-800 hover:border-neutral-500"
+                          errorTag === tag
+                            ? "border-neutral-900 bg-neutral-100 dark:border-neutral-100 dark:bg-neutral-800"
+                            : "border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-500"
                         }`}
                       >
                         {ERROR_TAG_LABELS[tag]}
@@ -526,7 +551,7 @@ function ReviewPass({
               <button
                 onClick={handleNext}
                 disabled={(!reveal.correct && !errorTag) || submitting}
-                className="mt-2 px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950 disabled:opacity-30"
+                className="mt-2 px-5 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950 disabled:opacity-30"
               >
                 {index + 1 >= items.length ? "Finish" : "Next"}
               </button>
@@ -540,7 +565,10 @@ function ReviewPass({
 
 function Centered({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center text-center px-6">
+    <div className="relative min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 flex items-center justify-center text-center px-6">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div>{children}</div>
     </div>
   );

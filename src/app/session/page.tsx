@@ -11,6 +11,7 @@ import {
   type SessionItem,
 } from "@/lib/types";
 import { TutorChat } from "@/components/TutorChat";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const DEMO_USER_ID = 1;
 
@@ -293,21 +294,21 @@ function SessionPlayer() {
           <p className="text-lg mb-2">
             Let&apos;s stop and teach <span className="font-semibold">{teachingConcept.name}</span> properly.
           </p>
-          <p className="text-sm text-neutral-400 mb-4">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
             Five misses in a row here means more of the same items won&apos;t help. Here&apos;s what tripped you up
             each time:
           </p>
-          <ul className="space-y-3 mb-6 text-sm text-neutral-300">
+          <ul className="space-y-3 mb-6 text-sm text-neutral-700 dark:text-neutral-300">
             {recentMisses.map((m, i) => (
-              <li key={i} className="border-l-2 border-neutral-700 pl-3">
-                <p className="text-neutral-500 mb-1">{m.stem}</p>
+              <li key={i} className="border-l-2 border-neutral-300 dark:border-neutral-700 pl-3">
+                <p className="text-neutral-500 dark:text-neutral-500 mb-1">{m.stem}</p>
                 {m.correctReasoning && <p>{m.correctReasoning}</p>}
               </li>
             ))}
           </ul>
           <button
             onClick={startTeachingCheck}
-            className="px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950"
+            className="px-5 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950"
           >
             Start 3-item check
           </button>
@@ -320,10 +321,13 @@ function SessionPlayer() {
       <CenteredMessage>
         <p className="text-xl mb-4">Session complete — {items.length} items.</p>
         <div className="flex gap-4 justify-center">
-          <Link href="/today" className="underline text-neutral-300 hover:text-white">
+          <Link href="/today" className="underline text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">
             Back to Today
           </Link>
-          <Link href="/diagnostics" className="underline text-neutral-300 hover:text-white">
+          <Link
+            href="/diagnostics"
+            className="underline text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white"
+          >
             View diagnostics →
           </Link>
         </div>
@@ -333,21 +337,24 @@ function SessionPlayer() {
   if (!currentItem) return null;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
-      <div className="flex items-center justify-between px-6 py-3 text-sm text-neutral-500 border-b border-neutral-900">
+    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 flex flex-col">
+      <div className="flex items-center justify-between px-6 py-3 text-sm text-neutral-500 border-b border-neutral-200 dark:border-neutral-900">
         <span>
           Item {index + 1} of {items.length}
-          {blockRationale && <span className="text-neutral-600"> — {blockRationale}</span>}
+          {blockRationale && <span className="text-neutral-400 dark:text-neutral-600"> — {blockRationale}</span>}
         </span>
-        {flagged && <span className="text-amber-400">flagged</span>}
+        <div className="flex items-center gap-3">
+          {flagged && <span className="text-amber-600 dark:text-amber-400">flagged</span>}
+          <ThemeToggle />
+        </div>
       </div>
 
       <div className="flex-1 flex justify-center px-6 py-10">
         <div className="w-full max-w-2xl">
           {currentItem.passage && (
-            <div className="mb-6 p-4 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
+            <div className="mb-6 p-4 rounded-lg bg-neutral-50 border border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300 text-sm leading-relaxed max-h-72 overflow-y-auto">
               {currentItem.passage.title && (
-                <div className="font-semibold text-neutral-200 mb-2">
+                <div className="font-semibold text-neutral-900 dark:text-neutral-200 mb-2">
                   {currentItem.passage.title}
                 </div>
               )}
@@ -367,13 +374,13 @@ function SessionPlayer() {
               let cls =
                 "w-full text-left px-4 py-3 rounded-lg border transition-colors flex gap-3 items-start";
               if (showReveal) {
-                if (revealedOpt?.isCorrect) cls += " border-emerald-600 bg-emerald-950/40";
-                else if (isSelected) cls += " border-red-600 bg-red-950/40";
-                else cls += " border-neutral-800";
+                if (revealedOpt?.isCorrect) cls += " border-emerald-500 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-950/40";
+                else if (isSelected) cls += " border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-950/40";
+                else cls += " border-neutral-200 dark:border-neutral-800";
               } else {
                 cls += isSelected
-                  ? " border-neutral-100 bg-neutral-900"
-                  : " border-neutral-800 hover:border-neutral-600";
+                  ? " border-neutral-900 bg-neutral-100 dark:border-neutral-100 dark:bg-neutral-900"
+                  : " border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600";
               }
               if (isEliminated && !showReveal) cls += " opacity-40 line-through";
 
@@ -385,7 +392,7 @@ function SessionPlayer() {
                     onClick={() => handleSelectOption(opt.id)}
                     className={cls}
                   >
-                    <span className="text-neutral-500 w-5 shrink-0">{i + 1}.</span>
+                    <span className="text-neutral-400 dark:text-neutral-500 w-5 shrink-0">{i + 1}.</span>
                     <span className="flex-1">{opt.text}</span>
                   </button>
                   {phase === "answering" && (
@@ -393,7 +400,7 @@ function SessionPlayer() {
                       type="button"
                       title="Strike out"
                       onClick={() => toggleEliminated(opt.id)}
-                      className="text-neutral-600 hover:text-neutral-300 text-xs px-2"
+                      className="text-neutral-400 hover:text-neutral-700 dark:text-neutral-600 dark:hover:text-neutral-300 text-xs px-2"
                     >
                       ✕
                     </button>
@@ -405,13 +412,13 @@ function SessionPlayer() {
 
           {phase === "confidence" && (
             <div className="mt-8">
-              <p className="text-sm text-neutral-400 mb-3">How confident were you?</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-3">How confident were you?</p>
               <div className="grid grid-cols-4 gap-2">
                 {CONFIDENCE_LABELS.map((label, i) => (
                   <button
                     key={label}
                     onClick={() => handleConfidence(i + 1)}
-                    className="px-3 py-2 rounded-lg border border-neutral-800 hover:border-neutral-500 text-sm"
+                    className="px-3 py-2 rounded-lg border border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-500 text-sm"
                   >
                     {i + 1}. {label}
                   </button>
@@ -422,18 +429,18 @@ function SessionPlayer() {
 
           {phase === "review" && reveal && (
             <div className="mt-8 space-y-4">
-              <p className={reveal.correct ? "text-emerald-400" : "text-red-400"}>
+              <p className={reveal.correct ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}>
                 {reveal.correct ? "Correct" : "Incorrect"}
               </p>
               {reveal.correctReasoning && (
-                <p className="text-sm text-neutral-400 leading-relaxed">
+                <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">
                   {reveal.correctReasoning}
                 </p>
               )}
 
               {!reveal.correct && (
                 <div>
-                  <p className="text-sm text-neutral-400 mb-2">Why did you miss it?</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">Why did you miss it?</p>
                   <div className="flex flex-wrap gap-2">
                     {(Object.keys(ERROR_TAG_LABELS) as ErrorTag[]).map((tag) => (
                       <button
@@ -441,8 +448,8 @@ function SessionPlayer() {
                         onClick={() => setErrorTag(tag)}
                         className={`px-3 py-1.5 rounded-full border text-xs ${
                           errorTag === tag
-                            ? "border-neutral-100 bg-neutral-800"
-                            : "border-neutral-800 hover:border-neutral-500"
+                            ? "border-neutral-900 bg-neutral-100 dark:border-neutral-100 dark:bg-neutral-800"
+                            : "border-neutral-200 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-500"
                         }`}
                       >
                         {ERROR_TAG_LABELS[tag]}
@@ -457,7 +464,7 @@ function SessionPlayer() {
               <button
                 onClick={handleNext}
                 disabled={(!reveal.correct && !errorTag) || submitting}
-                className="mt-2 px-5 py-2 rounded-lg bg-neutral-100 text-neutral-950 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="mt-2 px-5 py-2 rounded-lg bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-950 disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 {index + 1 >= items.length ? "Finish" : "Next"}
               </button>
@@ -471,7 +478,10 @@ function SessionPlayer() {
 
 function CenteredMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex items-center justify-center text-center px-6">
+    <div className="relative min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 flex items-center justify-center text-center px-6">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div>{children}</div>
     </div>
   );
