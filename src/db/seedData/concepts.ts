@@ -23,6 +23,8 @@ export const concepts: ConceptDef[] = [
   { name: "solutions_and_colligative_properties", section: "cp", aamcCategory: "5D", estLearnMinutes: 12 },
   { name: "nuclear_decay_and_half_life", section: "cp", aamcCategory: "4F", estLearnMinutes: 10 },
   { name: "work_energy_and_power", section: "cp", aamcCategory: "4A", estLearnMinutes: 10 },
+  { name: "intermolecular_forces", section: "cp", aamcCategory: "5D", estLearnMinutes: 12 },
+  { name: "spectroscopy_and_electromagnetic_radiation", section: "cp", aamcCategory: "4D", estLearnMinutes: 12 },
 
   // --- Bio/Biochem -----------------------------------------------------------
   { name: "amino_acid_structure", section: "bb", aamcCategory: "1A", estLearnMinutes: 10 },
@@ -41,6 +43,8 @@ export const concepts: ConceptDef[] = [
   { name: "nervous_system_signaling", section: "bb", aamcCategory: "2E", estLearnMinutes: 14 },
   { name: "immune_system_basics", section: "bb", aamcCategory: "2F", estLearnMinutes: 12 },
   { name: "population_genetics_hardy_weinberg", section: "bb", aamcCategory: "3B", estLearnMinutes: 14 },
+  { name: "carbohydrate_structure_and_function", section: "bb", aamcCategory: "1C", estLearnMinutes: 12 },
+  { name: "osmoregulation_and_kidney_function", section: "bb", aamcCategory: "2G", estLearnMinutes: 14 },
 
   // --- Psych/Soc -----------------------------------------------------------
   { name: "attribution_theory", section: "ps", aamcCategory: "7A", estLearnMinutes: 10 },
@@ -59,6 +63,8 @@ export const concepts: ConceptDef[] = [
   { name: "personality_trait_theory", section: "ps", aamcCategory: "7D", estLearnMinutes: 12 },
   { name: "health_belief_model", section: "ps", aamcCategory: "9B", estLearnMinutes: 12 },
   { name: "social_facilitation_and_deindividuation", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
+  { name: "attachment_theory", section: "ps", aamcCategory: "6C", estLearnMinutes: 12 },
+  { name: "culture_and_socialization", section: "ps", aamcCategory: "8B", estLearnMinutes: 12 },
 
   // --- CARS ------------------------------------------------------------------
   // No content model applies (§1.4) — these are SIRS skill labels, not concepts.
@@ -97,4 +103,10 @@ export const conceptEdges: ConceptEdgeDef[] = [
   { prereq: "attribution_theory", dependent: "personality_trait_theory", strength: 0.2 },
   { prereq: "socioeconomic_status_and_health", dependent: "health_belief_model", strength: 0.4 },
   { prereq: "group_dynamics_and_groupthink", dependent: "social_facilitation_and_deindividuation", strength: 0.4 },
+  { prereq: "buffers_and_henderson_hasselbalch", dependent: "intermolecular_forces", strength: 0.2 },
+  { prereq: "waves_sound_and_optics", dependent: "spectroscopy_and_electromagnetic_radiation", strength: 0.5 },
+  { prereq: "glycolysis_and_cellular_respiration", dependent: "carbohydrate_structure_and_function", strength: 0.4 },
+  { prereq: "cell_membrane_transport", dependent: "osmoregulation_and_kidney_function", strength: 0.5 },
+  { prereq: "psychosocial_development_stages", dependent: "attachment_theory", strength: 0.5 },
+  { prereq: "social_identity_theory", dependent: "culture_and_socialization", strength: 0.3 },
 ];

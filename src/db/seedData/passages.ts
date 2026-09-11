@@ -245,4 +245,124 @@ export const passages: PassageDef[] = [
     topic: "geography",
     body: `A map is often treated as a neutral, technical translation of physical space onto paper, faithful to the terrain it represents. Critical geographers have challenged this view, pointing out that every map involves choices — what to include, what to omit, which projection to use, whose place names to adopt — that are not dictated by the terrain itself but by the purposes and priorities of whoever made the map. A map drawn to aid a colonial administration will foreground different features than one drawn to aid a hiker, even of the identical terrain, and neither is simply "more accurate" in some purpose-independent sense. This reframes cartography as an inherently rhetorical practice: a map does not just show where things are, it argues, through its selective inclusions, for a particular way of understanding a place.`,
   },
+
+  // --- Chem/Phys (batch 3) -----------------------------------------------------
+  {
+    key: "cp_solubility_lab",
+    section: "cp",
+    title: "Predicting solubility from intermolecular forces",
+    topic: "intermolecular forces",
+    body: `A chemistry student is asked to predict, before testing, whether several solid compounds will dissolve readily in water. The student reasons from the principle "like dissolves like": water is a highly polar solvent capable of hydrogen bonding, so compounds that are themselves polar or capable of hydrogen bonding with water should dissolve well, while compounds held together primarily by weak, nonpolar dispersion forces should dissolve poorly. Testing an ionic salt, the student predicts high solubility, since the strong dipole of water molecules can surround and stabilize individual ions, overcoming the ionic lattice energy. Testing a nonpolar hydrocarbon wax, the student predicts poor solubility, since water molecules would have to sacrifice favorable hydrogen bonds with each other to accommodate a molecule that can offer no comparable interaction in return.`,
+  },
+  {
+    key: "cp_ir_spectrum",
+    section: "cp",
+    title: "Identifying functional groups by infrared spectroscopy",
+    topic: "spectroscopy",
+    body: `Infrared (IR) spectroscopy works by exposing a sample to a range of infrared frequencies and measuring which frequencies are absorbed. A given chemical bond absorbs IR radiation at a frequency that depends on the bond's strength and the masses of the atoms it connects, causing the bond to vibrate (stretch or bend) more energetically; different functional groups therefore produce a distinctive pattern of absorption peaks. A chemist analyzing an unknown compound's IR spectrum looks first at the broad, strong stretching regions characteristic of easily identified groups — a broad peak around 3300 wavenumbers suggesting an O-H or N-H bond, a sharp strong peak near 1700 wavenumbers suggesting a C=O bond — before examining the more complex "fingerprint region" at lower wavenumbers, which is often unique enough to a specific molecule to allow comparison against a reference library.`,
+  },
+
+  // --- Bio/Biochem (batch 3) -----------------------------------------------------
+  {
+    key: "bb_carbohydrate_digestion",
+    section: "bb",
+    title: "Enzymatic digestion of dietary starch",
+    topic: "carbohydrate metabolism",
+    body: `Dietary starch, a polysaccharide made of long chains of glucose units, cannot be absorbed directly by intestinal cells and must first be broken down into individual glucose monomers. Digestion begins in the mouth, where salivary amylase begins hydrolyzing the glycosidic bonds linking glucose units into shorter chains, though this process is interrupted once food reaches the acidic environment of the stomach, which denatures the enzyme. In the small intestine, pancreatic amylase resumes breaking the starch chains into smaller fragments, and enzymes anchored to the intestinal lining complete the process, cleaving these fragments into free glucose molecules that intestinal cells can then absorb via active transport into the bloodstream.`,
+  },
+  {
+    key: "bb_nephron_filtration",
+    section: "bb",
+    title: "Filtration and reabsorption in the nephron",
+    topic: "renal physiology",
+    body: `Each nephron, the functional unit of the kidney, begins with the glomerulus, a tuft of capillaries where blood pressure forces water, ions, glucose, and small molecules out of the blood and into Bowman's capsule, forming filtrate; larger components like blood cells and most proteins remain in the blood. As this filtrate travels through the proximal tubule, the loop of Henle, the distal tubule, and the collecting duct, most of the filtered water, glucose, and ions are selectively reabsorbed back into the blood via surrounding capillaries, while some additional wastes are secreted into the tubule from the blood. Under normal conditions nearly all filtered glucose is reabsorbed, so the appearance of glucose in the final urine typically signals that the filtered glucose load has exceeded the tubule's reabsorption capacity, as occurs in uncontrolled diabetes.`,
+  },
+
+  // --- Psych/Soc (batch 3) -----------------------------------------------------
+  {
+    key: "ps_strange_situation_study",
+    section: "ps",
+    title: "The Strange Situation and infant attachment styles",
+    topic: "attachment",
+    body: `In Mary Ainsworth's Strange Situation procedure, an infant and caregiver are observed in a room as the caregiver briefly leaves and then returns, with a stranger also entering and leaving at points during the session. Researchers focus especially on the infant's behavior upon the caregiver's return. Infants who are distressed by the separation but are readily comforted by the caregiver's return, quickly resuming play, are classified as securely attached. Infants who show little distress at separation and largely ignore the caregiver upon return are classified as avoidant. A third pattern, in which infants are highly distressed by separation but respond to the caregiver's return with a mix of seeking comfort and resisting it — for example clinging while also arching away or hitting — is classified as anxious-resistant (ambivalent) attachment.`,
+  },
+  {
+    key: "ps_cross_cultural_study",
+    section: "ps",
+    title: "Individualism and collectivism across cultures",
+    topic: "cultural psychology",
+    body: `Cross-cultural psychologists have documented systematic differences in how individuals in different societies describe themselves and explain their own behavior. Participants from societies often characterized as individualist tend to describe themselves using internal, trait-based terms ("I am ambitious") and to explain their own behavior by appeal to personal preferences and internal states. Participants from societies often characterized as collectivist tend to describe themselves more often in terms of social roles and relationships ("I am a daughter, a member of my community") and to explain behavior more readily by appeal to social obligations, relationships, and context. Researchers caution that these are population-level tendencies observed across large samples, not fixed rules describing any given individual, and that most societies show a mix of both orientations depending on the specific domain of life being considered.`,
+  },
+
+  // --- CARS (batch 3) --------------------------------------------------------------
+  {
+    key: "cars_tyranny_of_clock",
+    section: "cars",
+    title: "The tyranny of the clock",
+    topic: "history of timekeeping",
+    body: `Before mechanical clocks became widespread, most people organized their days around events — sunrise, the completion of a task, the ringing of a bell for a specific purpose — rather than around a uniform, abstract measure of elapsed time. The spread of the factory clock is often credited with introducing a new discipline: workers were now paid, scheduled, and disciplined according to a clock's indifferent ticking rather than the natural completion of a task. Critics of this shift have argued that clock time did not simply measure labor more accurately but actively reorganized what counted as labor in the first place, since a task-based day has no natural concept of "wasted time" between tasks, while a clock-based day converts every unproductive minute into a visible, countable loss — a loss that did not exist, even in principle, before the clock made it measurable.`,
+  },
+  {
+    key: "cars_rosy_retrospection",
+    section: "cars",
+    title: "Why we misremember how bad the past felt",
+    topic: "psychology of memory",
+    body: `People asked to recall how they felt during a difficult period — a hard semester, a demanding trip — often rate the experience, in retrospect, as more positive than the moment-by-moment reports they gave while actually living through it. One explanation treats this simply as motivated forgetting, a self-serving edit that makes the past more flattering. A less flattering-to-the-rememberer but perhaps more accurate explanation holds that memory for extended experiences is not an average of every moment but a reconstruction weighted heavily toward the ending and toward a few salient peaks, largely discarding the tedious middle. If the second account is correct, "misremembering" the past as better than it felt is not really a distortion introduced after the fact, but a direct consequence of how experience gets summarized into memory in the first place.`,
+  },
+  {
+    key: "cars_norman_doors",
+    section: "cars",
+    title: "Doors that lie to you",
+    topic: "design",
+    body: `A door that must be pulled but is fitted with a flat plate handle, which visually suggests pushing, will reliably cause people to push it first — and the mistake is not the fault of the person pushing. Designers call this a failure of "affordance": the visible features of an object should suggest, without any label or instruction, how it is meant to be used, and a design that suggests the wrong action has failed regardless of how capable or attentive its users are. This principle generalizes well beyond doors: a well-designed interface, tool, or system requires no manual because its correct use is legible from its shape and arrangement alone, while a poorly designed one requires users to memorize an arbitrary correction to what their eyes are telling them, and will keep producing the same "human error" indefinitely, no matter how many people encounter it.`,
+  },
+  {
+    key: "cars_currency_representation",
+    section: "cars",
+    title: "What money actually represents",
+    topic: "philosophy of economics",
+    body: `A coin or banknote is often assumed to have value because of some property intrinsic to the object itself — the metal it contains, the promise printed on its face. Modern fiat currency makes this assumption difficult to sustain, since a banknote's material cost is negligible and no metal backs its value. A more accurate account treats currency's value as entirely relational: a currency is valuable to the extent that a large enough community of others is confidently expected to accept it in exchange for goods and labor, a form of value that exists only in the collective expectation and evaporates rapidly once that expectation breaks down, as in a hyperinflationary collapse. On this view, asking "what backs the currency" independently of collective confidence is close to a category error — the confidence is not a precondition for the currency's value, it is the value.`,
+  },
+  {
+    key: "cars_eavesdropping_ethics",
+    section: "cars",
+    title: "The ethics of overhearing",
+    topic: "ethics",
+    body: `Deliberately eavesdropping on a private conversation is widely considered a clear ethical violation, but the ethical status of merely overhearing one — without any intention to listen in — is treated far more ambiguously, even though the informational outcome for the listener can be identical. One account locates the moral difference entirely in intention: since the overhearer did nothing to bring the information to themselves, no wrong has been committed regardless of what they now know. A competing account argues that once information has been overheard, however innocently, further ethical obligations attach to what the listener does next — repeating it, acting on it, or pretending not to have heard it — meaning the initial innocence of overhearing does not settle the ethics of the situation but merely opens a second set of questions the intention-based account leaves unaddressed.`,
+  },
+  {
+    key: "cars_street_naming",
+    section: "cars",
+    title: "What street names are actually for",
+    topic: "urban history",
+    body: `Street names are often treated as simple labels, chosen for navigation and otherwise arbitrary. A closer look at how cities actually name and rename their streets suggests otherwise: renaming a street after a historical figure is rarely a neutral administrative act, and disputes over such renamings are rarely about navigation at all, since any name would serve equally well for wayfinding. What is actually being contested in these disputes is whose history the everyday, unremarkable act of giving directions will quietly repeat, thousands of times a day, to residents who may never consciously register the name's origin at all. A street name, on this account, functions less like a label and more like a very slow, very durable form of public commemoration — one that most people encounter too casually to notice they are encountering it at all.`,
+  },
+  {
+    key: "cars_true_crime_appeal",
+    section: "cars",
+    title: "The appeal of true crime storytelling",
+    topic: "media studies",
+    body: `The popularity of true crime as entertainment is often explained as simple morbid curiosity, but this explanation struggles to account for the genre's most common narrative shape: true crime stories are disproportionately told from the perspective of the investigator working toward a solution, rather than from the perspective of the victim or the crime itself. This structural choice suggests a different appeal than pure morbidity: what the genre most reliably offers is not exposure to violence but the satisfaction of a chaotic, frightening event being rendered comprehensible and ultimately controlled through careful reasoning. Under this account, true crime's core promise is closer to that of a puzzle or a procedural drama than to horror, which would explain why unsolved cases, however dramatic, tend to be far less commercially popular than cases with a clear resolution.`,
+  },
+  {
+    key: "cars_improvisation_illusion",
+    section: "cars",
+    title: "The illusion of spontaneity in improvisation",
+    topic: "performance studies",
+    body: `Skilled improvisational performers are often praised for spontaneity, as though their work emerges from nothing in the moment of performance. Performers themselves frequently describe the experience differently: what looks like spontaneous invention is typically built from a large repertoire of previously rehearsed patterns, phrases, and structures, recombined quickly enough that the recombination itself is what feels improvised, even to the performer. This suggests that what audiences experience as spontaneity is not the absence of preparation but its successful concealment — the performer has practiced enough distinct components, and enough ways of joining them, that no single combination needs to have been planned in advance for the overall performance to feel unplanned. Genuine spontaneity, on this account, may be less valuable to good improvisation than a large enough stock of prepared material to make planning invisible.`,
+  },
+  {
+    key: "cars_recipe_copyright",
+    section: "cars",
+    title: "Why a recipe is hard to copyright",
+    topic: "intellectual property",
+    body: `A chef who spends years developing a distinctive dish generally cannot copyright the recipe itself, a fact that strikes many people as an odd gap in intellectual property protection given how much creative work can go into a dish. Copyright law's usual explanation is that a recipe's list of ingredients and basic steps is a functional process, akin to an instruction manual, rather than an expressive work — and functional processes are traditionally excluded from copyright regardless of how much ingenuity produced them, on the theory that granting exclusive rights over a method would improperly restrict others from independently discovering and using the same functional solution. What can be protected is the specific expressive language used to describe the recipe, such as an accompanying essay or distinctive photography, but never the underlying sequence of actions the recipe instructs a cook to perform.`,
+  },
+  {
+    key: "cars_small_talk_function",
+    section: "cars",
+    title: "What small talk is actually doing",
+    topic: "sociolinguistics",
+    body: `Small talk — remarks about weather, weekend plans, minor pleasantries exchanged between near-strangers — is frequently dismissed as empty or meaningless precisely because so little substantive information is exchanged. This dismissal assumes conversation's only legitimate function is transmitting information, an assumption sociolinguists studying everyday interaction have challenged. On their account, small talk's real function is not informational but relational: it signals, through a low-stakes exchange, that both parties are willing to engage cooperatively and are not hostile or withdrawn, establishing a minimal baseline of social trust before (or instead of) any substantive exchange occurs. Under this view, judging small talk by how much information it conveys is analogous to judging a handshake by how much it tells you about someone's grip strength — measuring the wrong thing, since the real content of the exchange lies in the willingness to perform it at all.`,
+  },
 ];
