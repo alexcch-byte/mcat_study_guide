@@ -365,4 +365,124 @@ export const passages: PassageDef[] = [
     topic: "sociolinguistics",
     body: `Small talk — remarks about weather, weekend plans, minor pleasantries exchanged between near-strangers — is frequently dismissed as empty or meaningless precisely because so little substantive information is exchanged. This dismissal assumes conversation's only legitimate function is transmitting information, an assumption sociolinguists studying everyday interaction have challenged. On their account, small talk's real function is not informational but relational: it signals, through a low-stakes exchange, that both parties are willing to engage cooperatively and are not hostile or withdrawn, establishing a minimal baseline of social trust before (or instead of) any substantive exchange occurs. Under this view, judging small talk by how much information it conveys is analogous to judging a handshake by how much it tells you about someone's grip strength — measuring the wrong thing, since the real content of the exchange lies in the willingness to perform it at all.`,
   },
+
+  // --- Chem/Phys (batch 4) -----------------------------------------------------
+  {
+    key: "cp_reaction_rate_lab",
+    section: "cp",
+    title: "Measuring how concentration affects reaction rate",
+    topic: "kinetics",
+    body: `A student studies the reaction 2NO(g) + O2(g) → 2NO2(g) by running the reaction several times, each time changing the initial concentration of one reactant while holding the other constant, and measuring the initial rate. Doubling [NO] while holding [O2] constant quadruples the initial rate. Doubling [O2] while holding [NO] constant only doubles the initial rate. From this data, the student writes the experimentally determined rate law as rate = k[NO]²[O2]¹, noting that the exponents in this rate law were determined entirely from the experimental data and do not simply match the stoichiometric coefficients in the balanced equation, which happen to differ from the reaction orders found here only for O2, not for NO.`,
+  },
+  {
+    key: "cp_induction_generator",
+    section: "cp",
+    title: "Electromagnetic induction in a simple generator",
+    topic: "electromagnetism",
+    body: `A simple electric generator consists of a loop of wire rotating within a fixed magnetic field. As the loop rotates, the magnetic flux passing through it continuously changes, and by Faraday's law of induction, this changing flux induces an electromotive force (EMF) in the loop, driving a current through an external circuit. The induced EMF is greatest when the loop is oriented so its plane is parallel to the magnetic field lines (flux changing most rapidly at that instant) and momentarily zero when the loop's plane is perpendicular to the field (flux at a momentary maximum, but instantaneously not changing). An engineer wanting to increase the generator's peak output voltage without changing the rotation speed considers three options: increasing the number of turns in the wire loop, increasing the strength of the magnetic field, or increasing the area of the loop — noting that Faraday's law implies all three should proportionally increase the induced EMF.`,
+  },
+
+  // --- Bio/Biochem (batch 4) -----------------------------------------------------
+  {
+    key: "bb_digestion_overview",
+    section: "bb",
+    title: "Sequential digestion and absorption along the GI tract",
+    topic: "digestive physiology",
+    body: `Digestion of a mixed meal proceeds through distinct stages as food moves along the gastrointestinal tract. In the stomach, pepsin (activated from pepsinogen by the stomach's acidic environment) begins breaking down proteins into smaller peptides, while mechanical churning creates a semi-liquid mixture called chyme. As chyme enters the small intestine, the pancreas secretes bicarbonate to neutralize the acidic chyme and a suite of digestive enzymes (proteases, lipases, and amylases) to continue breaking down macromolecules, while bile from the liver (stored in the gallbladder) emulsifies dietary fats, increasing their surface area for lipase action. The resulting small molecules — amino acids, fatty acids, monosaccharides — are absorbed primarily across the small intestine's highly folded lining, with its villi and microvilli dramatically increasing surface area for absorption; the large intestine that follows absorbs remaining water and houses bacteria that ferment otherwise indigestible material.`,
+  },
+  {
+    key: "bb_bone_remodeling",
+    section: "bb",
+    title: "Bone remodeling and calcium homeostasis",
+    topic: "skeletal physiology",
+    body: `Bone is not a static structure but is continuously remodeled throughout life through the coordinated activity of two cell types: osteoclasts, which break down (resorb) bone tissue, releasing calcium into the blood, and osteoblasts, which build new bone tissue, depositing calcium into it. This remodeling is tightly regulated hormonally: when blood calcium drops, parathyroid hormone (PTH) is released, stimulating osteoclast activity to release calcium from bone and raise blood calcium levels. When blood calcium rises above normal, the hormone calcitonin is released, promoting osteoblast activity and calcium deposition into bone, lowering blood calcium. This continuous balance between resorption and deposition means an imbalance favoring osteoclast activity over long periods — as occurs with declining estrogen levels in some individuals — can gradually reduce bone density even though the remodeling process itself never stops.`,
+  },
+
+  // --- Psych/Soc (batch 4) -----------------------------------------------------
+  {
+    key: "ps_emotion_study",
+    section: "ps",
+    title: "Comparing theories of emotion using a physiological arousal study",
+    topic: "emotion",
+    body: `Researchers inject participants with epinephrine (producing physiological arousal: increased heart rate, trembling) but tell one group truthfully what physical symptoms to expect, while a second group is told nothing about the expected symptoms. Both groups are then placed in a room with a confederate acting either euphorically or angrily. Participants who were told what physical symptoms to expect from the injection tend to attribute their arousal to the drug and report relatively little emotional change regardless of the confederate's behavior. Participants who were not told what to expect, however, tend to look to the situation for an explanation of their unexplained arousal, reporting themselves as euphoric when paired with the euphoric confederate and angry when paired with the angry confederate — despite having received the identical injection as the first group.`,
+  },
+  {
+    key: "ps_impression_formation_study",
+    section: "ps",
+    title: "Primacy effects in forming impressions of a stranger",
+    topic: "social cognition",
+    body: `Researchers give participants a list of adjectives describing a hypothetical person and ask them to form an overall impression. One group receives the list in the order intelligent, industrious, impulsive, critical, stubborn, envious — moving from positive to negative traits. A second group receives the exact same six adjectives in the reverse order — envious, stubborn, critical, impulsive, industrious, intelligent — moving from negative to positive. Even though both groups receive identical information, the first group (positive traits presented first) rates the hypothetical person substantially more favorably overall than the second group. Researchers interpret this as evidence that earlier information disproportionately shapes an overall impression, with later information being interpreted through the lens the earlier information already established, rather than every piece of information being weighted equally regardless of order.`,
+  },
+
+  // --- CARS (batch 4) --------------------------------------------------------------
+  {
+    key: "cars_nudge_ethics",
+    section: "cars",
+    title: "Is a nudge a form of manipulation?",
+    topic: "behavioral economics and ethics",
+    body: `Policymakers increasingly use "nudges" — changes to how choices are presented, such as making healthy food more visible in a cafeteria or setting retirement savings as a default enrollment — to influence behavior without restricting anyone's options or changing the underlying incentives. Defenders argue this respects autonomy precisely because every option remains available; a nudge only exploits predictable psychological tendencies, such as a preference for defaults, to steer people toward outcomes they themselves would endorse on reflection. Critics counter that this defense proves too much: exploiting a known psychological weakness to steer behavior is a description of manipulation generally, and the fact that refusal remains technically possible has never been sufficient to excuse manipulation in other contexts, such as deceptive advertising. The dispute, on this framing, is not really about whether nudges work, but about whether "you could still say no" is actually doing the ethical work defenders assume it does.`,
+  },
+  {
+    key: "cars_problem_of_induction",
+    section: "cars",
+    title: "The problem of induction",
+    topic: "philosophy of science",
+    body: `Scientific reasoning routinely infers general laws from a finite set of past observations: because the sun has risen every day so far, we expect it to rise tomorrow. The philosopher David Hume observed that this inference cannot itself be justified by logic alone, since no number of past instances logically guarantees a future one, nor can we justify the inference by appeal to induction's past success without circularly assuming the very principle in question. This has not stopped science from working remarkably well in practice, which suggests to some that the problem is more a puzzle for philosophers than a practical difficulty for scientists. Others argue the gap is real and consequential: it means our confidence in any scientific law, however well-confirmed, ultimately rests on an assumption — that the future will resemble the past in relevant ways — that cannot itself be proven, only presupposed.`,
+  },
+  {
+    key: "cars_value_of_boredom",
+    section: "cars",
+    title: "Boredom as a signal, not a flaw",
+    topic: "psychology",
+    body: `Boredom is typically treated as an unpleasant state to be eliminated as quickly as possible, and modern devices make near-constant elimination of boredom technically available. Some psychologists argue this convenience has obscured boredom's actual function: rather than a defect in attention, boredom may be a signal that one's current activity is failing to use one's capacities or is misaligned with one's goals, prompting a search for more meaningfully engaging activity. Under this account, habitually escaping boredom the instant it arises — by reaching for a phone, for instance — does not solve the problem boredom is signaling; it simply mutes the signal, leaving the underlying misalignment between activity and capacity unaddressed and undiscovered. On this view, a capacity to sit with boredom, rather than immediately escape it, may be less a matter of willpower and more a precondition for actually hearing what the feeling is telling you.`,
+  },
+  {
+    key: "cars_algorithmic_taste",
+    section: "cars",
+    title: "Do recommendation algorithms shape taste or just reveal it?",
+    topic: "media studies",
+    body: `Streaming platforms recommend content based on a user's past behavior, and critics worry this creates a feedback loop that narrows taste over time: a system trained on what a user already likes will keep recommending variations of the same thing, insulating the user from content that might have expanded their taste had they encountered it. Defenders of these systems respond that this concern assumes an unrealistic alternative — that without algorithmic recommendation, users would naturally explore widely on their own — when in practice most people, left to their own devices, gravitate toward the familiar anyway. On this view, the algorithm is less a cause of narrowing taste than a mirror of a tendency people already had, and blaming the recommendation system conveniently locates the problem in the technology rather than in the more uncomfortable possibility that unlimited choice was never going to produce adventurous taste on its own.`,
+  },
+  {
+    key: "cars_long_term_promises",
+    section: "cars",
+    title: "The peculiar ethics of long-term promises",
+    topic: "ethics",
+    body: `A promise to love someone "forever," or a nation's constitutional commitment meant to bind future generations, both ask a person to commit not just their present self but a future self whose preferences cannot yet be known. This creates a puzzle ordinary promises don't raise: an ordinary promise binds the person who made it, but a long-term promise implicitly claims authority over a person who, due to genuine psychological change over time, may in some meaningful sense no longer be the same person who made the commitment. One response treats this as no real puzzle at all, since people remain legally and practically the same individual throughout their lives regardless of how much they change psychologically. A less tidy response takes the changed-person worry seriously and concludes that long-term promises are best understood not as binding a future self in the way an ordinary promise binds the promiser, but as a present self's attempt to shape the conditions under which a future, different self will have to decide.`,
+  },
+  {
+    key: "cars_authenticity_of_place",
+    section: "cars",
+    title: "What makes a place feel authentic",
+    topic: "tourism and urban studies",
+    body: `Tourists routinely seek out "authentic" local experiences, and just as routinely complain when a location seems to have been staged or commercialized for their benefit. The trouble with this complaint is that the presence of tourists seeking authenticity is itself usually what commercializes a place, meaning the sought-after authentic version of a location often only ever existed before tourism discovered it, if it existed in the specific form imagined at all. This has led some scholars to argue that "authenticity" in tourism is not a property a place either has or lacks, but a story tourists tell about a place's relationship to its own history — a story that can be more or less thoughtful, but never simply "true" in the sense of describing a place untouched by any outside gaze, since the visitor's own presence is already part of what they are trying to observe.`,
+  },
+  {
+    key: "cars_queuing_economics",
+    section: "cars",
+    title: "The hidden economics of waiting in line",
+    topic: "economics",
+    body: `A line at a popular restaurant or ticket counter is, from an economic perspective, a form of price paid in time rather than money: when a business declines to raise prices to match demand, a queue forms to allocate the good instead, and the length of the wait effectively rations access. This substitution is not neutral between customers, since time and money are not equally scarce for everyone — a wait that costs a wealthy customer little relative to their hourly earnings can be prohibitively costly for someone whose time carries a higher opportunity cost relative to their income, or who simply cannot spare the hours at all. Economists studying queuing therefore note an uncomfortable implication: a business that "keeps prices low" and lets a line form instead is not avoiding rationing by price, as it might appear, but merely switching to a rationing currency, time, that happens to be distributed even more unevenly across customers than money is.`,
+  },
+  {
+    key: "cars_expert_superstition",
+    section: "cars",
+    title: "Why experts keep their superstitions",
+    topic: "sociology of belief",
+    body: `Professional athletes, surgeons, and traders are sometimes found to hold superstitious rituals — a specific routine before a game, an object considered lucky — despite possessing exactly the kind of statistical sophistication that should make such beliefs easy to dismiss. One explanation treats this as a simple failure of rational thinking that even expertise cannot fully overcome. A more interesting explanation notes that many high-stakes performance domains involve genuine, irreducible uncertainty that skill cannot eliminate, and a ritual — whatever its lack of causal effect on outcomes — can reliably reduce the performer's anxiety and increase their sense of control, which itself can measurably improve performance. Under this second account, the superstition is not really a false belief about causation at all, but a psychological tool whose real mechanism of action the performer has simply mislabeled, making the ritual "work" for a reason entirely different from the one the performer would give if asked.`,
+  },
+  {
+    key: "cars_poetry_translation",
+    section: "cars",
+    title: "Why translating poetry is a different problem than translating prose",
+    topic: "language and literature",
+    body: `Translating prose is usually treated as a problem of preserving meaning and tone across languages, a difficult but bounded task. Poetry translation is often described by translators as a categorically different and harder problem, because a poem's meaning is frequently inseparable from formal features — rhyme, meter, the specific sound of a particular word — that literally cannot be carried over into a language with different phonetic and grammatical resources. This forces a poetry translator into choices a prose translator rarely faces as starkly: preserve the literal meaning and lose the sound, preserve the sound and shift the meaning, or attempt some negotiated compromise between the two that fully satisfies neither. Some translators conclude from this that a poem, strictly speaking, cannot be translated at all, only rewritten as a new poem in the second language that stands in some acknowledged, imperfect relationship to the first — a much more honest description, they argue, than calling the result a "translation" in the same sense a translated instruction manual is a translation.`,
+  },
+  {
+    key: "cars_algorithmic_curation_ethics",
+    section: "cars",
+    title: "The ethics of invisible editorial choices",
+    topic: "media ethics",
+    body: `A newspaper's front-page editor makes visible, accountable choices about which stories matter most, choices readers can evaluate and criticize because the editor and their reasoning are, at least in principle, identifiable. A social media feed's ranking algorithm makes comparably consequential choices about which information reaches which users, but does so without any individual editor to hold accountable and often without the platform itself fully able to explain why a particular piece of content was promoted or suppressed. Critics argue this opacity is not a minor technical inconvenience but an erosion of a specific kind of accountability that print editorial judgment, whatever its flaws, always provided: the ability to ask a responsible party why this and not that, and to receive an answer in terms of a judgment someone is willing to defend, rather than a description of a statistical optimization process no single person fully designed or endorses.`,
+  },
 ];

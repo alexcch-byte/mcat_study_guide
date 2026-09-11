@@ -25,6 +25,8 @@ export const concepts: ConceptDef[] = [
   { name: "work_energy_and_power", section: "cp", aamcCategory: "4A", estLearnMinutes: 10 },
   { name: "intermolecular_forces", section: "cp", aamcCategory: "5D", estLearnMinutes: 12 },
   { name: "spectroscopy_and_electromagnetic_radiation", section: "cp", aamcCategory: "4D", estLearnMinutes: 12 },
+  { name: "reaction_kinetics_and_rate_laws", section: "cp", aamcCategory: "5B", estLearnMinutes: 14 },
+  { name: "electromagnetic_induction", section: "cp", aamcCategory: "4C", estLearnMinutes: 12 },
 
   // --- Bio/Biochem -----------------------------------------------------------
   { name: "amino_acid_structure", section: "bb", aamcCategory: "1A", estLearnMinutes: 10 },
@@ -45,6 +47,8 @@ export const concepts: ConceptDef[] = [
   { name: "population_genetics_hardy_weinberg", section: "bb", aamcCategory: "3B", estLearnMinutes: 14 },
   { name: "carbohydrate_structure_and_function", section: "bb", aamcCategory: "1C", estLearnMinutes: 12 },
   { name: "osmoregulation_and_kidney_function", section: "bb", aamcCategory: "2G", estLearnMinutes: 14 },
+  { name: "digestive_system_and_nutrient_absorption", section: "bb", aamcCategory: "2H", estLearnMinutes: 14 },
+  { name: "skeletal_system_and_bone_physiology", section: "bb", aamcCategory: "2I", estLearnMinutes: 12 },
 
   // --- Psych/Soc -----------------------------------------------------------
   { name: "attribution_theory", section: "ps", aamcCategory: "7A", estLearnMinutes: 10 },
@@ -65,6 +69,8 @@ export const concepts: ConceptDef[] = [
   { name: "social_facilitation_and_deindividuation", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
   { name: "attachment_theory", section: "ps", aamcCategory: "6C", estLearnMinutes: 12 },
   { name: "culture_and_socialization", section: "ps", aamcCategory: "8B", estLearnMinutes: 12 },
+  { name: "emotion_theories", section: "ps", aamcCategory: "6E", estLearnMinutes: 12 },
+  { name: "social_perception_and_impression_formation", section: "ps", aamcCategory: "7E", estLearnMinutes: 12 },
 
   // --- CARS ------------------------------------------------------------------
   // No content model applies (§1.4) — these are SIRS skill labels, not concepts.
@@ -109,4 +115,10 @@ export const conceptEdges: ConceptEdgeDef[] = [
   { prereq: "cell_membrane_transport", dependent: "osmoregulation_and_kidney_function", strength: 0.5 },
   { prereq: "psychosocial_development_stages", dependent: "attachment_theory", strength: 0.5 },
   { prereq: "social_identity_theory", dependent: "culture_and_socialization", strength: 0.3 },
+  { prereq: "equilibrium_and_le_chatelier", dependent: "reaction_kinetics_and_rate_laws", strength: 0.3 },
+  { prereq: "circuits_and_ohms_law", dependent: "electromagnetic_induction", strength: 0.4 },
+  { prereq: "carbohydrate_structure_and_function", dependent: "digestive_system_and_nutrient_absorption", strength: 0.3 },
+  { prereq: "hormone_signaling", dependent: "skeletal_system_and_bone_physiology", strength: 0.3 },
+  { prereq: "attribution_theory", dependent: "social_perception_and_impression_formation", strength: 0.3 },
+  { prereq: "sensation_vs_perception", dependent: "emotion_theories", strength: 0.2 },
 ];

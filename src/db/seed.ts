@@ -5,9 +5,9 @@
  * taxonomy labels, which the doc explicitly permits.
  *
  * Content lives in src/db/seedData/ (concepts, passages, and one item file
- * per section, plus a numbered "_2"/"_3" batch file per section from later
- * expansions) rather than inline here, since the bank has grown to 600
- * items — this file just resolves those definitions (by concept name /
+ * per section, plus numbered "_2"/"_3"/"_4" batch files per section from
+ * later expansions) rather than inline here, since the bank has grown to
+ * 800 items — this file just resolves those definitions (by concept name /
  * passage key) into real ids and inserts everything.
  */
 import { sql } from "drizzle-orm";
@@ -36,6 +36,10 @@ import { itemsCp3 } from "./seedData/items_cp_3";
 import { itemsBb3 } from "./seedData/items_bb_3";
 import { itemsPs3 } from "./seedData/items_ps_3";
 import { itemsCars3 } from "./seedData/items_cars_3";
+import { itemsCp4 } from "./seedData/items_cp_4";
+import { itemsBb4 } from "./seedData/items_bb_4";
+import { itemsPs4 } from "./seedData/items_ps_4";
+import { itemsCars4 } from "./seedData/items_cars_4";
 import type { ItemDef } from "./seedData/types";
 
 const allItemDefs: ItemDef[] = [
@@ -51,6 +55,10 @@ const allItemDefs: ItemDef[] = [
   ...itemsBb3,
   ...itemsPs3,
   ...itemsCars3,
+  ...itemsCp4,
+  ...itemsBb4,
+  ...itemsPs4,
+  ...itemsCars4,
 ];
 
 async function main() {
