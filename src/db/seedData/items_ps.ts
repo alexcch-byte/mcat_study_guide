@@ -1,0 +1,661 @@
+import type { ItemDef } from "./types";
+
+export const itemsPs: ItemDef[] = [
+  // --- attribution_theory (4) ---
+  {
+    concept: "attribution_theory",
+    stem: "A manager assumes an employee missed a deadline because they are lazy, while overlooking that the employee's computer had been down for two days. This is best described as:",
+    reasoning: "Attributing another person's behavior to dispositional factors while discounting situational factors is the fundamental attribution error.",
+    difficulty: -0.1,
+    options: [
+      { text: "The fundamental attribution error", correct: true },
+      { text: "The self-serving bias", errorType: "prerequisite_misconception", why: "Self-serving bias concerns attributions about one's own outcomes, not judgments of others." },
+      { text: "The actor-observer bias", errorType: "correct_concept_wrong_step_in_sequence", why: "Related concept but requires comparing the same person's self- vs. other-attributions, not present here." },
+      { text: "Cognitive dissonance", errorType: "prerequisite_misconception", why: "Unrelated construct about conflicting beliefs, not attribution." },
+    ],
+  },
+  {
+    concept: "attribution_theory",
+    stem: "A student who fails an exam blames the test's unfairness, but attributes passing a different exam to their own hard work. This pattern illustrates:",
+    reasoning: "Attributing failures to external/situational causes and successes to internal/dispositional causes, in a way that protects self-esteem, is the self-serving bias.",
+    difficulty: 0.2,
+    options: [
+      { text: "The self-serving bias", correct: true },
+      { text: "The fundamental attribution error", errorType: "prerequisite_misconception", why: "The fundamental attribution error concerns judging others' behavior, not explaining one's own outcomes." },
+      { text: "Learned helplessness", errorType: "prerequisite_misconception", why: "Learned helplessness involves giving up after perceiving no control, not a self-protective attribution pattern." },
+      { text: "The halo effect", errorType: "prerequisite_misconception", why: "The halo effect concerns letting one trait color overall impressions of a person, not attributing causes of outcomes." },
+    ],
+  },
+  {
+    concept: "attribution_theory",
+    stem: "According to attribution theory, an internal (dispositional) attribution explains behavior by appeal to:",
+    reasoning: "Internal attributions locate the cause of behavior within the person — their traits, abilities, or character — as opposed to external, situational factors.",
+    difficulty: 0.0,
+    options: [
+      { text: "A person's own traits or character", correct: true },
+      { text: "Features of the surrounding situation", errorType: "sign_or_direction_reversal", why: "Describes an external, not internal, attribution." },
+      { text: "Random chance alone", errorType: "prerequisite_misconception", why: "Chance is a distinct causal category from both internal and external attributions." },
+      { text: "Group norms imposed from outside the individual", errorType: "sign_or_direction_reversal", why: "Group/situational pressures are external factors, not internal dispositional ones." },
+    ],
+  },
+  {
+    concept: "attribution_theory",
+    stem: "The actor-observer bias refers to the tendency to attribute one's own behavior to situational factors while attributing the same behavior in others to:",
+    reasoning: "The actor-observer bias contrasts the actor's own situational self-attributions with an observer's tendency to attribute the same behavior in someone else to that person's disposition.",
+    difficulty: 0.3,
+    options: [
+      { text: "Dispositional factors about that other person", correct: true },
+      { text: "The same situational factors the actor would cite", errorType: "sign_or_direction_reversal", why: "The bias is precisely that observers do not use the same situational explanation the actor would use." },
+      { text: "Pure random chance", errorType: "prerequisite_misconception", why: "The bias describes a systematic dispositional attribution, not an appeal to randomness." },
+      { text: "The observer's own past behavior", errorType: "outside_knowledge_not_supported_by_passage", why: "The bias concerns explaining someone else's behavior, not referencing the observer's own history." },
+    ],
+  },
+
+  // --- social_identity_theory (4) ---
+  {
+    concept: "social_identity_theory",
+    stem: "According to social identity theory, an individual's self-esteem is partly derived from:",
+    reasoning: "Social identity theory holds that people derive part of their self-concept and self-esteem from membership in social groups, motivating in-group favoritism.",
+    difficulty: 0.0,
+    options: [
+      { text: "Membership in valued social groups", correct: true },
+      { text: "Individual comparison to a single rival only", errorType: "correct_concept_wrong_step_in_sequence", why: "Confuses social comparison theory's narrower framing with group-based identity." },
+      { text: "Strict adherence to internal moral standards", errorType: "prerequisite_misconception", why: "Describes self-discrepancy theory, not social identity theory." },
+      { text: "Genetic predisposition toward extraversion", errorType: "outside_knowledge_not_supported_by_passage", why: "Imports a personality-trait framework unrelated to the theory being tested." },
+    ],
+  },
+  {
+    concept: "social_identity_theory",
+    stem: "In-group favoritism, as predicted by social identity theory, refers to the tendency to:",
+    reasoning: "In-group favoritism is the tendency to evaluate and treat members of one's own group more positively than members of an out-group, in order to maintain a positive social identity.",
+    difficulty: 0.1,
+    options: [
+      { text: "Evaluate and treat one's own group more favorably than an out-group", correct: true },
+      { text: "Treat all groups, including one's own, with strict neutrality", errorType: "prerequisite_misconception", why: "Directly contradicts the favoritism the theory predicts." },
+      { text: "Favor out-groups over one's own group to seem fair", errorType: "sign_or_direction_reversal", why: "Reverses the direction of the bias social identity theory predicts." },
+      { text: "Ignore group membership entirely when forming judgments", errorType: "prerequisite_misconception", why: "The theory specifically predicts group membership does influence judgments." },
+    ],
+  },
+  {
+    concept: "social_identity_theory",
+    stem: "Social identity theory proposes that intergroup conflict can arise even when group membership is based on arbitrary, trivial distinctions. This idea is most directly supported by:",
+    reasoning: "Minimal group studies show that assigning people to arbitrary groups (e.g., by coin flip) is sufficient to produce in-group favoritism, supporting the theory's claim that mere categorization, not real conflict of interest, can drive intergroup bias.",
+    difficulty: 0.5,
+    options: [
+      { text: "Minimal group studies showing bias from arbitrary group assignment alone", correct: true },
+      { text: "Studies showing bias only emerges after decades of real historical conflict", errorType: "sign_or_direction_reversal", why: "Contradicts the theory's central claim that mere categorization, not historical conflict, is sufficient." },
+      { text: "Studies showing people never favor groups they didn't choose to join", errorType: "prerequisite_misconception", why: "Minimal group studies show the opposite: favoritism even for randomly assigned, unchosen groups." },
+      { text: "Twin studies estimating the heritability of group loyalty", errorType: "outside_knowledge_not_supported_by_passage", why: "Heritability studies address genetic contributions, not the arbitrary-categorization mechanism central to social identity theory." },
+    ],
+  },
+  {
+    concept: "social_identity_theory",
+    stem: "Social identity theory would predict that a person facing a threat to their group's status is most likely to respond by:",
+    reasoning: "When group status is threatened, social identity theory predicts increased efforts to boost in-group standing or derogate the out-group, in order to restore a positive social identity.",
+    difficulty: 0.4,
+    options: [
+      { text: "Increasing in-group favoritism or derogating the out-group", correct: true },
+      { text: "Immediately leaving the group to join the higher-status out-group", errorType: "correct_concept_wrong_step_in_sequence", why: "Individual mobility to another group is one possible response the theory describes, but not the most predicted response when strong identification with the threatened group exists." },
+      { text: "Becoming completely indifferent to group membership", errorType: "prerequisite_misconception", why: "The theory predicts an active response to protect identity, not indifference." },
+      { text: "Rating the out-group more favorably to compensate", errorType: "sign_or_direction_reversal", why: "Reverses the defensive, favoritism-increasing response the theory actually predicts." },
+    ],
+  },
+
+  // --- classical_conditioning (2 discrete, + via passage) ---
+  {
+    concept: "classical_conditioning",
+    stem: "In Pavlov's classic experiment, a bell (initially neutral) is repeatedly paired with food (which naturally triggers salivation) until the bell alone triggers salivation. In this setup, the bell after conditioning is the:",
+    reasoning: "After conditioning, a previously neutral stimulus that now triggers the response on its own is the conditioned stimulus (CS); food remains the unconditioned stimulus (US).",
+    difficulty: 0.1,
+    options: [
+      { text: "Conditioned stimulus", correct: true },
+      { text: "Unconditioned stimulus", errorType: "prerequisite_misconception", why: "The unconditioned stimulus (food) naturally triggers the response without any learning required." },
+      { text: "Unconditioned response", errorType: "prerequisite_misconception", why: "A response, not a stimulus, and specifically the natural, unlearned salivation to food." },
+      { text: "Conditioned response", errorType: "prerequisite_misconception", why: "The conditioned response is the salivation itself after learning, not the bell." },
+    ],
+  },
+  {
+    concept: "classical_conditioning",
+    stem: "After a conditioned stimulus repeatedly occurs without the unconditioned stimulus, the conditioned response gradually weakens and disappears. This process is called:",
+    reasoning: "Extinction occurs when the conditioned stimulus is presented repeatedly without the unconditioned stimulus, causing the learned association — and the conditioned response — to fade.",
+    difficulty: 0.2,
+    options: [
+      { text: "Extinction", correct: true },
+      { text: "Generalization", errorType: "prerequisite_misconception", why: "Generalization is responding similarly to stimuli resembling the conditioned stimulus, not the fading of a response." },
+      { text: "Discrimination", errorType: "prerequisite_misconception", why: "Discrimination is learning to respond differently to similar but distinct stimuli, not the loss of a learned response." },
+      { text: "Spontaneous recovery", errorType: "correct_concept_wrong_step_in_sequence", why: "Spontaneous recovery is the reappearance of a response after extinction and a rest period, not the fading process itself." },
+    ],
+  },
+
+  // --- operant_conditioning (2 discrete, + via passage) ---
+  {
+    concept: "operant_conditioning",
+    stem: "A rat presses a lever and receives a food pellet every time. This is an example of which reinforcement schedule?",
+    reasoning: "Reinforcement delivered after every single correct response is a continuous reinforcement schedule.",
+    difficulty: -0.1,
+    options: [
+      { text: "Continuous reinforcement", correct: true },
+      { text: "Fixed-ratio reinforcement", errorType: "correct_concept_wrong_step_in_sequence", why: "Fixed-ratio requires a set number of responses greater than one per reinforcement, whereas continuous reinforcement is every single response." },
+      { text: "Variable-interval reinforcement", errorType: "prerequisite_misconception", why: "Interval schedules are based on elapsed time, not on every response occurring." },
+      { text: "Negative reinforcement", errorType: "prerequisite_misconception", why: "This describes a schedule of positive reinforcement delivery, not the removal of an aversive stimulus." },
+    ],
+  },
+  {
+    concept: "operant_conditioning",
+    stem: "A behavior that increases in frequency because it allows an organism to avoid or escape an unpleasant stimulus (such as pressing a lever to turn off a loud noise) has been strengthened through:",
+    reasoning: "Negative reinforcement strengthens a behavior by removing or avoiding an aversive stimulus, distinct from punishment, which decreases behavior.",
+    difficulty: 0.3,
+    options: [
+      { text: "Negative reinforcement", correct: true },
+      { text: "Positive punishment", errorType: "sign_or_direction_reversal", why: "Punishment decreases behavior frequency; this scenario describes a behavior increasing in frequency." },
+      { text: "Positive reinforcement", errorType: "correct_concept_wrong_step_in_sequence", why: "Positive reinforcement adds a pleasant stimulus, whereas this scenario removes an unpleasant one." },
+      { text: "Negative punishment", errorType: "sign_or_direction_reversal", why: "Negative punishment removes something pleasant to decrease behavior, the opposite of what's described here." },
+    ],
+  },
+
+  // --- memory_encoding_and_retrieval (4) ---
+  {
+    concept: "memory_encoding_and_retrieval",
+    stem: "A person can recall the exact content of a conversation better when tested in the same room where the conversation occurred, compared to a different room. This phenomenon illustrates:",
+    reasoning: "Context-dependent memory: retrieval is facilitated when the environmental context at retrieval matches the context present during encoding.",
+    difficulty: 0.2,
+    options: [
+      { text: "Context-dependent memory", correct: true },
+      { text: "State-dependent memory", errorType: "prerequisite_misconception", why: "State-dependent memory concerns internal physiological/mood states, not external environmental context." },
+      { text: "The serial position effect", errorType: "prerequisite_misconception", why: "The serial position effect concerns better recall of items at the start and end of a list, unrelated to matching environments." },
+      { text: "Proactive interference", errorType: "prerequisite_misconception", why: "Proactive interference involves older memories disrupting new learning, not a context-match effect on recall." },
+    ],
+  },
+  {
+    concept: "memory_encoding_and_retrieval",
+    stem: "When recalling a list of words, people tend to remember the first few and last few words better than words in the middle. The improved recall of the first few words specifically is called the:",
+    reasoning: "The primacy effect describes better recall of early list items, generally attributed to those items having been rehearsed into long-term memory; the recency effect explains the improved recall of the last items.",
+    difficulty: 0.3,
+    options: [
+      { text: "Primacy effect", correct: true },
+      { text: "Recency effect", errorType: "sign_or_direction_reversal", why: "The recency effect refers specifically to the last items in the list, not the first." },
+      { text: "Von Restorff effect", errorType: "prerequisite_misconception", why: "The Von Restorff effect concerns better recall of a distinctive item, not position in a list." },
+      { text: "Spacing effect", errorType: "prerequisite_misconception", why: "The spacing effect concerns better retention from spaced versus massed study sessions, unrelated to list position." },
+    ],
+  },
+  {
+    concept: "memory_encoding_and_retrieval",
+    stem: "According to the levels-of-processing framework, information is remembered better when it is encoded:",
+    reasoning: "The levels-of-processing framework predicts that deeper, more semantic (meaning-based) processing produces more durable memory traces than shallow, surface-level (e.g., visual or phonetic) processing.",
+    difficulty: 0.4,
+    options: [
+      { text: "Semantically, focusing on meaning, rather than superficially", correct: true },
+      { text: "Superficially, focusing only on how a word looks, rather than its meaning", errorType: "sign_or_direction_reversal", why: "Reverses the framework's central prediction about depth of processing and memory strength." },
+      { text: "Only through pure repetition with no attention to meaning", errorType: "prerequisite_misconception", why: "The framework specifically distinguishes shallow rote repetition from deeper meaning-based encoding, favoring the latter." },
+      { text: "Equally well regardless of processing depth", errorType: "prerequisite_misconception", why: "The framework's central claim is that processing depth does matter for memory strength." },
+    ],
+  },
+  {
+    concept: "memory_encoding_and_retrieval",
+    stem: "A person struggles to recall a word but reports being certain they know it and can recall its first letter, even though the word itself won't come to mind. This experience is best described as:",
+    reasoning: "The tip-of-the-tongue phenomenon describes the frustrating sense of being close to retrieving a specific memory, often with partial information (such as the first letter) accessible even though full retrieval fails.",
+    difficulty: 0.2,
+    options: [
+      { text: "The tip-of-the-tongue phenomenon", correct: true },
+      { text: "Retrograde amnesia", errorType: "prerequisite_misconception", why: "Retrograde amnesia is the inability to recall memories formed before a specific event, not a momentary retrieval failure." },
+      { text: "Anterograde amnesia", errorType: "prerequisite_misconception", why: "Anterograde amnesia is an inability to form new memories after an event, unrelated to this momentary retrieval block." },
+      { text: "Source monitoring error", errorType: "prerequisite_misconception", why: "A source monitoring error involves misattributing where a memory came from, not failing to retrieve a word at all." },
+    ],
+  },
+
+  // --- cognitive_dissonance (4) ---
+  {
+    concept: "cognitive_dissonance",
+    stem: "A person who smokes despite knowing smoking causes cancer might reduce their discomfort by deciding 'the health risks are overstated.' This is an example of resolving:",
+    reasoning: "Holding two conflicting cognitions (smoking is harmful vs. I smoke) produces cognitive dissonance; changing a belief to reduce the conflict, rather than changing the behavior, is a classic dissonance-reduction strategy.",
+    difficulty: 0.2,
+    options: [
+      { text: "Cognitive dissonance, by changing a belief rather than the behavior", correct: true },
+      { text: "Classical conditioning, by pairing smoking with pleasant outcomes", errorType: "prerequisite_misconception", why: "No stimulus pairing or new association is being formed here; it's a change in belief to resolve conflicting cognitions." },
+      { text: "The mere-exposure effect, by increasing liking through repeated exposure", errorType: "prerequisite_misconception", why: "The mere-exposure effect concerns liking things more from repeated exposure, not resolving a belief-behavior conflict." },
+      { text: "Operant conditioning, by reinforcing the smoking behavior directly", errorType: "prerequisite_misconception", why: "No consequence is following the behavior to strengthen it; a cognition is being changed instead." },
+    ],
+  },
+  {
+    concept: "cognitive_dissonance",
+    stem: "In classic cognitive dissonance experiments, participants paid only $1 to lie about a boring task rated the task as more enjoyable afterward than participants paid $20 to tell the same lie. This finding is explained by:",
+    reasoning: "The $1 group had insufficient external justification for lying, creating more dissonance, which they resolved by internally changing their attitude toward the task; the $20 group had ample external justification and felt little need to change their attitude.",
+    difficulty: 0.5,
+    options: [
+      { text: "The $1 group having less external justification, creating more dissonance to resolve internally", correct: true },
+      { text: "The $1 group finding the task genuinely more interesting from the start", errorType: "outside_knowledge_not_supported_by_passage", why: "The experimental design controls for the task itself being equally boring; the attitude difference emerges from the payment manipulation, not preexisting task interest." },
+      { text: "The $20 group experiencing more dissonance due to the larger sum of money involved", errorType: "sign_or_direction_reversal", why: "A larger payment provides more external justification, which reduces dissonance rather than increasing it." },
+      { text: "Money having no psychological effect on either group's attitudes", errorType: "prerequisite_misconception", why: "The classic finding is exactly that the amount of payment produced a measurable difference in attitude change." },
+    ],
+  },
+  {
+    concept: "cognitive_dissonance",
+    stem: "Cognitive dissonance theory predicts that after making a difficult decision between two similarly attractive options, a person will typically:",
+    reasoning: "Post-decisional dissonance leads people to increase their evaluation of the chosen option and decrease their evaluation of the rejected option, reducing the discomfort of having given up an attractive alternative.",
+    difficulty: 0.4,
+    options: [
+      { text: "Rate the chosen option more favorably and the rejected option less favorably than before deciding", correct: true },
+      { text: "Rate both options exactly as favorably as before the decision", errorType: "prerequisite_misconception", why: "The theory specifically predicts a shift in evaluations to reduce post-decisional dissonance, not no change." },
+      { text: "Rate the rejected option more favorably to seem open-minded", errorType: "sign_or_direction_reversal", why: "Reverses the direction dissonance theory predicts for the rejected alternative." },
+      { text: "Immediately regret the decision and try to reverse it", errorType: "prerequisite_misconception", why: "Dissonance reduction typically works by justifying the choice already made, not reversing it." },
+    ],
+  },
+  {
+    concept: "cognitive_dissonance",
+    stem: "Cognitive dissonance is best defined as:",
+    reasoning: "Cognitive dissonance is the psychological discomfort that arises from holding two or more inconsistent cognitions (beliefs, attitudes, or the awareness of one's own behavior) simultaneously.",
+    difficulty: 0.0,
+    options: [
+      { text: "Discomfort from holding two or more inconsistent cognitions at once", correct: true },
+      { text: "A memory error caused by interference between similar memories", errorType: "prerequisite_misconception", why: "Describes a memory-interference phenomenon, not the belief-conflict discomfort dissonance theory addresses." },
+      { text: "A physiological stress response to a physical threat", errorType: "prerequisite_misconception", why: "Describes a general stress response, not the specific cognitive conflict dissonance theory describes." },
+      { text: "An automatic preference for familiar over novel stimuli", errorType: "prerequisite_misconception", why: "Describes the mere-exposure effect, unrelated to conflicting cognitions." },
+    ],
+  },
+
+  // --- conformity_and_obedience (2 discrete, + via passage) ---
+  {
+    concept: "conformity_and_obedience",
+    stem: "In Milgram's obedience experiments, the key finding was that a majority of participants:",
+    reasoning: "Milgram found that a majority of ordinary participants continued administering what they believed were dangerous electric shocks when instructed by an authority figure, despite personal discomfort — demonstrating the power of perceived legitimate authority over individual moral judgment.",
+    difficulty: 0.3,
+    options: [
+      { text: "Continued obeying an authority figure's instructions despite apparent harm to another person", correct: true },
+      { text: "Refused to participate at all once shocks were mentioned", errorType: "prerequisite_misconception", why: "The surprising and famous finding was the high rate of continued obedience, not widespread early refusal." },
+      { text: "Only obeyed when the authority figure was physically absent", errorType: "outside_knowledge_not_supported_by_passage", why: "The classic finding involved an authority figure present and giving direct verbal instructions." },
+      { text: "Showed no signs of distress while administering shocks", errorType: "prerequisite_misconception", why: "Many participants showed visible distress while still continuing to obey, which was itself a notable part of the findings." },
+    ],
+  },
+  {
+    concept: "conformity_and_obedience",
+    stem: "Normative social influence refers to conforming to group behavior primarily in order to:",
+    reasoning: "Normative social influence is conformity driven by the desire for social acceptance and to avoid rejection, as opposed to informational social influence, which is driven by a desire to be correct.",
+    difficulty: 0.3,
+    options: [
+      { text: "Be liked or accepted by the group, and avoid rejection", correct: true },
+      { text: "Obtain accurate information about an ambiguous situation", errorType: "correct_concept_wrong_step_in_sequence", why: "Describes informational social influence, a related but distinct type of conformity motive." },
+      { text: "Comply with a direct order from an authority figure", errorType: "prerequisite_misconception", why: "Describes obedience to authority, a distinct phenomenon from normative conformity to peers." },
+      { text: "Avoid a specific punishment threatened by the experimenter", errorType: "outside_knowledge_not_supported_by_passage", why: "Normative influence is about social acceptance broadly, not a specific threatened punishment." },
+    ],
+  },
+
+  // --- stereotypes_and_prejudice (4) ---
+  {
+    concept: "stereotypes_and_prejudice",
+    stem: "A stereotype is best defined as:",
+    reasoning: "A stereotype is a cognitive generalization — a belief about the characteristics typical of members of a group — distinct from prejudice (an affective/attitudinal reaction) and discrimination (behavior).",
+    difficulty: 0.1,
+    options: [
+      { text: "A generalized belief about the traits typical of a group's members", correct: true },
+      { text: "A negative behavior directed at a group's members", errorType: "prerequisite_misconception", why: "Describes discrimination, the behavioral component, rather than the cognitive belief that defines a stereotype." },
+      { text: "A negative emotional reaction toward a group", errorType: "prerequisite_misconception", why: "Describes prejudice, the affective component, rather than the cognitive belief that defines a stereotype." },
+      { text: "A legally codified rule restricting a group's rights", errorType: "outside_knowledge_not_supported_by_passage", why: "Describes institutional discrimination or policy, not the psychological concept of a stereotype." },
+    ],
+  },
+  {
+    concept: "stereotypes_and_prejudice",
+    stem: "Discrimination, as distinguished from prejudice, refers specifically to:",
+    reasoning: "Discrimination is the behavioral component of bias — unfair treatment of a group's members — whereas prejudice is the underlying negative attitude or feeling, which may or may not be acted upon.",
+    difficulty: 0.2,
+    options: [
+      { text: "Unfair behavioral treatment of a group's members", correct: true },
+      { text: "A negative attitude or feeling toward a group", errorType: "correct_concept_wrong_step_in_sequence", why: "Describes prejudice, the attitudinal component, which the question explicitly distinguishes from discrimination." },
+      { text: "A belief about a group's typical traits", errorType: "prerequisite_misconception", why: "Describes a stereotype, the cognitive component, not the behavioral component being asked about." },
+      { text: "An involuntary physiological stress response", errorType: "outside_knowledge_not_supported_by_passage", why: "Not a standard definition of discrimination in the social-cognitive sense." },
+    ],
+  },
+  {
+    concept: "stereotypes_and_prejudice",
+    stem: "According to realistic conflict theory, intergroup prejudice arises primarily from:",
+    reasoning: "Realistic conflict theory holds that prejudice and intergroup hostility emerge from genuine competition between groups over limited resources, rather than from arbitrary categorization alone.",
+    difficulty: 0.4,
+    options: [
+      { text: "Competition between groups over limited, real resources", correct: true },
+      { text: "Purely arbitrary categorization with no resource competition involved", errorType: "prerequisite_misconception", why: "Describes minimal-group effects from social identity theory, which realistic conflict theory explicitly contrasts with resource-based competition." },
+      { text: "Individual personality traits alone, independent of group context", errorType: "prerequisite_misconception", why: "Realistic conflict theory is a situational/intergroup account, not an individual-personality account." },
+      { text: "A universal, biologically hardwired fear of unfamiliar faces", errorType: "outside_knowledge_not_supported_by_passage", why: "Not the mechanism realistic conflict theory proposes; the theory centers on competition over resources." },
+    ],
+  },
+  {
+    concept: "stereotypes_and_prejudice",
+    stem: "The concept of stereotype threat refers to the phenomenon where:",
+    reasoning: "Stereotype threat describes reduced performance that occurs when a person is aware of a negative stereotype about their group in a relevant domain, and the anxiety of potentially confirming it impairs their performance.",
+    difficulty: 0.5,
+    options: [
+      { text: "Awareness of a negative stereotype about one's group impairs performance in a related domain", correct: true },
+      { text: "Being unaware of any stereotypes improves performance across all domains", errorType: "sign_or_direction_reversal", why: "Stereotype threat specifically requires awareness of the stereotype to produce its effect, not ignorance of it." },
+      { text: "Stereotypes always improve performance by providing helpful expectations", errorType: "sign_or_direction_reversal", why: "Stereotype threat describes an impairing, not enhancing, effect on performance." },
+      { text: "Group membership has no measurable effect on individual performance", errorType: "prerequisite_misconception", why: "The entire phenomenon of stereotype threat depends on group membership and stereotype awareness measurably affecting performance." },
+    ],
+  },
+
+  // --- socioeconomic_status_and_health (3) ---
+  {
+    concept: "socioeconomic_status_and_health",
+    stem: "Research consistently finds a gradient in which lower socioeconomic status is associated with:",
+    reasoning: "A large body of research documents a socioeconomic health gradient: lower SES is consistently associated with worse health outcomes and shorter life expectancy, likely due to compounding factors including access to care, chronic stress, and environmental exposures.",
+    difficulty: 0.2,
+    options: [
+      { text: "Worse average health outcomes and shorter life expectancy", correct: true },
+      { text: "Better average health outcomes due to less sedentary work", errorType: "sign_or_direction_reversal", why: "Reverses the well-documented direction of the socioeconomic health gradient." },
+      { text: "No measurable difference in health outcomes", errorType: "prerequisite_misconception", why: "Contradicts one of the most consistently replicated findings in social epidemiology." },
+      { text: "Better mental health specifically, despite worse physical health", errorType: "outside_knowledge_not_supported_by_passage", why: "Research generally finds lower SES associated with worse outcomes across both physical and mental health domains, not a split pattern." },
+    ],
+  },
+  {
+    concept: "socioeconomic_status_and_health",
+    stem: "The term 'social gradient in health' specifically emphasizes that health disparities:",
+    reasoning: "The social gradient concept emphasizes that health outcomes track socioeconomic status in a continuous, stepwise fashion across the whole distribution — not just a simple divide between the poorest group and everyone else.",
+    difficulty: 0.4,
+    options: [
+      { text: "Track socioeconomic status continuously across the whole range, not just at the extremes", correct: true },
+      { text: "Only appear between the very poorest and very richest, with no difference in between", errorType: "prerequisite_misconception", why: "The gradient concept specifically emphasizes a continuous relationship, not a two-category divide." },
+      { text: "Are caused entirely by genetics rather than social conditions", errorType: "outside_knowledge_not_supported_by_passage", why: "The social gradient framework centers social and economic conditions as drivers, not genetics." },
+      { text: "Disappear once basic subsistence needs are met", errorType: "prerequisite_misconception", why: "Studies of the gradient find disparities persist well above subsistence level, across middle and upper SES groups too." },
+    ],
+  },
+  {
+    concept: "socioeconomic_status_and_health",
+    stem: "Chronic stress from financial insecurity has been proposed as one mechanism linking low socioeconomic status to poor health, primarily through:",
+    reasoning: "Chronic activation of the body's stress response (e.g., sustained cortisol elevation) is proposed to produce cumulative physiological wear, sometimes called allostatic load, contributing to worse long-term health outcomes.",
+    difficulty: 0.5,
+    options: [
+      { text: "Cumulative physiological wear from chronic stress-hormone activation", correct: true },
+      { text: "A direct genetic mutation caused by financial hardship", errorType: "outside_knowledge_not_supported_by_passage", why: "Financial hardship is a social exposure, not a direct mutagen; the proposed mechanism is physiological stress response, not genetic mutation." },
+      { text: "Reduced exposure to environmental toxins", errorType: "sign_or_direction_reversal", why: "Lower SES is generally associated with greater, not reduced, environmental exposure risks." },
+      { text: "An increase in leisure time reducing physical activity", errorType: "outside_knowledge_not_supported_by_passage", why: "Financial insecurity is generally linked to reduced leisure time, not an increase, and this isn't the proposed stress mechanism." },
+    ],
+  },
+
+  // --- psychosocial_development_stages (4) ---
+  {
+    concept: "psychosocial_development_stages",
+    stem: "According to Erikson's stages of psychosocial development, the primary conflict of adolescence is best described as:",
+    reasoning: "Erikson characterized adolescence as centered on the conflict of identity versus role confusion, in which the individual works to form a coherent sense of self.",
+    difficulty: 0.2,
+    options: [
+      { text: "Identity versus role confusion", correct: true },
+      { text: "Trust versus mistrust", errorType: "prerequisite_misconception", why: "Trust versus mistrust is Erikson's stage for infancy, not adolescence." },
+      { text: "Generativity versus stagnation", errorType: "prerequisite_misconception", why: "Generativity versus stagnation is Erikson's stage for middle adulthood, not adolescence." },
+      { text: "Integrity versus despair", errorType: "prerequisite_misconception", why: "Integrity versus despair is Erikson's stage for late adulthood, not adolescence." },
+    ],
+  },
+  {
+    concept: "psychosocial_development_stages",
+    stem: "In Erikson's framework, an infant who receives consistent, responsive caregiving is expected to develop:",
+    reasoning: "Erikson's first stage, trust versus mistrust, holds that consistent, responsive caregiving in infancy fosters a basic sense of trust in the world and in others.",
+    difficulty: 0.2,
+    options: [
+      { text: "A basic sense of trust", correct: true },
+      { text: "A strong sense of personal identity", errorType: "prerequisite_misconception", why: "Identity formation is the focus of Erikson's adolescent stage, not infancy." },
+      { text: "Feelings of guilt about their own initiative", errorType: "prerequisite_misconception", why: "Guilt versus initiative is a later early-childhood stage in Erikson's framework, not infancy." },
+      { text: "A sense of generativity toward the next generation", errorType: "prerequisite_misconception", why: "Generativity is a concern of Erikson's middle-adulthood stage, far removed from infancy." },
+    ],
+  },
+  {
+    concept: "psychosocial_development_stages",
+    stem: "According to Piaget's stages of cognitive development, the ability to think abstractly and reason hypothetically first emerges during the:",
+    reasoning: "Piaget's formal operational stage, beginning around age 11-12, is characterized by the capacity for abstract reasoning, hypothetical thinking, and systematic problem-solving.",
+    difficulty: 0.3,
+    options: [
+      { text: "Formal operational stage", correct: true },
+      { text: "Sensorimotor stage", errorType: "prerequisite_misconception", why: "The sensorimotor stage (infancy) is characterized by learning through sensory experience and motor action, not abstract reasoning." },
+      { text: "Preoperational stage", errorType: "prerequisite_misconception", why: "The preoperational stage involves symbolic thought but lacks logical, abstract reasoning ability." },
+      { text: "Concrete operational stage", errorType: "correct_concept_wrong_step_in_sequence", why: "Concrete operational thought handles logical reasoning about tangible, concrete situations, but not yet fully abstract or hypothetical reasoning." },
+    ],
+  },
+  {
+    concept: "psychosocial_development_stages",
+    stem: "A toddler insists on trying to dress themselves, even though a parent could do it much faster, and becomes upset when prevented from trying. In Erikson's framework, this behavior reflects the toddler's stage of:",
+    reasoning: "Erikson's stage of autonomy versus shame and doubt, occurring in early toddlerhood, centers on the child's drive to assert independent control over their own actions.",
+    difficulty: 0.3,
+    options: [
+      { text: "Autonomy versus shame and doubt", correct: true },
+      { text: "Trust versus mistrust", errorType: "prerequisite_misconception", why: "Trust versus mistrust is the earlier infancy stage, centered on caregiver responsiveness rather than the child's own independent action." },
+      { text: "Industry versus inferiority", errorType: "prerequisite_misconception", why: "Industry versus inferiority is a later, school-age stage centered on competence, not toddler-age independence." },
+      { text: "Identity versus role confusion", errorType: "prerequisite_misconception", why: "Identity versus role confusion is Erikson's adolescent stage, far later than toddlerhood." },
+    ],
+  },
+
+  // --- sensation_vs_perception (4) ---
+  {
+    concept: "sensation_vs_perception",
+    stem: "Sensation and perception are distinguished in psychology such that sensation refers to:",
+    reasoning: "Sensation refers to the raw detection of physical stimuli by sensory receptors, while perception refers to the brain's subsequent organization and interpretation of that raw sensory information.",
+    difficulty: 0.1,
+    options: [
+      { text: "The raw detection of a physical stimulus by sensory receptors", correct: true },
+      { text: "The brain's interpretation and organization of sensory information", errorType: "sign_or_direction_reversal", why: "Describes perception, the process the question is distinguishing sensation from." },
+      { text: "A stored memory of a past sensory experience", errorType: "prerequisite_misconception", why: "Describes memory retrieval, not the initial detection of a current stimulus." },
+      { text: "A learned emotional response to a stimulus", errorType: "prerequisite_misconception", why: "Describes an emotional/conditioned response, not the basic sensory detection process." },
+    ],
+  },
+  {
+    concept: "sensation_vs_perception",
+    stem: "The absolute threshold in sensory psychology is defined as:",
+    reasoning: "The absolute threshold is the minimum intensity of a stimulus needed for it to be detected at least 50% of the time, marking the boundary of basic sensory detectability.",
+    difficulty: 0.3,
+    options: [
+      { text: "The minimum stimulus intensity detectable 50% of the time", correct: true },
+      { text: "The maximum stimulus intensity a person can tolerate without pain", correct: false, errorType: "prerequisite_misconception", why: "Describes a pain or discomfort threshold, a different concept from the absolute detection threshold." },
+      { text: "The smallest detectable difference between two stimuli", correct: false, errorType: "correct_concept_wrong_step_in_sequence", why: "Describes the just-noticeable difference (difference threshold), a related but distinct concept from the absolute threshold." },
+      { text: "The average intensity of all stimuli encountered daily", correct: false, errorType: "outside_knowledge_not_supported_by_passage", why: "Not a meaningful psychophysical definition; absolute threshold concerns detectability, not an average of stimuli." },
+    ],
+  },
+  {
+    concept: "sensation_vs_perception",
+    stem: "Two weights differ enough that a person can just barely tell them apart. This smallest detectable difference between two stimuli is called the:",
+    reasoning: "The just-noticeable difference (JND), or difference threshold, is the minimum difference between two stimuli required for a person to detect a difference at least half the time.",
+    difficulty: 0.3,
+    options: [
+      { text: "Just-noticeable difference", correct: true },
+      { text: "Absolute threshold", errorType: "correct_concept_wrong_step_in_sequence", why: "The absolute threshold concerns detecting a single stimulus's presence, not distinguishing between two stimuli." },
+      { text: "Signal detection bias", errorType: "prerequisite_misconception", why: "Signal detection theory concerns response bias and sensitivity in detection tasks, not the specific difference-threshold value." },
+      { text: "Sensory adaptation", errorType: "prerequisite_misconception", why: "Sensory adaptation is decreased sensitivity to a constant, unchanging stimulus over time, not a difference-detection threshold." },
+    ],
+  },
+  {
+    concept: "sensation_vs_perception",
+    stem: "After jumping into a cold pool, a swimmer notices the water feels less cold after a few minutes even though the water temperature hasn't changed. This is best explained by:",
+    reasoning: "Sensory adaptation is the decrease in responsiveness of sensory receptors to a constant, unchanging stimulus over time, explaining the diminishing perceived coldness.",
+    difficulty: 0.2,
+    options: [
+      { text: "Sensory adaptation", correct: true },
+      { text: "Selective attention shifting elsewhere", errorType: "correct_concept_wrong_step_in_sequence", why: "Attention may also play a role, but the core textbook explanation for reduced response to an unchanging stimulus is receptor-level sensory adaptation." },
+      { text: "A change in the water's actual temperature", errorType: "outside_knowledge_not_supported_by_passage", why: "The scenario explicitly states the temperature hasn't changed; the shift is in perception, not the stimulus itself." },
+      { text: "Synesthesia between touch and temperature senses", errorType: "outside_knowledge_not_supported_by_passage", why: "Synesthesia involves cross-activation between distinct senses, not simply reduced sensitivity to an unchanging stimulus." },
+    ],
+  },
+
+  // --- group_dynamics_and_groupthink (3) ---
+  {
+    concept: "group_dynamics_and_groupthink",
+    stem: "Groupthink is most likely to occur in a group that is:",
+    reasoning: "Groupthink tends to arise in highly cohesive groups, especially under stress and with a directive leader, where the desire for consensus overrides critical evaluation of alternatives.",
+    difficulty: 0.3,
+    options: [
+      { text: "Highly cohesive, under stress, and led by a directive leader", correct: true },
+      { text: "Highly diverse in opinion and encouraged to openly disagree", errorType: "sign_or_direction_reversal", why: "Encouraged dissent and diversity of opinion are protective factors against groupthink, not risk factors for it." },
+      { text: "Composed entirely of strangers with no shared identity", errorType: "sign_or_direction_reversal", why: "Groupthink specifically requires high cohesiveness, which is unlikely among strangers with no shared identity." },
+      { text: "Explicitly assigned a devil's advocate role", errorType: "sign_or_direction_reversal", why: "A designated devil's advocate is a known countermeasure against groupthink, not a condition that produces it." },
+    ],
+  },
+  {
+    concept: "group_dynamics_and_groupthink",
+    stem: "Social loafing refers to the tendency for individuals to:",
+    reasoning: "Social loafing is the tendency for people to exert less individual effort on a group task than they would working alone, often because individual contributions are less identifiable in a group.",
+    difficulty: 0.2,
+    options: [
+      { text: "Exert less effort on a group task than they would working alone", correct: true },
+      { text: "Work harder in a group than alone due to social facilitation", errorType: "sign_or_direction_reversal", why: "Describes social facilitation, the opposite phenomenon, rather than social loafing." },
+      { text: "Refuse to participate in group tasks under any circumstances", errorType: "prerequisite_misconception", why: "Social loafing describes reduced effort, not complete non-participation." },
+      { text: "Become more creative when working in a large group", errorType: "outside_knowledge_not_supported_by_passage", why: "Not what social loafing describes; it concerns effort reduction, not creativity change." },
+    ],
+  },
+  {
+    concept: "group_dynamics_and_groupthink",
+    stem: "Group polarization refers to the tendency for group discussion to:",
+    reasoning: "Group polarization describes how group discussion tends to strengthen and intensify the group's initial leaning, pushing the average opinion further in the direction members already favored before discussing.",
+    difficulty: 0.4,
+    options: [
+      { text: "Strengthen the group's pre-discussion leaning into a more extreme position", correct: true },
+      { text: "Always produce a moderate compromise between opposing views", errorType: "sign_or_direction_reversal", why: "Group polarization typically pushes opinion toward a more extreme version of the initial leaning, not toward the middle." },
+      { text: "Have no measurable effect on individual opinions", errorType: "prerequisite_misconception", why: "The entire phenomenon depends on discussion measurably shifting individual opinions." },
+      { text: "Randomly shift opinions with no consistent direction", errorType: "prerequisite_misconception", why: "The shift has a consistent, predictable direction — toward the group's initial leaning — not a random one." },
+    ],
+  },
+
+  // --- passage: ps_conditioning_study (5) ---
+  {
+    concept: "classical_conditioning",
+    type: "passage",
+    passage: "ps_conditioning_study",
+    stem: "According to the passage, the rats' avoidance of saccharin-flavored water after a single pairing with a nauseating injection is best explained as an example of:",
+    reasoning: "Pairing a novel taste (neutral stimulus) with nausea (unconditioned stimulus) until the taste alone produces avoidance is a form of classical conditioning, specifically taste aversion learning.",
+    difficulty: 0.3,
+    sirs: 1,
+    options: [
+      { text: "Classical conditioning (taste aversion learning)", correct: true },
+      { text: "Operant conditioning through positive reinforcement", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage describes a stimulus pairing (taste with nausea), not a voluntary behavior being reinforced by a consequence." },
+      { text: "Habituation to a repeated harmless stimulus", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage describes increased avoidance after pairing with an aversive outcome, not decreased responding to a harmless repeated stimulus." },
+      { text: "Latent learning with no reinforcement at all", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage explicitly describes a nausea-inducing injection functioning as the aversive event driving the association." },
+    ],
+  },
+  {
+    concept: "classical_conditioning",
+    type: "passage",
+    passage: "ps_conditioning_study",
+    stem: "In the taste-aversion portion of the study described, the saccharin-flavored water, once it triggers avoidance on its own, functions as the:",
+    reasoning: "After pairing, the previously neutral saccharin taste becomes a conditioned stimulus, now capable of eliciting the avoidance response without the injection.",
+    difficulty: 0.4,
+    sirs: 2,
+    options: [
+      { text: "Conditioned stimulus", correct: true },
+      { text: "Unconditioned stimulus", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage identifies the injection, not the taste, as the naturally nausea-inducing unconditioned stimulus." },
+      { text: "Unconditioned response", errorType: "prerequisite_misconception", why: "A response, not a stimulus, and specifically the natural, unlearned nausea reaction, not the taste itself." },
+      { text: "A reinforcer strengthening a voluntary behavior", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes an involuntary, reflexive learned association (classical conditioning), not the strengthening of a voluntary operant behavior." },
+    ],
+  },
+  {
+    concept: "operant_conditioning",
+    type: "passage",
+    passage: "ps_conditioning_study",
+    stem: "According to the passage, the rats trained on the unpredictable lever-pressing schedule continued pressing far longer after food delivery stopped than rats trained on a fixed schedule. This finding illustrates:",
+    reasoning: "The passage describes greater resistance to extinction following a variable (unpredictable) reinforcement schedule compared to a fixed schedule — a hallmark of variable-ratio reinforcement's persistence.",
+    difficulty: 0.4,
+    sirs: 2,
+    options: [
+      { text: "Greater resistance to extinction after variable-ratio reinforcement than fixed-ratio reinforcement", correct: true },
+      { text: "Identical resistance to extinction regardless of the reinforcement schedule used", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly describes the unpredictable-schedule group persisting far longer than the fixed-schedule group." },
+      { text: "Classical conditioning being more resistant to extinction than operant conditioning", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage's second study is entirely about operant lever-pressing schedules, not a comparison to classical conditioning." },
+      { text: "Fixed-schedule rats pressing the lever more overall than variable-schedule rats", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage compares persistence after reinforcement stops, not overall lever presses during training." },
+    ],
+  },
+  {
+    concept: "operant_conditioning",
+    type: "passage",
+    passage: "ps_conditioning_study",
+    stem: "The lever-pressing schedule described in the passage, where a pellet is delivered after a variable, unpredictable number of presses, is an example of:",
+    reasoning: "A schedule based on an unpredictable number of responses (rather than elapsed time) before reinforcement is delivered is, by definition, a variable-ratio schedule.",
+    difficulty: 0.3,
+    sirs: 1,
+    options: [
+      { text: "A variable-ratio schedule", correct: true },
+      { text: "A fixed-ratio schedule", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly describes the number of required presses as variable and unpredictable, not fixed." },
+      { text: "A fixed-interval schedule", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage bases reinforcement on number of presses, not on elapsed time, ruling out an interval schedule." },
+      { text: "A variable-interval schedule", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage bases reinforcement on number of presses (a ratio schedule), not on elapsed time (an interval schedule)." },
+    ],
+  },
+  {
+    concept: "operant_conditioning",
+    type: "passage",
+    passage: "ps_conditioning_study",
+    stem: "Suppose a third group of rats were trained with pellets delivered on a fixed-interval schedule (e.g., the first press after 60 seconds always yields a pellet). Based on the general pattern the passage describes for schedule predictability and extinction resistance, this group's resistance to extinction would most likely be:",
+    reasoning: "The passage's logic ties resistance to extinction to the unpredictability of reinforcement; a fixed-interval schedule is predictable (like the fixed-ratio schedule described), so by the same reasoning it should show relatively lower resistance to extinction than the variable schedule.",
+    difficulty: 0.6,
+    sirs: 3,
+    options: [
+      { text: "Lower than the variable-ratio group's, similar in pattern to the fixed-ratio group's", correct: true },
+      { text: "Higher than the variable-ratio group's resistance to extinction", errorType: "outside_knowledge_not_supported_by_passage", why: "This reverses the passage's core logic, which links unpredictability — not predictability — to greater resistance to extinction." },
+      { text: "Identical to the variable-ratio group's, since both involve some element of timing", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage's contrast is specifically between predictable and unpredictable reinforcement, and a fixed-interval schedule is predictable." },
+      { text: "Impossible to estimate from the passage's information", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage provides a clear general principle (predictability lowers resistance to extinction) that extends reasonably to this new case." },
+    ],
+  },
+
+  // --- passage: ps_conformity_study (5) ---
+  {
+    concept: "conformity_and_obedience",
+    type: "passage",
+    passage: "ps_conformity_study",
+    stem: "According to the passage, what happens to conformity rates when a single confederate breaks with the majority and gives the correct answer?",
+    reasoning: "The passage explicitly states that conformity 'drops sharply' when a single dissenting confederate breaks the majority's unanimity, even though the majority position itself is unchanged.",
+    difficulty: 0.2,
+    sirs: 1,
+    options: [
+      { text: "Conformity drops sharply", correct: true },
+      { text: "Conformity increases further", errorType: "passage_detail_misread_or_over_extrapolated", why: "Directly contradicts the passage's explicit statement that conformity drops when unanimity is broken." },
+      { text: "Conformity stays exactly the same", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage describes a sharp drop, not no change." },
+      { text: "Conformity disappears completely to zero", errorType: "true_statement_that_does_not_answer_the_question", why: "The passage says conformity drops sharply, not that it is fully eliminated to zero." },
+    ],
+  },
+  {
+    concept: "conformity_and_obedience",
+    type: "passage",
+    passage: "ps_conformity_study",
+    stem: "Based on the passage, what does the sharp drop in conformity after a single dissenter appears suggest about the source of the original conformity?",
+    reasoning: "Since breaking unanimity alone (without changing the majority's position or size) sharply reduces conformity, this suggests the pressure to conform depended heavily on the majority's unanimity itself, not merely its size.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "Unanimity of the majority, not just its size, was a major driver of conformity", correct: true },
+      { text: "The size of the majority was irrelevant to conformity in the first place", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage doesn't claim size is irrelevant; it isolates unanimity as a factor by holding the majority position constant while breaking unanimity." },
+      { text: "Participants were only conforming to avoid the specific dissenting confederate", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage attributes the drop to breaking unanimity generally, not to something specific about that one dissenting individual." },
+      { text: "The original task was too ambiguous to produce real conformity", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly describes the correct answer as unambiguous when judged alone, ruling out task ambiguity as the explanation." },
+    ],
+  },
+  {
+    concept: "conformity_and_obedience",
+    type: "passage",
+    passage: "ps_conformity_study",
+    stem: "The passage notes that conformity falls further when participants can respond privately rather than aloud. This finding most directly supports the idea that:",
+    reasoning: "If conformity drops when responses are private and thus not visible to the group, this points to normative social influence — conforming to gain approval or avoid visible rejection — rather than participants having been genuinely convinced the majority was factually correct.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "At least some conformity was driven by a desire for social approval, not genuine belief change", correct: true },
+      { text: "Private responding has no meaningful effect on conformity behavior", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly states conformity falls substantially further under private responding." },
+      { text: "All conformity in the study was due to participants being genuinely persuaded the majority was correct", errorType: "passage_detail_misread_or_over_extrapolated", why: "If participants were genuinely persuaded, response privacy should not matter; the fact that it does suggests social pressure, not genuine persuasion, played a role." },
+      { text: "The dissenting confederate's presence was the only factor affecting conformity", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes private responding as a separate manipulation from the dissenting confederate, with its own independent effect." },
+    ],
+  },
+  {
+    concept: "conformity_and_obedience",
+    type: "passage",
+    passage: "ps_conformity_study",
+    stem: "The task described in the passage — judging an unambiguous perceptual stimulus — is significant because it rules out which alternative explanation for participants' conformity?",
+    reasoning: "Because the passage specifies the correct answer is unambiguous when judged alone, genuine confusion or uncertainty about the right answer cannot explain why participants conformed to an obviously wrong group answer; this points toward social pressure rather than informational uncertainty as the driver.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "That participants conformed simply because they were genuinely unsure of the correct answer", correct: true },
+      { text: "That participants were influenced by the group at all", errorType: "true_statement_that_does_not_answer_the_question", why: "The passage's finding is precisely that participants were influenced by the group, so this isn't what the unambiguous-task detail rules out." },
+      { text: "That a single dissenter can reduce conformity", errorType: "true_statement_that_does_not_answer_the_question", why: "That finding is established separately in the passage and is not related to why the task's lack of ambiguity matters." },
+      { text: "That private responding reduces conformity", errorType: "true_statement_that_does_not_answer_the_question", why: "That is a separate finding in the passage, unrelated to what the task's unambiguous nature specifically rules out." },
+    ],
+  },
+  {
+    concept: "conformity_and_obedience",
+    type: "passage",
+    passage: "ps_conformity_study",
+    stem: "Suppose a replication of this study found that conformity rates were much higher when the confederates were described as fellow students at the participant's own university, compared to when they were described as students from a distant, unrelated school. This result would most directly suggest that conformity in this paradigm is influenced by:",
+    reasoning: "This hypothetical extends the passage's logic: if conformity increases specifically when the majority shares in-group membership with the participant, it suggests perceived similarity or in-group status of the source amplifies normative social pressure, beyond mere numbers or unanimity.",
+    difficulty: 0.6,
+    sirs: 3,
+    options: [
+      { text: "The perceived similarity or in-group status of the majority, not just its size or unanimity", correct: true },
+      { text: "Only the total number of confederates present, regardless of their background", errorType: "outside_knowledge_not_supported_by_passage", why: "The hypothetical holds the number of confederates constant and varies only their described group membership, so number alone can't explain the difference." },
+      { text: "Whether participants could respond privately or aloud", errorType: "outside_knowledge_not_supported_by_passage", why: "The hypothetical scenario doesn't vary response privacy at all; it varies the confederates' described affiliation." },
+      { text: "The presence or absence of a dissenting confederate", errorType: "outside_knowledge_not_supported_by_passage", why: "No dissenter is introduced in this hypothetical; the manipulated variable is the majority's described group membership." },
+    ],
+  },
+];

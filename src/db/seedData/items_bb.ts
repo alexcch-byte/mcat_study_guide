@@ -1,0 +1,661 @@
+import type { ItemDef } from "./types";
+
+export const itemsBb: ItemDef[] = [
+  // --- amino_acid_structure (4) ---
+  {
+    concept: "amino_acid_structure",
+    stem: "At physiological pH, the side chain of aspartate is best described as:",
+    reasoning: "Aspartate's side-chain carboxyl has a pKa around 3.9, well below physiological pH ~7.4, so it is deprotonated and negatively charged.",
+    difficulty: -0.2,
+    options: [
+      { text: "Negatively charged", correct: true },
+      { text: "Positively charged", errorType: "sign_or_direction_reversal", why: "Confuses acidic side chains with basic ones." },
+      { text: "Uncharged and hydrophobic", errorType: "prerequisite_misconception", why: "Misclassifies an acidic residue as nonpolar." },
+      { text: "Uncharged and hydrophilic", errorType: "correct_concept_wrong_step_in_sequence", why: "Recognizes polarity but fails to complete the ionization step at physiological pH." },
+    ],
+  },
+  {
+    concept: "amino_acid_structure",
+    stem: "Leucine, valine, and isoleucine are grouped together primarily because their side chains are:",
+    reasoning: "These three amino acids share branched, nonpolar aliphatic side chains, making them hydrophobic and typically buried in a protein's core.",
+    difficulty: 0.0,
+    options: [
+      { text: "Nonpolar and aliphatic", correct: true },
+      { text: "Positively charged at physiological pH", errorType: "prerequisite_misconception", why: "None of these three residues carry an ionizable, charged side chain." },
+      { text: "Aromatic ring-containing", errorType: "prerequisite_misconception", why: "Confuses these with aromatic residues like phenylalanine or tryptophan." },
+      { text: "Capable of forming disulfide bonds", errorType: "prerequisite_misconception", why: "Only cysteine's thiol side chain forms disulfide bonds, not these branched aliphatic residues." },
+    ],
+  },
+  {
+    concept: "amino_acid_structure",
+    stem: "An amino acid is found to be optically inactive (achiral) even though it has the standard amino acid backbone. This amino acid is most likely:",
+    reasoning: "Glycine's side chain is a single hydrogen atom, making its alpha carbon bonded to two identical substituents (H and H); this lack of four distinct groups makes it the only achiral standard amino acid.",
+    difficulty: 0.3,
+    options: [
+      { text: "Glycine", correct: true },
+      { text: "Alanine", errorType: "prerequisite_misconception", why: "Alanine's methyl side chain gives its alpha carbon four distinct substituents, making it chiral." },
+      { text: "Serine", errorType: "prerequisite_misconception", why: "Serine has a standard chiral center like nearly all other amino acids." },
+      { text: "Threonine", errorType: "prerequisite_misconception", why: "Threonine actually has two stereocenters, making it even more clearly chiral." },
+    ],
+  },
+  {
+    concept: "amino_acid_structure",
+    stem: "At a pH well below its isoelectric point, an amino acid in solution carries an overall charge that is:",
+    reasoning: "Below the isoelectric point, the solution is more acidic than the pH at which the molecule is neutral, so the amino group is protonated and the net charge is positive.",
+    difficulty: 0.4,
+    options: [
+      { text: "Net positive", correct: true },
+      { text: "Net negative", errorType: "sign_or_direction_reversal", why: "Reverses the relationship between pH relative to the isoelectric point and net charge." },
+      { text: "Exactly neutral, by definition of the isoelectric point", errorType: "prerequisite_misconception", why: "Neutral net charge occurs at the isoelectric point itself, not below it." },
+      { text: "Undefined without knowing the exact pKa values", errorType: "outside_knowledge_not_supported_by_passage", why: "The direction of net charge relative to the isoelectric point is determined by pH alone, without needing exact pKa values." },
+    ],
+  },
+
+  // --- peptide_bond_formation (4) ---
+  {
+    concept: "peptide_bond_formation",
+    stem: "Formation of a peptide bond between two amino acids releases which small molecule?",
+    reasoning: "Peptide bond formation is a condensation reaction: the carboxyl of one amino acid and the amino group of the next combine, releasing water.",
+    difficulty: -0.6,
+    options: [
+      { text: "Water", correct: true },
+      { text: "Ammonia", errorType: "prerequisite_misconception", why: "Confuses deamination reactions with condensation." },
+      { text: "Carbon dioxide", errorType: "prerequisite_misconception", why: "Confuses with decarboxylation reactions." },
+      { text: "Hydrogen gas", errorType: "unit_or_order_of_magnitude_error", why: "Not a plausible byproduct of any amino acid reaction; distractor testing pure guessing." },
+    ],
+  },
+  {
+    concept: "peptide_bond_formation",
+    stem: "The peptide bond has partial double-bond character, which restricts rotation around the bond. This partial double-bond character arises from:",
+    reasoning: "Resonance delocalization between the carbonyl oxygen's lone pair and the nitrogen's lone pair gives the C-N peptide bond partial double-bond character, making it planar and restricting free rotation.",
+    difficulty: 0.4,
+    options: [
+      { text: "Resonance delocalization of electrons between the carbonyl and the amide nitrogen", correct: true },
+      { text: "Hydrogen bonding between adjacent peptide bonds", errorType: "prerequisite_misconception", why: "Hydrogen bonding stabilizes secondary structure but is not the cause of the peptide bond's partial double-bond character itself." },
+      { text: "The hydrophobic effect burying the bond in the protein core", errorType: "outside_knowledge_not_supported_by_passage", why: "The hydrophobic effect concerns side-chain packing, not backbone bond character." },
+      { text: "Covalent disulfide linkages along the backbone", errorType: "prerequisite_misconception", why: "Disulfide bonds involve cysteine side chains, not the peptide backbone bond." },
+    ],
+  },
+  {
+    concept: "peptide_bond_formation",
+    stem: "A dipeptide is hydrolyzed back into its two constituent amino acids. This reaction requires the addition of:",
+    reasoning: "Hydrolysis is the reverse of condensation: water is added across the peptide bond, breaking it and regenerating the free carboxyl and amino groups.",
+    difficulty: 0.0,
+    options: [
+      { text: "Water", correct: true },
+      { text: "ATP", errorType: "outside_knowledge_not_supported_by_passage", why: "Simple hydrolysis of a peptide bond does not require energy input from ATP." },
+      { text: "An oxidizing agent", errorType: "prerequisite_misconception", why: "Peptide bond hydrolysis is not a redox reaction." },
+      { text: "A second peptide bond", errorType: "prerequisite_misconception", why: "Breaking a bond doesn't require forming another one of the same type." },
+    ],
+  },
+  {
+    concept: "peptide_bond_formation",
+    stem: "By convention, a peptide sequence written as Gly-Ala-Ser has its free amino group located at:",
+    reasoning: "Peptide sequences are conventionally written N-terminus to C-terminus, so the leftmost residue (Gly) retains the free amino group (N-terminus).",
+    difficulty: 0.2,
+    options: [
+      { text: "Glycine, the leftmost (N-terminal) residue", correct: true },
+      { text: "Serine, the rightmost (C-terminal) residue", errorType: "sign_or_direction_reversal", why: "Reverses the N-to-C convention for writing peptide sequences." },
+      { text: "Alanine, the middle residue", errorType: "prerequisite_misconception", why: "Internal residues have their amino and carboxyl groups tied up in peptide bonds, not free." },
+      { text: "All three residues equally", errorType: "prerequisite_misconception", why: "Only the terminal residues of a peptide retain a free amino or carboxyl group." },
+    ],
+  },
+
+  // --- protein_secondary_structure (4) ---
+  {
+    concept: "protein_secondary_structure",
+    stem: "The alpha helix is primarily stabilized by:",
+    reasoning: "The alpha helix is held together by regular hydrogen bonds between the backbone carbonyl oxygen of one residue and the backbone amide hydrogen four residues down the chain.",
+    difficulty: 0.1,
+    options: [
+      { text: "Hydrogen bonds between backbone carbonyl and amide groups", correct: true },
+      { text: "Disulfide bonds between cysteine side chains", errorType: "prerequisite_misconception", why: "Disulfide bonds contribute to tertiary/quaternary structure, not the regular backbone geometry of the helix itself." },
+      { text: "Ionic bonds between charged side chains", errorType: "prerequisite_misconception", why: "Side-chain ionic interactions are a tertiary-structure feature, not the defining stabilization of the helix backbone." },
+      { text: "Covalent peptide bonds along the backbone", errorType: "correct_concept_wrong_step_in_sequence", why: "Peptide bonds hold the primary sequence together but are not what specifically gives the helix its stable coiled shape." },
+    ],
+  },
+  {
+    concept: "protein_secondary_structure",
+    stem: "Proline is often called a 'helix breaker' because its structure:",
+    reasoning: "Proline's side chain loops back to bond with the backbone nitrogen, which lacks a hydrogen to donate for the helix's characteristic hydrogen bonding and also rigidly fixes the backbone angle, disrupting the regular helical geometry.",
+    difficulty: 0.4,
+    options: [
+      { text: "Lacks a backbone N-H to hydrogen bond and rigidly constrains backbone angles", correct: true },
+      { text: "Is strongly hydrophilic and repels the hydrophobic helix core", errorType: "prerequisite_misconception", why: "Proline is actually nonpolar; polarity is not why it disrupts helices." },
+      { text: "Forms extra disulfide bonds that twist the backbone", errorType: "prerequisite_misconception", why: "Proline has no thiol group and cannot form disulfide bonds." },
+      { text: "Is too large to fit within the helix's diameter", errorType: "prerequisite_misconception", why: "Steric bulk is not the mechanism; the structural issue is the missing N-H and the fixed ring geometry." },
+    ],
+  },
+  {
+    concept: "protein_secondary_structure",
+    stem: "In a beta-pleated sheet, hydrogen bonds form:",
+    reasoning: "In beta sheets, hydrogen bonds form between backbone atoms of adjacent, often distant, strands (which may be parallel or antiparallel), rather than between nearby residues on the same short stretch as in a helix.",
+    difficulty: 0.3,
+    options: [
+      { text: "Between backbone atoms on adjacent strands, not within a single short stretch", correct: true },
+      { text: "Only within a single continuous stretch of residues, as in an alpha helix", errorType: "prerequisite_misconception", why: "Describes the alpha helix's local hydrogen-bonding pattern, not the beta sheet's inter-strand pattern." },
+      { text: "Exclusively between side chains, never the backbone", errorType: "prerequisite_misconception", why: "The defining hydrogen bonds of a beta sheet are backbone-to-backbone, not side-chain interactions." },
+      { text: "Only in antiparallel sheets, never in parallel sheets", errorType: "prerequisite_misconception", why: "Both parallel and antiparallel beta sheets are stabilized by inter-strand backbone hydrogen bonds." },
+    ],
+  },
+  {
+    concept: "protein_secondary_structure",
+    stem: "Heating a protein until it loses its native secondary and tertiary structure, without breaking peptide bonds, is called:",
+    reasoning: "Denaturation disrupts the noncovalent interactions (and sometimes disulfide bonds) that fold a protein, without hydrolyzing the peptide bonds of the primary sequence itself.",
+    difficulty: 0.0,
+    options: [
+      { text: "Denaturation", correct: true },
+      { text: "Hydrolysis", errorType: "prerequisite_misconception", why: "Hydrolysis breaks peptide bonds, which the scenario explicitly says does not happen." },
+      { text: "Translation", errorType: "prerequisite_misconception", why: "Translation is the synthesis of a protein from mRNA, unrelated to unfolding an existing protein." },
+      { text: "Phosphorylation", errorType: "outside_knowledge_not_supported_by_passage", why: "Phosphorylation is a specific covalent modification, not a description of heat-induced unfolding." },
+    ],
+  },
+
+  // --- enzyme_kinetics_and_inhibition (2 discrete, + 5 via passage) ---
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    stem: "As substrate concentration is increased far beyond an enzyme's Km, the reaction rate approaches:",
+    reasoning: "At very high substrate concentration, essentially all enzyme active sites are saturated with substrate, so the rate plateaus at Vmax, the maximum rate the enzyme can sustain.",
+    difficulty: 0.2,
+    options: [
+      { text: "Vmax, a plateau rate", correct: true },
+      { text: "An ever-increasing rate with no upper limit", errorType: "prerequisite_misconception", why: "Ignores that a fixed amount of enzyme has a maximum turnover rate once saturated." },
+      { text: "Zero, since substrate excess inhibits the enzyme", errorType: "prerequisite_misconception", why: "Describes substrate inhibition, a special case, not the general saturation behavior implied here." },
+      { text: "Km itself", errorType: "unit_or_order_of_magnitude_error", why: "Km is a substrate concentration, not a rate; the units don't match what's being asked." },
+    ],
+  },
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    stem: "A low Km value for an enzyme-substrate pair indicates that the enzyme:",
+    reasoning: "Km is the substrate concentration at which the reaction rate is half of Vmax; a low Km means half-maximal rate is reached at low substrate concentration, indicating high apparent affinity for the substrate.",
+    difficulty: 0.3,
+    options: [
+      { text: "Has high apparent affinity for its substrate", correct: true },
+      { text: "Has low apparent affinity for its substrate", errorType: "sign_or_direction_reversal", why: "Reverses the inverse relationship between Km and apparent affinity." },
+      { text: "Has an unusually high Vmax", errorType: "prerequisite_misconception", why: "Km and Vmax are independent parameters; a low Km does not imply anything about Vmax." },
+      { text: "Cannot be saturated at any substrate concentration", errorType: "prerequisite_misconception", why: "All Michaelis-Menten enzymes saturate at high substrate; Km describes affinity, not saturability." },
+    ],
+  },
+
+  // --- cell_membrane_transport (4) ---
+  {
+    concept: "cell_membrane_transport",
+    stem: "Movement of glucose into a cell through a specific membrane transport protein, down its concentration gradient and without ATP hydrolysis, is an example of:",
+    reasoning: "Movement down a gradient through a protein channel/carrier without direct ATP use is facilitated diffusion, a form of passive transport.",
+    difficulty: 0.0,
+    options: [
+      { text: "Facilitated diffusion", correct: true },
+      { text: "Primary active transport", errorType: "prerequisite_misconception", why: "Primary active transport directly uses ATP and moves solutes against their gradient, neither of which is described here." },
+      { text: "Osmosis", errorType: "prerequisite_misconception", why: "Osmosis specifically refers to water movement across a membrane, not glucose transport." },
+      { text: "Phagocytosis", errorType: "outside_knowledge_not_supported_by_passage", why: "Phagocytosis engulfs large particles via membrane vesicles, not individual small molecules through a channel." },
+    ],
+  },
+  {
+    concept: "cell_membrane_transport",
+    stem: "The sodium-potassium pump moves 3 Na+ out of the cell and 2 K+ into the cell per ATP hydrolyzed, both against their concentration gradients. This is an example of:",
+    reasoning: "Moving solutes against their gradients using directly-coupled ATP hydrolysis is the definition of primary active transport.",
+    difficulty: 0.1,
+    options: [
+      { text: "Primary active transport", correct: true },
+      { text: "Facilitated diffusion", errorType: "prerequisite_misconception", why: "Facilitated diffusion moves solutes down their gradient and requires no direct energy input." },
+      { text: "Secondary active transport", errorType: "correct_concept_wrong_step_in_sequence", why: "Secondary active transport uses a gradient created by a primary pump, rather than hydrolyzing ATP directly itself." },
+      { text: "Simple diffusion", errorType: "prerequisite_misconception", why: "Simple diffusion requires no protein and no energy, and only moves solutes down a gradient." },
+    ],
+  },
+  {
+    concept: "cell_membrane_transport",
+    stem: "A cell is placed in a hypertonic solution relative to its cytoplasm. Water will tend to move:",
+    reasoning: "Water moves by osmosis from a region of lower solute concentration to higher solute concentration; a hypertonic external solution has higher solute concentration than the cytoplasm, so water exits the cell, causing it to shrink.",
+    difficulty: 0.1,
+    options: [
+      { text: "Out of the cell, causing it to shrink", correct: true },
+      { text: "Into the cell, causing it to swell", errorType: "sign_or_direction_reversal", why: "Reverses the direction of osmotic water movement relative to a hypertonic external solution." },
+      { text: "Not at all, since the membrane is impermeable to water", errorType: "prerequisite_misconception", why: "Cell membranes are generally permeable to water, often via aquaporins." },
+      { text: "Equally in both directions with no net change", errorType: "prerequisite_misconception", why: "A tonicity difference creates a net osmotic gradient, not equal bidirectional flow." },
+    ],
+  },
+  {
+    concept: "cell_membrane_transport",
+    stem: "Glucose uptake in intestinal epithelial cells is coupled to Na+ moving down its gradient through the same transporter (SGLT1), even when glucose is moving against its own concentration gradient. This transport mechanism is:",
+    reasoning: "Using the energy stored in an ion gradient (established elsewhere by a primary pump) to move a different solute against its own gradient is the definition of secondary active transport.",
+    difficulty: 0.4,
+    options: [
+      { text: "Secondary active transport", correct: true },
+      { text: "Simple diffusion", errorType: "prerequisite_misconception", why: "Simple diffusion cannot move a solute against its own concentration gradient." },
+      { text: "Primary active transport", errorType: "correct_concept_wrong_step_in_sequence", why: "No ATP is hydrolyzed directly by this transporter; it relies on a pre-existing gradient instead." },
+      { text: "Facilitated diffusion", errorType: "prerequisite_misconception", why: "Facilitated diffusion cannot move glucose against its own gradient; only coupling to another gradient can." },
+    ],
+  },
+
+  // --- dna_replication (3) ---
+  {
+    concept: "dna_replication",
+    stem: "DNA replication is described as semiconservative because each daughter DNA molecule contains:",
+    reasoning: "Semiconservative replication means each new double helix retains one original (parental) strand and one newly synthesized strand.",
+    difficulty: 0.0,
+    options: [
+      { text: "One original strand and one newly synthesized strand", correct: true },
+      { text: "Two newly synthesized strands only", errorType: "prerequisite_misconception", why: "Describes a conservative model of replication, which was experimentally ruled out." },
+      { text: "Two original parental strands only", errorType: "prerequisite_misconception", why: "Would mean no new DNA is made at all, contradicting the premise of replication." },
+      { text: "A random mixture of fragments from both parental strands", errorType: "prerequisite_misconception", why: "Describes a dispersive model of replication, also ruled out experimentally." },
+    ],
+  },
+  {
+    concept: "dna_replication",
+    stem: "On the lagging strand during DNA replication, synthesis occurs discontinuously as Okazaki fragments because:",
+    reasoning: "DNA polymerase synthesizes only in the 5' to 3' direction; since the lagging strand template runs antiparallel to the direction the replication fork opens, the lagging strand must be synthesized in short fragments back toward the fork repeatedly.",
+    difficulty: 0.4,
+    options: [
+      { text: "DNA polymerase can only synthesize 5' to 3', opposite the direction the fork is opening on this strand", correct: true },
+      { text: "The lagging strand template has a different chemical composition than the leading strand", errorType: "prerequisite_misconception", why: "Both strands are made of the same DNA chemistry; the difference is directionality relative to the fork, not composition." },
+      { text: "RNA primers are not used on the lagging strand", errorType: "prerequisite_misconception", why: "RNA primers are required on both strands to initiate DNA polymerase activity, including each Okazaki fragment." },
+      { text: "The leading strand is synthesized by a completely different enzyme", errorType: "outside_knowledge_not_supported_by_passage", why: "The same DNA polymerase carries out synthesis on both strands; the discontinuity is a directional constraint, not a different enzyme." },
+    ],
+  },
+  {
+    concept: "dna_replication",
+    stem: "An enzyme relieves the overwinding of DNA ahead of the replication fork by making transient breaks in the DNA backbone. This enzyme is:",
+    reasoning: "Topoisomerase (including DNA gyrase in bacteria) relieves supercoiling tension ahead of the fork by cutting and rejoining the DNA backbone.",
+    difficulty: 0.2,
+    options: [
+      { text: "Topoisomerase", correct: true },
+      { text: "DNA ligase", errorType: "prerequisite_misconception", why: "DNA ligase seals nicks between Okazaki fragments; it does not relieve supercoiling tension." },
+      { text: "Primase", errorType: "prerequisite_misconception", why: "Primase synthesizes short RNA primers; it plays no role in unwinding tension." },
+      { text: "Helicase", errorType: "correct_concept_wrong_step_in_sequence", why: "Helicase unwinds the double helix at the fork itself but does not resolve the supercoiling tension this creates further ahead." },
+    ],
+  },
+
+  // --- transcription_and_translation (4) ---
+  {
+    concept: "transcription_and_translation",
+    stem: "During transcription, RNA polymerase synthesizes mRNA using which strand of DNA as its template?",
+    reasoning: "RNA polymerase reads the template (antisense) strand 3' to 5', producing an mRNA that is complementary to it and therefore identical in sequence (except U for T) to the coding (sense) strand.",
+    difficulty: 0.2,
+    options: [
+      { text: "The template (antisense) strand", correct: true },
+      { text: "The coding (sense) strand", errorType: "sign_or_direction_reversal", why: "The coding strand has the same sequence as the resulting mRNA; it is not the strand actually read by the polymerase." },
+      { text: "Both strands simultaneously", errorType: "prerequisite_misconception", why: "Only one strand serves as template for a given gene's transcription." },
+      { text: "Neither strand; RNA polymerase synthesizes mRNA de novo", errorType: "prerequisite_misconception", why: "Transcription requires a DNA template strand to specify the RNA sequence." },
+    ],
+  },
+  {
+    concept: "transcription_and_translation",
+    stem: "A point mutation changes a codon from AAA to AAG. Both codons code for lysine. This type of mutation is called:",
+    reasoning: "A base change that does not alter the resulting amino acid, due to the redundancy (degeneracy) of the genetic code, is a silent mutation.",
+    difficulty: 0.1,
+    options: [
+      { text: "Silent", correct: true },
+      { text: "Missense", errorType: "prerequisite_misconception", why: "Missense mutations change the amino acid; here the amino acid (lysine) is unchanged." },
+      { text: "Nonsense", errorType: "prerequisite_misconception", why: "Nonsense mutations create a premature stop codon, not a same-amino-acid substitution." },
+      { text: "Frameshift", errorType: "prerequisite_misconception", why: "Frameshift mutations involve insertions or deletions that shift the reading frame, not a single base substitution." },
+    ],
+  },
+  {
+    concept: "transcription_and_translation",
+    stem: "During translation, the ribosome reads mRNA codons and matches them to the correct amino acid via:",
+    reasoning: "Transfer RNA (tRNA) molecules carry a specific amino acid and have an anticodon that base-pairs with the mRNA codon, physically linking codon sequence to amino acid identity.",
+    difficulty: 0.0,
+    options: [
+      { text: "tRNA anticodons pairing with mRNA codons", correct: true },
+      { text: "Direct hydrogen bonding between the codon and the amino acid itself", errorType: "prerequisite_misconception", why: "Amino acids do not base-pair with mRNA directly; an adaptor molecule (tRNA) is required." },
+      { text: "rRNA sequence matching the codon directly", errorType: "prerequisite_misconception", why: "Ribosomal RNA forms the ribosome's structure and catalytic core, but codon recognition is carried out by tRNA, not rRNA base-pairing to mRNA." },
+      { text: "DNA polymerase reading the codon during translation", errorType: "prerequisite_misconception", why: "DNA polymerase functions in DNA replication, not translation." },
+    ],
+  },
+  {
+    concept: "transcription_and_translation",
+    stem: "A mutation inserts a single extra nucleotide early in a gene's coding sequence. The most likely consequence for the protein product is:",
+    reasoning: "A single-nucleotide insertion shifts the reading frame for every codon downstream of the insertion, typically producing a completely different and often nonfunctional amino acid sequence, frequently ending in a premature stop codon.",
+    difficulty: 0.5,
+    options: [
+      { text: "A frameshift that garbles most of the downstream protein sequence", correct: true },
+      { text: "A single amino acid substitution, with the rest of the protein unaffected", errorType: "correct_concept_wrong_step_in_sequence", why: "Describes the effect of a substitution, not an insertion, which shifts the entire downstream reading frame." },
+      { text: "No effect, since one extra nucleotide is too small to matter", errorType: "prerequisite_misconception", why: "Because codons are read in triplets, even one extra nucleotide shifts every subsequent codon." },
+      { text: "A silent mutation with no change to the protein", errorType: "prerequisite_misconception", why: "Silent mutations don't shift the reading frame; this insertion does." },
+    ],
+  },
+
+  // --- glycolysis_and_cellular_respiration (4) ---
+  {
+    concept: "glycolysis_and_cellular_respiration",
+    stem: "Glycolysis, the breakdown of glucose to pyruvate, occurs in which part of the cell?",
+    reasoning: "Glycolysis is a cytoplasmic (cytosolic) process; it does not require mitochondria and occurs before pyruvate is transported into the mitochondria for further oxidation.",
+    difficulty: 0.0,
+    options: [
+      { text: "The cytoplasm", correct: true },
+      { text: "The mitochondrial matrix", errorType: "prerequisite_misconception", why: "The mitochondrial matrix hosts the citric acid cycle, not glycolysis." },
+      { text: "The nucleus", errorType: "prerequisite_misconception", why: "The nucleus hosts DNA/RNA processes, not glycolytic enzyme reactions." },
+      { text: "The inner mitochondrial membrane", errorType: "prerequisite_misconception", why: "The inner mitochondrial membrane hosts the electron transport chain, not glycolysis." },
+    ],
+  },
+  {
+    concept: "glycolysis_and_cellular_respiration",
+    stem: "Under anaerobic conditions, human muscle cells convert pyruvate to lactate. The main purpose of this step is to:",
+    reasoning: "Lactate fermentation regenerates NAD+ from NADH, which is required to keep glycolysis running when oxygen (and thus the electron transport chain) is unavailable to reoxidize NADH.",
+    difficulty: 0.3,
+    options: [
+      { text: "Regenerate NAD+ so glycolysis can continue", correct: true },
+      { text: "Produce additional ATP directly from lactate formation", errorType: "prerequisite_misconception", why: "Converting pyruvate to lactate does not itself generate ATP; its role is regenerating NAD+." },
+      { text: "Transport pyruvate into the mitochondria more efficiently", errorType: "outside_knowledge_not_supported_by_passage", why: "Lactate fermentation is an alternative to mitochondrial processing, not a step that assists it." },
+      { text: "Break down glycogen stores directly", errorType: "outside_knowledge_not_supported_by_passage", why: "Glycogen breakdown (glycogenolysis) is a separate pathway feeding into glycolysis, not the purpose of the lactate step." },
+    ],
+  },
+  {
+    concept: "glycolysis_and_cellular_respiration",
+    stem: "The electron transport chain ultimately transfers electrons to which final electron acceptor in aerobic respiration?",
+    reasoning: "In aerobic respiration, oxygen serves as the terminal electron acceptor, being reduced to water at Complex IV.",
+    difficulty: 0.0,
+    options: [
+      { text: "Oxygen", correct: true },
+      { text: "Carbon dioxide", errorType: "prerequisite_misconception", why: "CO2 is a byproduct of the citric acid cycle, not an electron acceptor in the transport chain." },
+      { text: "Pyruvate", errorType: "prerequisite_misconception", why: "Pyruvate is an earlier substrate in the pathway, not the final electron acceptor." },
+      { text: "NADH", errorType: "sign_or_direction_reversal", why: "NADH is an electron donor to the chain, not the final acceptor." },
+    ],
+  },
+  {
+    concept: "glycolysis_and_cellular_respiration",
+    stem: "Compared to glycolysis alone, complete aerobic oxidation of glucose (through the citric acid cycle and oxidative phosphorylation) yields:",
+    reasoning: "Glycolysis alone nets only 2 ATP per glucose, while complete aerobic oxidation nets roughly 30-32 ATP per glucose by fully oxidizing the carbons and using the electron transport chain, a substantially larger energy yield.",
+    difficulty: 0.2,
+    options: [
+      { text: "Substantially more ATP per glucose molecule", correct: true },
+      { text: "Substantially less ATP per glucose molecule", errorType: "sign_or_direction_reversal", why: "Reverses the actual relative energy yield of aerobic versus purely glycolytic metabolism." },
+      { text: "Exactly the same amount of ATP", errorType: "prerequisite_misconception", why: "Aerobic pathways extract much more usable energy per glucose than glycolysis alone." },
+      { text: "No ATP at all, only heat", errorType: "prerequisite_misconception", why: "Oxidative phosphorylation is a major ATP-generating process, not merely a heat-releasing one." },
+    ],
+  },
+
+  // --- mendelian_genetics (2 discrete, + 5 via passage) ---
+  {
+    concept: "mendelian_genetics",
+    stem: "In humans, an autosomal recessive disorder requires an affected individual to have:",
+    reasoning: "A recessive phenotype requires two copies of the recessive allele (homozygous recessive), since a single dominant allele would mask the recessive phenotype.",
+    difficulty: 0.0,
+    options: [
+      { text: "Two copies of the recessive allele", correct: true },
+      { text: "Just one copy of the recessive allele", errorType: "prerequisite_misconception", why: "A single recessive allele would be masked by a dominant allele in a heterozygote, who would not display the recessive phenotype." },
+      { text: "One dominant and one recessive allele", errorType: "prerequisite_misconception", why: "Describes a heterozygous carrier, who displays the dominant phenotype, not the recessive one." },
+      { text: "Two copies of the dominant allele", errorType: "sign_or_direction_reversal", why: "Two dominant alleles would produce the dominant phenotype, the opposite of what's being asked." },
+    ],
+  },
+  {
+    concept: "mendelian_genetics",
+    stem: "Two genes are found to be inherited together far more often than the 9:3:3:1 ratio predicted by independent assortment. This pattern most likely indicates that the two genes are:",
+    reasoning: "Genes located close together on the same chromosome tend to be inherited together (linked), violating the independent assortment expected of genes on different chromosomes.",
+    difficulty: 0.4,
+    options: [
+      { text: "Linked, located close together on the same chromosome", correct: true },
+      { text: "Located on different chromosomes, assorting independently", errorType: "prerequisite_misconception", why: "Independent assortment would produce the standard dihybrid ratio, not a deviation from it." },
+      { text: "Both recessive to each other", errorType: "outside_knowledge_not_supported_by_passage", why: "Dominance relationships between alleles of the same gene don't explain inheritance patterns between two different genes." },
+      { text: "Subject to a higher mutation rate than average", errorType: "outside_knowledge_not_supported_by_passage", why: "Mutation rate doesn't explain a systematic deviation from the expected ratio of co-inheritance." },
+    ],
+  },
+
+  // --- mitosis_and_the_cell_cycle (3) ---
+  {
+    concept: "mitosis_and_the_cell_cycle",
+    stem: "DNA replication occurs during which phase of the cell cycle?",
+    reasoning: "S phase (synthesis phase) is specifically when DNA is replicated, occurring between G1 and G2 of interphase, before mitosis begins.",
+    difficulty: -0.2,
+    options: [
+      { text: "S phase", correct: true },
+      { text: "G1 phase", errorType: "prerequisite_misconception", why: "G1 is a growth phase before DNA synthesis begins." },
+      { text: "G2 phase", errorType: "prerequisite_misconception", why: "G2 is a growth/preparation phase after DNA has already been replicated." },
+      { text: "Metaphase", errorType: "prerequisite_misconception", why: "Metaphase is a stage of mitosis itself, well after DNA replication is complete." },
+    ],
+  },
+  {
+    concept: "mitosis_and_the_cell_cycle",
+    stem: "During anaphase of mitosis, sister chromatids are:",
+    reasoning: "Anaphase is defined by the separation of sister chromatids, which are then pulled toward opposite poles of the cell by the mitotic spindle.",
+    difficulty: 0.1,
+    options: [
+      { text: "Separated and pulled toward opposite poles", correct: true },
+      { text: "Aligned at the cell's equator", errorType: "prerequisite_misconception", why: "Describes metaphase, the stage before anaphase." },
+      { text: "Condensing for the first time", errorType: "prerequisite_misconception", why: "Chromosome condensation occurs earlier, in prophase." },
+      { text: "Being replicated to form new sister chromatids", errorType: "prerequisite_misconception", why: "DNA replication occurs during S phase of interphase, long before anaphase." },
+    ],
+  },
+  {
+    concept: "mitosis_and_the_cell_cycle",
+    stem: "A checkpoint late in G2 verifies that DNA replication is complete and undamaged before allowing a cell to proceed. The main purpose of this checkpoint is to:",
+    reasoning: "Cell cycle checkpoints prevent a cell from dividing when its DNA is incompletely replicated or damaged, avoiding the propagation of genetic errors to daughter cells.",
+    difficulty: 0.3,
+    options: [
+      { text: "Prevent cells with damaged or incomplete DNA from dividing", correct: true },
+      { text: "Speed up the rate of DNA replication", errorType: "outside_knowledge_not_supported_by_passage", why: "Checkpoints are surveillance mechanisms, not accelerators of the replication process itself." },
+      { text: "Trigger apoptosis in every cell that reaches G2", errorType: "prerequisite_misconception", why: "Most cells pass this checkpoint normally; apoptosis is only triggered when damage is severe and unrepaired." },
+      { text: "Initiate crossing-over between homologous chromosomes", errorType: "outside_knowledge_not_supported_by_passage", why: "Crossing-over is a meiosis-specific event, not a function of the G2 checkpoint in mitosis." },
+    ],
+  },
+
+  // --- muscle_contraction (3) ---
+  {
+    concept: "muscle_contraction",
+    stem: "In the sliding filament model of muscle contraction, the sarcomere shortens because:",
+    reasoning: "Myosin thick filaments pull the actin thin filaments inward toward the center of the sarcomere; the filaments themselves do not shorten, but their overlap increases as they slide past each other.",
+    difficulty: 0.2,
+    options: [
+      { text: "Thin and thick filaments slide past each other, increasing their overlap", correct: true },
+      { text: "The individual actin and myosin filaments each shorten in length", errorType: "prerequisite_misconception", why: "The filaments themselves stay the same length; it's their relative sliding that shortens the sarcomere." },
+      { text: "The sarcomere's Z-discs dissolve during contraction", errorType: "prerequisite_misconception", why: "Z-discs remain intact and are pulled closer together, not dissolved." },
+      { text: "Calcium ions physically pull the filaments together", errorType: "correct_concept_wrong_step_in_sequence", why: "Calcium triggers the process by binding troponin, but myosin cross-bridge cycling — not calcium itself — does the mechanical pulling." },
+    ],
+  },
+  {
+    concept: "muscle_contraction",
+    stem: "The release of calcium ions from the sarcoplasmic reticulum triggers muscle contraction by binding to:",
+    reasoning: "Calcium binds troponin, causing a conformational change that moves tropomyosin off the myosin-binding sites on actin, allowing cross-bridge cycling to begin.",
+    difficulty: 0.3,
+    options: [
+      { text: "Troponin", correct: true },
+      { text: "Myosin heads directly", errorType: "prerequisite_misconception", why: "Calcium does not bind myosin directly to initiate contraction; it acts on the troponin-tropomyosin complex on actin." },
+      { text: "ATP synthase", errorType: "outside_knowledge_not_supported_by_passage", why: "ATP synthase is involved in cellular energy production, unrelated to the calcium-triggered contraction mechanism." },
+      { text: "The sarcolemma directly", errorType: "prerequisite_misconception", why: "The sarcolemma propagates the action potential; calcium's contraction-triggering target is troponin on the thin filament." },
+    ],
+  },
+  {
+    concept: "muscle_contraction",
+    stem: "ATP is required for a myosin head to detach from actin after a power stroke. In the absence of ATP (as in rigor mortis), muscle fibers become:",
+    reasoning: "Without ATP, myosin heads remain bound to actin because ATP binding — not just hydrolysis — is required for cross-bridge detachment, producing sustained, involuntary stiffness.",
+    difficulty: 0.5,
+    options: [
+      { text: "Permanently stiff and unable to relax", correct: true },
+      { text: "Completely relaxed and unable to contract", errorType: "sign_or_direction_reversal", why: "Reverses the actual effect: lacking ATP for detachment leaves the fibers locked in a contracted, stiff state." },
+      { text: "Unaffected, since ATP is only needed for contraction, not relaxation", errorType: "prerequisite_misconception", why: "ATP is specifically required for the detachment step, which is necessary for relaxation." },
+      { text: "Rapidly broken down by excess calcium", errorType: "outside_knowledge_not_supported_by_passage", why: "Rigor mortis is explained by the lack of ATP for cross-bridge cycling, not by calcium-driven degradation." },
+    ],
+  },
+
+  // --- hormone_signaling (3) ---
+  {
+    concept: "hormone_signaling",
+    stem: "Steroid hormones, unlike peptide hormones, typically act by:",
+    reasoning: "Steroid hormones are lipid-soluble and can cross the plasma membrane directly, binding intracellular or nuclear receptors and often altering gene transcription, unlike peptide hormones, which bind surface receptors.",
+    difficulty: 0.2,
+    options: [
+      { text: "Diffusing across the plasma membrane and binding intracellular receptors", correct: true },
+      { text: "Binding a surface receptor and triggering a second-messenger cascade", errorType: "prerequisite_misconception", why: "Describes the typical peptide hormone mechanism, which the question explicitly contrasts with steroid hormones." },
+      { text: "Being taken up by receptor-mediated endocytosis", errorType: "outside_knowledge_not_supported_by_passage", why: "Not the characteristic mechanism distinguishing steroid from peptide hormone signaling." },
+      { text: "Acting only on the cell that secreted them", errorType: "prerequisite_misconception", why: "Describes autocrine signaling, not a distinguishing feature of steroid versus peptide hormone mechanisms." },
+    ],
+  },
+  {
+    concept: "hormone_signaling",
+    stem: "A peptide hormone binds a G-protein-coupled receptor, activating adenylate cyclase and raising intracellular cAMP. This cAMP is best described as a:",
+    reasoning: "cAMP is a classic second messenger: an intracellular signaling molecule produced in response to a receptor-activated first messenger (the hormone) that relays and amplifies the signal inside the cell.",
+    difficulty: 0.3,
+    options: [
+      { text: "Second messenger", correct: true },
+      { text: "First messenger", errorType: "correct_concept_wrong_step_in_sequence", why: "The hormone itself is the first messenger; cAMP is generated inside the cell in response to it." },
+      { text: "A transcription factor", errorType: "prerequisite_misconception", why: "cAMP is a small signaling molecule, not a protein that binds DNA directly." },
+      { text: "A steroid intermediate", errorType: "prerequisite_misconception", why: "cAMP is a nucleotide-derived molecule, structurally and mechanistically unrelated to steroids." },
+    ],
+  },
+  {
+    concept: "hormone_signaling",
+    stem: "Negative feedback in the hypothalamic-pituitary-thyroid axis means that rising thyroid hormone levels will:",
+    reasoning: "In a negative feedback loop, the output (thyroid hormone) suppresses the signals that stimulated its own production, so rising thyroid hormone inhibits hypothalamic and pituitary hormone release (TRH and TSH).",
+    difficulty: 0.3,
+    options: [
+      { text: "Suppress further release of TRH and TSH", correct: true },
+      { text: "Stimulate further release of TRH and TSH", errorType: "sign_or_direction_reversal", why: "Reverses the defining direction of a negative feedback loop." },
+      { text: "Have no effect on the hypothalamus or pituitary", errorType: "prerequisite_misconception", why: "The entire point of the axis is that thyroid hormone levels do regulate upstream signals." },
+      { text: "Directly convert TSH into TRH", errorType: "outside_knowledge_not_supported_by_passage", why: "TRH and TSH are distinct hormones; one is not converted into the other." },
+    ],
+  },
+
+  // --- passage: bb_enzyme_inhibition (5) ---
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    type: "passage",
+    passage: "bb_enzyme_inhibition",
+    stem: "Based on the passage, compound X is best classified as a:",
+    reasoning: "The passage describes X as raising apparent Km while leaving Vmax unchanged, and its effect is reversed by excess substrate — the defining kinetic signature of a competitive inhibitor.",
+    difficulty: 0.3,
+    sirs: 2,
+    options: [
+      { text: "Competitive inhibitor", correct: true },
+      { text: "Noncompetitive inhibitor", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage assigns the noncompetitive kinetic signature (lowered Vmax) to compound Y, not X." },
+      { text: "An allosteric activator", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes X as inhibiting the reaction, not activating it." },
+      { text: "A cofactor required for catalysis", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage explicitly describes X as an inhibitor being tested, not a required cofactor." },
+    ],
+  },
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    type: "passage",
+    passage: "bb_enzyme_inhibition",
+    stem: "Based on the passage, compound Y is best classified as a:",
+    reasoning: "The passage describes Y as lowering Vmax without changing Km, and its effect is not reversed by excess substrate — the defining signature of a noncompetitive inhibitor.",
+    difficulty: 0.3,
+    sirs: 2,
+    options: [
+      { text: "Noncompetitive inhibitor", correct: true },
+      { text: "Competitive inhibitor", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage assigns the competitive kinetic signature (raised Km, reversible by substrate) to compound X, not Y." },
+      { text: "A substrate analog", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage explicitly states Y is structurally unrelated to the substrate, unlike a substrate analog." },
+      { text: "An enzyme activator", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes Y as lowering the reaction's Vmax, which is inhibition, not activation." },
+    ],
+  },
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    type: "passage",
+    passage: "bb_enzyme_inhibition",
+    stem: "The passage notes that X's effect can be reversed by adding a large excess of substrate S. This reversibility occurs because:",
+    reasoning: "A competitive inhibitor competes with substrate for the same active site; increasing substrate concentration outcompetes the inhibitor for binding, restoring normal activity — consistent with X resembling the substrate structurally.",
+    difficulty: 0.4,
+    sirs: 3,
+    options: [
+      { text: "Excess substrate outcompetes the inhibitor for the same active site", correct: true },
+      { text: "Excess substrate destroys the inhibitor molecule", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes competition for binding, not chemical destruction of the inhibitor." },
+      { text: "Excess substrate binds a separate site and displaces the inhibitor allosterically", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage attributes X's binding site to resembling the substrate specifically, implying direct active-site competition, not a separate allosteric site." },
+      { text: "Excess substrate increases the enzyme's Vmax beyond its normal maximum", errorType: "outside_knowledge_not_supported_by_passage", why: "Reversing a competitive inhibitor restores the enzyme's original Vmax; it does not increase Vmax beyond that." },
+    ],
+  },
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    type: "passage",
+    passage: "bb_enzyme_inhibition",
+    stem: "According to the passage, why does increasing substrate concentration fail to reverse compound Y's inhibitory effect?",
+    reasoning: "The passage states Y binds a site distinct from the active site, so substrate binding at the active site does not compete with or displace Y, meaning more substrate cannot restore full activity.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "Y binds a distinct site from the active site, so substrate cannot compete it off", correct: true },
+      { text: "Y is present in much higher concentration than the substrate", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage never compares the relative concentrations of Y and the substrate." },
+      { text: "Y permanently destroys the enzyme's active site", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes reversible kinetic behavior, not irreversible destruction of the enzyme." },
+      { text: "Y is chemically identical to the substrate", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly states Y is structurally unrelated to the substrate, the opposite of this claim." },
+    ],
+  },
+  {
+    concept: "enzyme_kinetics_and_inhibition",
+    type: "passage",
+    passage: "bb_enzyme_inhibition",
+    stem: "Suppose a third compound Z is discovered that lowers both Km and Vmax simultaneously. Compared to X and Y as the passage describes them, Z's kinetic profile would be:",
+    reasoning: "Neither X (raises Km, same Vmax) nor Y (same Km, lowers Vmax) matches a profile where both parameters change, so Z represents a distinct kinetic pattern from either inhibitor described in the passage.",
+    difficulty: 0.6,
+    sirs: 3,
+    options: [
+      { text: "Distinct from both X and Y as described", correct: true },
+      { text: "Identical to X's profile", errorType: "passage_detail_misread_or_over_extrapolated", why: "X is described as changing only Km, not Vmax, which doesn't match Z's described profile." },
+      { text: "Identical to Y's profile", errorType: "passage_detail_misread_or_over_extrapolated", why: "Y is described as changing only Vmax, not Km, which doesn't match Z's described profile." },
+      { text: "Impossible to characterize using Michaelis-Menten kinetics at all", errorType: "outside_knowledge_not_supported_by_passage", why: "A compound affecting both parameters can still be described within the same kinetic framework; it simply doesn't match either single-parameter pattern given." },
+    ],
+  },
+
+  // --- passage: bb_mendelian_cross (5) ---
+  {
+    concept: "mendelian_genetics",
+    type: "passage",
+    passage: "bb_mendelian_cross",
+    stem: "According to the passage, the YyRr x YyRr cross produces offspring in approximately what phenotypic ratio?",
+    reasoning: "The passage explicitly states the classic dihybrid ratio observed: 9/16 yellow-round, 3/16 yellow-wrinkled, 3/16 green-round, 1/16 green-wrinkled.",
+    difficulty: 0.1,
+    sirs: 1,
+    options: [
+      { text: "9:3:3:1", correct: true },
+      { text: "1:1:1:1", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage assigns the 1:1:1:1 ratio to the testcross described later, not to the YyRr x YyRr cross." },
+      { text: "3:1", errorType: "passage_detail_misread_or_over_extrapolated", why: "3:1 describes a single-gene monohybrid cross, not the two-gene ratio given in the passage." },
+      { text: "1:2:1", errorType: "outside_knowledge_not_supported_by_passage", why: "Not a ratio mentioned anywhere in the passage for either cross." },
+    ],
+  },
+  {
+    concept: "mendelian_genetics",
+    type: "passage",
+    passage: "bb_mendelian_cross",
+    stem: "The passage's second cross, YyRr x yyrr, is an example of what kind of cross, and why is it useful?",
+    reasoning: "The passage identifies this as a testcross; crossing with a fully homozygous recessive parent means the recessive parent contributes only recessive alleles, so the offspring ratio directly reveals the genotype (and allele combinations) of the heterozygous parent's gametes.",
+    difficulty: 0.4,
+    sirs: 2,
+    options: [
+      { text: "A testcross, useful because the homozygous recessive parent's gametes reveal the other parent's allele combinations directly", correct: true },
+      { text: "A dihybrid cross, useful for producing the 9:3:3:1 ratio", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly contrasts this cross's 1:1:1:1 result with the dihybrid 9:3:3:1 ratio from the first cross." },
+      { text: "A monohybrid cross, useful for studying a single gene in isolation", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage describes this cross as still tracking both seed color and seed shape genes together." },
+      { text: "A backcross to a heterozygous individual, useful for confirming dominance", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage specifies the second parent is yyrr, homozygous recessive, not heterozygous." },
+    ],
+  },
+  {
+    concept: "mendelian_genetics",
+    type: "passage",
+    passage: "bb_mendelian_cross",
+    stem: "The roughly 1:1:1:1 ratio in the testcross described in the passage most directly demonstrates that the heterozygous parent produced:",
+    reasoning: "A 1:1:1:1 ratio among four combinations of two traits from a testcross shows the heterozygous parent produced all four possible gamete types (YR, Yr, yR, yr) in roughly equal proportions, demonstrating independent assortment of the two genes.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "All four possible gamete combinations in roughly equal proportions", correct: true },
+      { text: "Only two gamete types, each in equal proportion", errorType: "passage_detail_misread_or_over_extrapolated", why: "A four-way 1:1:1:1 ratio in the offspring requires four distinct parental gamete types, not two." },
+      { text: "Gametes only matching the dominant phenotype", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes offspring showing all four phenotype combinations, including recessive ones, which requires gametes carrying recessive alleles too." },
+      { text: "No viable gametes for the recessive alleles", errorType: "outside_knowledge_not_supported_by_passage", why: "Recessive-allele-carrying offspring appear in the results, which requires viable gametes carrying those alleles." },
+    ],
+  },
+  {
+    concept: "mendelian_genetics",
+    type: "passage",
+    passage: "bb_mendelian_cross",
+    stem: "If the two genes described in the passage were instead tightly linked on the same chromosome rather than assorting independently, the testcross would be expected to produce:",
+    reasoning: "Linked genes are inherited together more often than not, so a testcross would show an excess of the parental combinations (YR and yr) and a deficit of recombinant combinations (Yr and yR), deviating from the 1:1:1:1 ratio the passage reports for independent assortment.",
+    difficulty: 0.6,
+    sirs: 3,
+    options: [
+      { text: "A deviation from 1:1:1:1, with parental combinations overrepresented", correct: true },
+      { text: "The same 1:1:1:1 ratio described in the passage", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage's 1:1:1:1 result specifically depends on independent assortment, which linkage would violate." },
+      { text: "Only two phenotypic classes appearing at all", errorType: "outside_knowledge_not_supported_by_passage", why: "Linkage skews the ratio between classes but does not eliminate recombinant classes entirely, absent complete linkage." },
+      { text: "A 9:3:3:1 ratio instead", errorType: "passage_detail_misread_or_over_extrapolated", why: "9:3:3:1 is the ratio for the self-cross (F1 x F1) described earlier, not the expected pattern under linkage in a testcross." },
+    ],
+  },
+  {
+    concept: "mendelian_genetics",
+    type: "passage",
+    passage: "bb_mendelian_cross",
+    stem: "Based on the passage, which allele combination could NOT appear among the gametes of the yyrr parent in the testcross?",
+    reasoning: "Since the yyrr parent is homozygous recessive for both genes, every gamete it produces must carry only the recessive alleles y and r — a gamete carrying Y or R is impossible from this parent.",
+    difficulty: 0.3,
+    sirs: 2,
+    options: [
+      { text: "A gamete carrying the Y allele", correct: true },
+      { text: "A gamete carrying the y allele", errorType: "passage_detail_misread_or_over_extrapolated", why: "The yyrr parent is homozygous for y, so every gamete does carry the y allele." },
+      { text: "A gamete carrying the r allele", errorType: "passage_detail_misread_or_over_extrapolated", why: "The yyrr parent is homozygous for r, so every gamete does carry the r allele." },
+      { text: "A gamete carrying both y and r together", errorType: "passage_detail_misread_or_over_extrapolated", why: "Since the parent is yyrr, every one of its gametes carries exactly this yr combination." },
+    ],
+  },
+];

@@ -1,0 +1,661 @@
+import type { ItemDef } from "./types";
+
+export const itemsCp: ItemDef[] = [
+  // --- log_math_estimation (4) ---
+  {
+    concept: "log_math_estimation",
+    stem: "A solution has a hydrogen ion concentration of 4 × 10⁻⁶ M. Without a calculator, this pH is closest to:",
+    reasoning: "log(4×10⁻⁶) ≈ log(4) + log(10⁻⁶) ≈ 0.6 − 6 = −5.4, so pH ≈ 5.4, closest to 5.",
+    difficulty: -0.3,
+    options: [
+      { text: "3", errorType: "sign_or_direction_reversal", why: "Confuses concentration exponent with pH directly." },
+      { text: "5", correct: true },
+      { text: "6", errorType: "unit_or_order_of_magnitude_error", why: "Ignores the leading coefficient (4) and just negates the exponent." },
+      { text: "8", errorType: "reciprocal_or_inverted_relationship", why: "Inverts the relationship between [H+] and pH." },
+    ],
+  },
+  {
+    concept: "log_math_estimation",
+    stem: "log(8) is closest to which of the following, using log(2) ≈ 0.3?",
+    reasoning: "8 = 2³, so log(8) = 3·log(2) ≈ 3(0.3) = 0.9.",
+    difficulty: -0.4,
+    options: [
+      { text: "0.3", errorType: "correct_concept_wrong_step_in_sequence", why: "Uses log(2) directly without multiplying by the exponent 3." },
+      { text: "0.6", errorType: "correct_concept_wrong_step_in_sequence", why: "Doubles log(2) instead of tripling it (treats 8 as 2² )." },
+      { text: "0.9", correct: true },
+      { text: "2.4", errorType: "unit_or_order_of_magnitude_error", why: "Multiplies log(2) by 8 instead of by the exponent 3." },
+    ],
+  },
+  {
+    concept: "log_math_estimation",
+    stem: "A bacterial population grows from 10³ to 10⁷ cells. On a log scale, this increase spans:",
+    reasoning: "log(10⁷) − log(10³) = 7 − 3 = 4 orders of magnitude, i.e., a 10,000-fold increase.",
+    difficulty: -0.2,
+    options: [
+      { text: "4 orders of magnitude", correct: true },
+      { text: "4-fold", errorType: "correct_concept_wrong_step_in_sequence", why: "Treats the exponent difference as a linear fold-change rather than a power of ten." },
+      { text: "10,000 orders of magnitude", errorType: "unit_or_order_of_magnitude_error", why: "Confuses the fold-change value with the order-of-magnitude count." },
+      { text: "7 orders of magnitude", errorType: "prerequisite_misconception", why: "Uses the final exponent alone instead of the difference between final and initial." },
+    ],
+  },
+  {
+    concept: "log_math_estimation",
+    stem: "An estimation problem requires evaluating 10^(2.5). This value is closest to:",
+    reasoning: "10^2.5 = 10² × 10^0.5 ≈ 100 × 3.16 ≈ 316, closest to 300.",
+    difficulty: 0.1,
+    options: [
+      { text: "25", errorType: "prerequisite_misconception", why: "Multiplies the base by the exponent instead of raising it." },
+      { text: "150", errorType: "correct_concept_wrong_step_in_sequence", why: "Approximates 10^0.5 as 1.5 instead of ≈3.16." },
+      { text: "300", correct: true },
+      { text: "1000", errorType: "unit_or_order_of_magnitude_error", why: "Rounds the exponent up to 3 instead of estimating the fractional part." },
+    ],
+  },
+
+  // --- acid_base_titration (3 discrete, 2 via passage) ---
+  {
+    concept: "acid_base_titration",
+    stem: "A weak acid buffer is at a pH equal to its pKa. If a small amount of strong base is added, the ratio [A-]/[HA]:",
+    reasoning: "At pH = pKa, [A-]/[HA] = 1. Adding base converts some HA to A-, so the ratio increases modestly but the buffer resists a large pH swing — that resistance is the defining feature of the buffering region.",
+    difficulty: 0.1,
+    options: [
+      { text: "Increases slightly, and pH rises only slightly", correct: true },
+      { text: "Stays exactly at 1, and pH does not change at all", errorType: "correct_concept_wrong_step_in_sequence", why: "Overextends 'resists pH change' to mean 'no change at all'." },
+      { text: "Decreases, and pH falls", errorType: "sign_or_direction_reversal", why: "Reverses the direction of the equilibrium shift on adding base." },
+      { text: "Increases sharply, causing a large pH jump", errorType: "prerequisite_misconception", why: "Misses that the buffering region is specifically where pH is resistant to change." },
+    ],
+  },
+  {
+    concept: "acid_base_titration",
+    stem: "On a titration curve for a monoprotic weak acid titrated with strong base, the equivalence point occurs where:",
+    reasoning: "The equivalence point is where moles of base added equal the initial moles of acid — the steepest part of the curve, occurring at a pH above 7 for a weak acid/strong base titration due to the conjugate base's hydrolysis.",
+    difficulty: 0.3,
+    options: [
+      { text: "Moles of base added equal initial moles of acid", correct: true },
+      { text: "pH equals exactly 7.0", errorType: "prerequisite_misconception", why: "True only for strong acid/strong base titrations, not weak acid/strong base." },
+      { text: "pH equals the pKa of the acid", errorType: "correct_concept_wrong_step_in_sequence", why: "Describes the half-equivalence point, not the equivalence point." },
+      { text: "The solution contains equal concentrations of acid and conjugate base", errorType: "correct_concept_wrong_step_in_sequence", why: "Again describes the half-equivalence point." },
+    ],
+  },
+  {
+    concept: "acid_base_titration",
+    stem: "Which region of a weak-acid titration curve has the greatest buffering capacity against added strong base?",
+    reasoning: "Buffering capacity is maximal near the half-equivalence point, where [HA] = [A-] and the curve is flattest.",
+    difficulty: 0.2,
+    options: [
+      { text: "Near the half-equivalence point", correct: true },
+      { text: "Immediately after the equivalence point", errorType: "prerequisite_misconception", why: "Past the equivalence point, excess strong base dominates and there is little buffering." },
+      { text: "At the very start, before any base is added", errorType: "prerequisite_misconception", why: "A pure weak acid solution alone has poor buffering capacity." },
+      { text: "Exactly at the equivalence point", errorType: "correct_concept_wrong_step_in_sequence", why: "The equivalence point is the steepest, least-buffered region of the curve." },
+    ],
+  },
+
+  // --- amino_acid_pKa_reasoning (2 discrete, 3 via passage) ---
+  {
+    concept: "amino_acid_pKa_reasoning",
+    stem: "A student is told an amino acid's side chain has a pKa of 10.5. At physiological pH (~7.4), this side chain is predominantly:",
+    reasoning: "Physiological pH is well below the pKa, so the protonated (acidic) form predominates by the Henderson-Hasselbalch relationship.",
+    difficulty: 0.0,
+    options: [
+      { text: "Protonated", correct: true },
+      { text: "Deprotonated", errorType: "sign_or_direction_reversal", why: "Reverses which form predominates when pH is below pKa." },
+      { text: "Fully neutral with no equilibrium", errorType: "prerequisite_misconception", why: "Ignores that a titratable group is always in a protonation equilibrium." },
+      { text: "Equally protonated and deprotonated", errorType: "correct_concept_wrong_step_in_sequence", why: "That 1:1 ratio only holds when pH equals the pKa, not here." },
+    ],
+  },
+  {
+    concept: "amino_acid_pKa_reasoning",
+    stem: "Histidine's imidazole side chain has a pKa near 6.0, unusually close to physiological pH. This property makes histidine especially useful as a:",
+    reasoning: "A pKa close to the working pH range means the group can readily accept or donate a proton, which is exactly what's needed for a catalytic acid-base residue in enzyme active sites.",
+    difficulty: 0.4,
+    options: [
+      { text: "Catalytic acid-base residue in enzyme active sites", correct: true },
+      { text: "Purely structural, nonreactive residue", errorType: "prerequisite_misconception", why: "A pKa near physiological pH signals reactivity, not structural inertness." },
+      { text: "Hydrophobic core-packing residue", errorType: "prerequisite_misconception", why: "Imidazole is polar and ionizable, not a hydrophobic side chain." },
+      { text: "Permanently charged residue at all physiological pH values", errorType: "correct_concept_wrong_step_in_sequence", why: "A pKa near the physiological range means the charge state varies with local pH, not that it is fixed." },
+    ],
+  },
+
+  // --- buffers_and_henderson_hasselbalch (4) ---
+  {
+    concept: "buffers_and_henderson_hasselbalch",
+    stem: "A buffer is prepared with equal concentrations of a weak acid and its conjugate base, where the acid's Ka = 1.0 × 10⁻⁵. The pH of this buffer is closest to:",
+    reasoning: "By Henderson-Hasselbalch, pH = pKa + log([A-]/[HA]). With equal concentrations, log(1) = 0, so pH = pKa = −log(1.0×10⁻⁵) = 5.",
+    difficulty: 0.0,
+    options: [
+      { text: "5", correct: true },
+      { text: "9", errorType: "reciprocal_or_inverted_relationship", why: "Computes pOH instead of pH, or inverts Ka incorrectly." },
+      { text: "1", errorType: "unit_or_order_of_magnitude_error", why: "Misreads the exponent in Ka as the pH directly." },
+      { text: "10", errorType: "prerequisite_misconception", why: "Assumes a round number unrelated to the actual pKa." },
+    ],
+  },
+  {
+    concept: "buffers_and_henderson_hasselbalch",
+    stem: "If the ratio [A-]/[HA] in a buffer is increased from 1 to 10, the pH change (in pH units) is closest to:",
+    reasoning: "Δ(pH) = log(10) − log(1) = 1 − 0 = 1 pH unit, per the Henderson-Hasselbalch equation.",
+    difficulty: 0.3,
+    options: [
+      { text: "+1", correct: true },
+      { text: "+10", errorType: "unit_or_order_of_magnitude_error", why: "Uses the ratio itself instead of its logarithm." },
+      { text: "-1", errorType: "sign_or_direction_reversal", why: "Reverses the direction of the shift; increasing the base ratio raises pH." },
+      { text: "No change", errorType: "prerequisite_misconception", why: "Misses that the log term in Henderson-Hasselbalch depends on the ratio." },
+    ],
+  },
+  {
+    concept: "buffers_and_henderson_hasselbalch",
+    stem: "A buffer works best (resists pH change most effectively) when the pH of the solution is:",
+    reasoning: "Buffering capacity is maximized when pH is close to the pKa of the weak acid component, where [HA] and [A-] are comparable.",
+    difficulty: 0.1,
+    options: [
+      { text: "Close to the pKa of the buffer's weak acid", correct: true },
+      { text: "As far from the pKa as possible", errorType: "sign_or_direction_reversal", why: "Reverses the actual relationship between pKa and buffering capacity." },
+      { text: "Always exactly 7.0, regardless of the buffer used", errorType: "prerequisite_misconception", why: "Buffering capacity depends on the specific acid's pKa, not a fixed pH of 7." },
+      { text: "Equal to the concentration of the conjugate base", errorType: "unit_or_order_of_magnitude_error", why: "Confuses a concentration with a pH value; units don't match." },
+    ],
+  },
+  {
+    concept: "buffers_and_henderson_hasselbalch",
+    stem: "The bicarbonate buffer system in blood relies primarily on which conjugate acid-base pair?",
+    reasoning: "The bicarbonate buffer system pairs carbonic acid (H2CO3) as the weak acid with bicarbonate (HCO3-) as its conjugate base, linked to CO2 levels via respiration.",
+    difficulty: 0.0,
+    options: [
+      { text: "Carbonic acid / bicarbonate", correct: true },
+      { text: "Phosphoric acid / phosphate", errorType: "prerequisite_misconception", why: "Phosphate is a real physiological buffer, but not the primary blood buffer system." },
+      { text: "Acetic acid / acetate", errorType: "outside_knowledge_not_supported_by_passage", why: "Not a physiologically relevant blood buffer pair." },
+      { text: "Water / hydroxide", errorType: "prerequisite_misconception", why: "Not a meaningful conjugate acid-base buffer pair at physiological pH." },
+    ],
+  },
+
+  // --- equilibrium_and_le_chatelier (4) ---
+  {
+    concept: "equilibrium_and_le_chatelier",
+    stem: "For the exothermic reaction A + B ⇌ C + heat, increasing the temperature of the system at equilibrium will:",
+    reasoning: "Le Chatelier's principle treats heat as a product in an exothermic reaction; adding heat shifts equilibrium toward reactants, decreasing the equilibrium constant and the yield of C.",
+    difficulty: 0.2,
+    options: [
+      { text: "Shift equilibrium toward reactants, decreasing [C]", correct: true },
+      { text: "Shift equilibrium toward products, increasing [C]", errorType: "sign_or_direction_reversal", why: "Reverses how added heat affects an exothermic (heat-releasing) reaction at equilibrium." },
+      { text: "Have no effect, since temperature does not affect equilibrium position", errorType: "prerequisite_misconception", why: "Temperature is one of the few variables that actually changes the equilibrium constant itself." },
+      { text: "Shift equilibrium toward products only if a catalyst is present", errorType: "prerequisite_misconception", why: "Catalysts affect rate, not equilibrium position." },
+    ],
+  },
+  {
+    concept: "equilibrium_and_le_chatelier",
+    stem: "In the gas-phase equilibrium N2(g) + 3H2(g) ⇌ 2NH3(g), increasing the total pressure by decreasing the container volume will shift the equilibrium:",
+    reasoning: "Le Chatelier's principle: decreasing volume favors the side with fewer moles of gas. The right side has 2 moles versus 4 on the left, so equilibrium shifts toward NH3.",
+    difficulty: 0.4,
+    options: [
+      { text: "Toward NH3, the side with fewer gas moles", correct: true },
+      { text: "Toward N2 and H2, the side with more gas moles", errorType: "sign_or_direction_reversal", why: "Reverses which side is favored by a pressure increase." },
+      { text: "Not at all, since pressure changes don't affect gas-phase equilibria", errorType: "prerequisite_misconception", why: "Pressure/volume changes do shift equilibrium when mole counts differ between sides." },
+      { text: "Toward whichever side has the larger molar mass", errorType: "outside_knowledge_not_supported_by_passage", why: "Molar mass is irrelevant to the pressure/volume shift; mole count of gas particles is what matters." },
+    ],
+  },
+  {
+    concept: "equilibrium_and_le_chatelier",
+    stem: "Adding a catalyst to a reaction at equilibrium:",
+    reasoning: "A catalyst speeds up both the forward and reverse reactions equally, so it changes how quickly equilibrium is reached but does not change the equilibrium position or Keq.",
+    difficulty: 0.0,
+    options: [
+      { text: "Speeds up the approach to equilibrium without shifting its position", correct: true },
+      { text: "Shifts equilibrium toward products", errorType: "prerequisite_misconception", why: "Catalysts do not favor one direction; they accelerate both directions equally." },
+      { text: "Increases the value of Keq", errorType: "prerequisite_misconception", why: "Keq is a thermodynamic quantity unaffected by catalysts, which only affect kinetics." },
+      { text: "Has no effect on the reaction at all", errorType: "correct_concept_wrong_step_in_sequence", why: "Catalysts do have an effect — on rate — even though they don't shift equilibrium position." },
+    ],
+  },
+  {
+    concept: "equilibrium_and_le_chatelier",
+    stem: "For the reaction 2SO2(g) + O2(g) ⇌ 2SO3(g), removing SO3 as it forms will:",
+    reasoning: "Removing a product decreases its concentration below the equilibrium value, so by Le Chatelier's principle the reaction shifts forward to replace some of the removed product, increasing the yield of SO3 over time.",
+    difficulty: 0.3,
+    options: [
+      { text: "Shift the reaction forward, increasing overall SO3 yield over time", correct: true },
+      { text: "Shift the reaction backward toward SO2 and O2", errorType: "sign_or_direction_reversal", why: "Reverses the direction equilibrium shifts when a product is continuously removed." },
+      { text: "Stop the reaction entirely", errorType: "prerequisite_misconception", why: "Removing product doesn't halt the reaction; it drives it further forward." },
+      { text: "Have no effect on the position of equilibrium", errorType: "prerequisite_misconception", why: "Changing a species' concentration is exactly the kind of perturbation Le Chatelier's principle addresses." },
+    ],
+  },
+
+  // --- redox_and_electrochemistry (4) ---
+  {
+    concept: "redox_and_electrochemistry",
+    stem: "In a galvanic (voltaic) cell, oxidation occurs at the:",
+    reasoning: "By convention, oxidation (loss of electrons) always occurs at the anode, regardless of cell type; in a galvanic cell the anode is the negative terminal.",
+    difficulty: 0.0,
+    options: [
+      { text: "Anode", correct: true },
+      { text: "Cathode", errorType: "sign_or_direction_reversal", why: "Reduction, not oxidation, occurs at the cathode." },
+      { text: "Salt bridge", errorType: "prerequisite_misconception", why: "The salt bridge maintains charge balance; no redox chemistry occurs there." },
+      { text: "External wire", errorType: "prerequisite_misconception", why: "Electrons flow through the wire, but the oxidation reaction itself occurs at an electrode." },
+    ],
+  },
+  {
+    concept: "redox_and_electrochemistry",
+    stem: "A half-reaction shows Fe³⁺ + e⁻ → Fe²⁺. In this half-reaction, Fe³⁺ is acting as the:",
+    reasoning: "Fe³⁺ gains an electron (is reduced), so it is the species being reduced — the oxidizing agent, since it causes something else to be oxidized by accepting its electron.",
+    difficulty: 0.2,
+    options: [
+      { text: "Oxidizing agent, and it is being reduced", correct: true },
+      { text: "Reducing agent, and it is being oxidized", errorType: "sign_or_direction_reversal", why: "Reverses both the electron-transfer direction and the resulting terminology." },
+      { text: "Oxidizing agent, and it is being oxidized", errorType: "correct_concept_wrong_step_in_sequence", why: "Correctly identifies it as the oxidizing agent but mismatches that with the wrong half of the redox pairing." },
+      { text: "Catalyst, since it is not permanently consumed", errorType: "outside_knowledge_not_supported_by_passage", why: "Fe³⁺ is a reactant undergoing a genuine redox change, not a catalyst." },
+    ],
+  },
+  {
+    concept: "redox_and_electrochemistry",
+    stem: "A standard cell has E°cell = +1.10 V. This value indicates that the reaction, under standard conditions, is:",
+    reasoning: "A positive E°cell corresponds to a negative ΔG° (ΔG° = −nFE°cell), meaning the forward reaction is spontaneous as written.",
+    difficulty: 0.3,
+    options: [
+      { text: "Spontaneous as written", correct: true },
+      { text: "Nonspontaneous as written", errorType: "sign_or_direction_reversal", why: "Reverses the sign relationship between E°cell and spontaneity." },
+      { text: "At equilibrium", errorType: "prerequisite_misconception", why: "A nonzero E°cell means the system is not at equilibrium; E°cell = 0 corresponds to equilibrium." },
+      { text: "Impossible to determine without temperature", errorType: "outside_knowledge_not_supported_by_passage", why: "The sign of E°cell alone is sufficient to determine the sign of ΔG° and thus spontaneity under standard conditions." },
+    ],
+  },
+  {
+    concept: "redox_and_electrochemistry",
+    stem: "During electrolysis of molten NaCl, which electrode produces Cl2 gas?",
+    reasoning: "Cl⁻ is oxidized to Cl2 gas by losing electrons, and oxidation occurs at the anode in any electrochemical cell, including an electrolytic cell.",
+    difficulty: 0.4,
+    options: [
+      { text: "The anode", correct: true },
+      { text: "The cathode", errorType: "sign_or_direction_reversal", why: "Na+ is reduced to Na metal at the cathode, not where Cl2 forms." },
+      { text: "Both electrodes equally", errorType: "prerequisite_misconception", why: "Oxidation and reduction are physically separated at distinct electrodes." },
+      { text: "Neither; Cl2 forms in solution away from the electrodes", errorType: "prerequisite_misconception", why: "Electron transfer, and thus gas formation from the electrode reaction, occurs directly at the electrode surface." },
+    ],
+  },
+
+  // --- thermodynamics_and_enthalpy (4) ---
+  {
+    concept: "thermodynamics_and_enthalpy",
+    stem: "A reaction has ΔH < 0 and ΔS < 0. This reaction is spontaneous:",
+    reasoning: "ΔG = ΔH − TΔS. With ΔH negative and ΔS negative, −TΔS is positive, so ΔG's sign depends on temperature: spontaneous only when |TΔS| < |ΔH|, i.e., at low temperature.",
+    difficulty: 0.4,
+    options: [
+      { text: "Only at low temperature", correct: true },
+      { text: "Only at high temperature", errorType: "sign_or_direction_reversal", why: "Reverses the temperature dependence for this combination of signs." },
+      { text: "At all temperatures", errorType: "prerequisite_misconception", why: "That conclusion only follows when ΔH is negative and ΔS is positive." },
+      { text: "At no temperature", errorType: "prerequisite_misconception", why: "That conclusion only follows when ΔH is positive and ΔS is negative." },
+    ],
+  },
+  {
+    concept: "thermodynamics_and_enthalpy",
+    stem: "In an isolated system, the total energy:",
+    reasoning: "The first law of thermodynamics: energy cannot be created or destroyed in an isolated system, only converted between forms, so total energy remains constant.",
+    difficulty: -0.1,
+    options: [
+      { text: "Remains constant", correct: true },
+      { text: "Always increases", errorType: "prerequisite_misconception", why: "Violates conservation of energy for an isolated system." },
+      { text: "Always decreases due to entropy", errorType: "prerequisite_misconception", why: "Entropy increasing does not mean energy is lost; energy and entropy are distinct quantities." },
+      { text: "Depends on whether the process is reversible", errorType: "prerequisite_misconception", why: "Conservation of energy holds regardless of reversibility; reversibility affects entropy production, not total energy." },
+    ],
+  },
+  {
+    concept: "thermodynamics_and_enthalpy",
+    stem: "Hess's law allows the enthalpy of a reaction to be calculated by:",
+    reasoning: "Hess's law states enthalpy is a state function, so the total ΔH for a reaction can be found by summing the ΔH values of any set of steps that add up to the overall reaction, regardless of path.",
+    difficulty: 0.2,
+    options: [
+      { text: "Summing the enthalpies of a series of steps that add to the overall reaction", correct: true },
+      { text: "Measuring only the reaction's activation energy", errorType: "prerequisite_misconception", why: "Activation energy is a kinetic quantity, unrelated to the thermodynamic enthalpy change." },
+      { text: "Averaging the enthalpies of the reactants alone", errorType: "prerequisite_misconception", why: "Ignores the products entirely; enthalpy change depends on both reactants and products." },
+      { text: "Multiplying the reaction rate by temperature", errorType: "unit_or_order_of_magnitude_error", why: "Combines unrelated kinetic and thermal quantities that don't yield an enthalpy." },
+    ],
+  },
+  {
+    concept: "thermodynamics_and_enthalpy",
+    stem: "A bomb calorimeter measures heat released at constant volume. The quantity most directly measured in this setup is:",
+    reasoning: "At constant volume, no pressure-volume work is done, so the heat released equals the change in internal energy (ΔE), not enthalpy (which is defined at constant pressure).",
+    difficulty: 0.5,
+    options: [
+      { text: "Change in internal energy (ΔE)", correct: true },
+      { text: "Change in enthalpy (ΔH)", errorType: "correct_concept_wrong_step_in_sequence", why: "ΔH is measured directly only at constant pressure, not constant volume." },
+      { text: "Change in entropy (ΔS)", errorType: "prerequisite_misconception", why: "A calorimeter measures heat, not entropy, directly." },
+      { text: "Gibbs free energy (ΔG)", errorType: "prerequisite_misconception", why: "ΔG requires knowing both enthalpy and entropy changes; it isn't a direct calorimetric measurement." },
+    ],
+  },
+
+  // --- gas_laws_and_kinetic_theory (3) ---
+  {
+    concept: "gas_laws_and_kinetic_theory",
+    stem: "A fixed amount of ideal gas is compressed at constant temperature from 4 L to 2 L. The pressure:",
+    reasoning: "Boyle's law: at constant T and n, PV = constant, so halving volume doubles pressure.",
+    difficulty: -0.2,
+    options: [
+      { text: "Doubles", correct: true },
+      { text: "Is halved", errorType: "reciprocal_or_inverted_relationship", why: "Inverts the inverse relationship between pressure and volume." },
+      { text: "Stays the same", errorType: "prerequisite_misconception", why: "Ignores Boyle's law's inverse dependence of pressure on volume." },
+      { text: "Quadruples", errorType: "unit_or_order_of_magnitude_error", why: "Overapplies the volume ratio, e.g. by squaring it instead of using it directly." },
+    ],
+  },
+  {
+    concept: "gas_laws_and_kinetic_theory",
+    stem: "According to kinetic molecular theory, increasing the temperature of an ideal gas at constant volume increases:",
+    reasoning: "Temperature is directly related to the average kinetic energy of gas particles; at constant volume, this manifests as increased average molecular speed and increased pressure from more frequent, forceful collisions.",
+    difficulty: 0.0,
+    options: [
+      { text: "The average kinetic energy of the gas particles", correct: true },
+      { text: "The mass of each gas particle", errorType: "prerequisite_misconception", why: "Temperature affects particle motion, not particle mass." },
+      { text: "The volume occupied by the gas", errorType: "prerequisite_misconception", why: "Volume is held constant in this scenario by assumption." },
+      { text: "The number of moles of gas present", errorType: "prerequisite_misconception", why: "Heating a fixed sample doesn't change how many moles are present." },
+    ],
+  },
+  {
+    concept: "gas_laws_and_kinetic_theory",
+    stem: "Two gas samples, He and O2, are at the same temperature. Compared to O2 molecules, He atoms have:",
+    reasoning: "At the same temperature, average kinetic energy is equal for both gases. Since KE = ½mv², the much lighter He atoms must have a higher average speed to have the same kinetic energy.",
+    difficulty: 0.3,
+    options: [
+      { text: "The same average kinetic energy but a higher average speed", correct: true },
+      { text: "A higher average kinetic energy and a higher average speed", errorType: "prerequisite_misconception", why: "Temperature alone (not molar mass) sets average kinetic energy; equal temperature means equal average KE." },
+      { text: "The same average kinetic energy and the same average speed", errorType: "correct_concept_wrong_step_in_sequence", why: "Correctly notes equal KE but misses that unequal mass requires unequal speed to achieve it." },
+      { text: "A lower average kinetic energy and a lower average speed", errorType: "sign_or_direction_reversal", why: "Reverses both relationships for the lighter gas." },
+    ],
+  },
+
+  // --- kinematics_and_forces (4) ---
+  {
+    concept: "kinematics_and_forces",
+    stem: "A ball is thrown straight up and caught at the same height it was released. Ignoring air resistance, at the peak of its flight, the ball's acceleration is:",
+    reasoning: "Gravity acts continuously on the ball throughout its flight, including at the peak, where velocity is momentarily zero but acceleration remains g downward.",
+    difficulty: 0.1,
+    options: [
+      { text: "g, directed downward, the same as throughout the flight", correct: true },
+      { text: "Zero, since velocity is zero at that instant", errorType: "prerequisite_misconception", why: "Confuses zero velocity with zero acceleration; they are independent quantities." },
+      { text: "g, directed upward", errorType: "sign_or_direction_reversal", why: "Gravity acts downward throughout projectile motion, not just on the way down." },
+      { text: "Undefined, because the ball briefly stops", errorType: "prerequisite_misconception", why: "Acceleration is well-defined at every point of the trajectory, including the momentary stop." },
+    ],
+  },
+  {
+    concept: "kinematics_and_forces",
+    stem: "By Newton's third law, when a book rests on a table, the reaction force to the table pushing up on the book is:",
+    reasoning: "Newton's third law pairs are equal, opposite, and act on different objects. The reaction to the table's upward normal force on the book is the book pushing downward on the table.",
+    difficulty: 0.2,
+    options: [
+      { text: "The book pushing down on the table", correct: true },
+      { text: "Gravity pulling the book down", errorType: "prerequisite_misconception", why: "Gravity and the normal force are a balanced pair on the same object, not a third-law action-reaction pair." },
+      { text: "The table pushing up on the book itself (the same force restated)", errorType: "correct_concept_wrong_step_in_sequence", why: "A third-law pair must act on two different objects, not restate the same force." },
+      { text: "Friction between the book and the table", errorType: "outside_knowledge_not_supported_by_passage", why: "Friction is a separate force, not the third-law reaction to the normal force." },
+    ],
+  },
+  {
+    concept: "kinematics_and_forces",
+    stem: "An object moves in a circle at constant speed. The net force on the object points:",
+    reasoning: "Uniform circular motion requires centripetal acceleration directed toward the center of the circle, so the net force must also point toward the center even though speed is constant.",
+    difficulty: 0.3,
+    options: [
+      { text: "Toward the center of the circle", correct: true },
+      { text: "Away from the center of the circle", errorType: "sign_or_direction_reversal", why: "Reverses the direction of the centripetal force required for circular motion." },
+      { text: "Tangent to the circle, in the direction of motion", errorType: "prerequisite_misconception", why: "That would produce increasing speed, not constant-speed circular motion." },
+      { text: "Zero, since speed is constant", errorType: "prerequisite_misconception", why: "Constant speed does not mean constant velocity; the direction is still changing, requiring a net force." },
+    ],
+  },
+  {
+    concept: "kinematics_and_forces",
+    stem: "Two blocks of different mass are dropped from the same height in a vacuum. Which reaches the ground first?",
+    reasoning: "In the absence of air resistance, all objects near Earth's surface accelerate at the same rate g regardless of mass, so they fall together and land simultaneously.",
+    difficulty: -0.1,
+    options: [
+      { text: "They land at the same time", correct: true },
+      { text: "The heavier block, because it experiences more gravitational force", errorType: "correct_concept_wrong_step_in_sequence", why: "More force is exactly offset by more inertia (mass), so acceleration is unchanged — this reasoning stops one step too early." },
+      { text: "The lighter block, because it has less inertia to overcome", errorType: "prerequisite_misconception", why: "Inertia and gravitational force both scale with mass and cancel exactly, in a vacuum." },
+      { text: "It depends on their shapes even in a vacuum", errorType: "outside_knowledge_not_supported_by_passage", why: "Shape only matters when air resistance is present; a vacuum removes that variable entirely." },
+    ],
+  },
+
+  // --- circuits_and_ohms_law (3 discrete, + 5 via passage) ---
+  {
+    concept: "circuits_and_ohms_law",
+    stem: "Two resistors of 4 Ω and 6 Ω are connected in series across a battery. Compared to the same resistors connected in parallel, the series combination has a:",
+    reasoning: "Series resistors add directly (4+6=10 Ω), while parallel resistors combine to a value less than the smallest individual resistor (here, under 2.4 Ω) — so the series combination always has higher total resistance.",
+    difficulty: 0.2,
+    options: [
+      { text: "Higher total resistance", correct: true },
+      { text: "Lower total resistance", errorType: "sign_or_direction_reversal", why: "Reverses the relationship between series and parallel combined resistance." },
+      { text: "The same total resistance", errorType: "prerequisite_misconception", why: "Series and parallel combinations give different total resistance except in special symmetric cases not present here." },
+      { text: "Resistance that depends only on the applied voltage", errorType: "outside_knowledge_not_supported_by_passage", why: "Resistance in this idealized circuit is a fixed property of the components, independent of applied voltage." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    stem: "By Ohm's law, if the voltage across a fixed resistor is doubled, the current through it:",
+    reasoning: "Ohm's law: V = IR. With R fixed, I is directly proportional to V, so doubling V doubles I.",
+    difficulty: -0.2,
+    options: [
+      { text: "Doubles", correct: true },
+      { text: "Is halved", errorType: "reciprocal_or_inverted_relationship", why: "Inverts the direct proportionality between voltage and current at fixed resistance." },
+      { text: "Stays the same", errorType: "prerequisite_misconception", why: "Ignores that current depends on voltage when resistance is fixed." },
+      { text: "Quadruples", errorType: "unit_or_order_of_magnitude_error", why: "Incorrectly treats the V-I relationship as quadratic rather than linear." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    stem: "In a simple series circuit with a single battery and one resistor, adding a second identical resistor in series will cause the current to:",
+    reasoning: "Adding a series resistor increases total resistance; by Ohm's law, with fixed voltage, current decreases as resistance increases.",
+    difficulty: 0.1,
+    options: [
+      { text: "Decrease", correct: true },
+      { text: "Increase", errorType: "sign_or_direction_reversal", why: "Reverses the inverse relationship between resistance and current at fixed voltage." },
+      { text: "Stay the same", errorType: "prerequisite_misconception", why: "Ignores that total series resistance changed, which must affect current." },
+      { text: "Become zero", errorType: "prerequisite_misconception", why: "Adding resistance reduces current but does not create an open circuit." },
+    ],
+  },
+
+  // --- waves_sound_and_optics (3) ---
+  {
+    concept: "waves_sound_and_optics",
+    stem: "As a sound source moves toward a stationary listener, the frequency the listener hears is:",
+    reasoning: "The Doppler effect: a source moving toward an observer compresses the wavefronts in front of it, raising the observed frequency above the source's emitted frequency.",
+    difficulty: 0.1,
+    options: [
+      { text: "Higher than the source's emitted frequency", correct: true },
+      { text: "Lower than the source's emitted frequency", errorType: "sign_or_direction_reversal", why: "Reverses the Doppler shift direction for an approaching source." },
+      { text: "Identical to the source's emitted frequency", errorType: "prerequisite_misconception", why: "Ignores the Doppler effect that arises specifically from relative motion." },
+      { text: "Dependent only on the listener's own motion, not the source's", errorType: "prerequisite_misconception", why: "A moving source alone is sufficient to produce a Doppler shift, independent of listener motion." },
+    ],
+  },
+  {
+    concept: "waves_sound_and_optics",
+    stem: "Light traveling from air into glass bends toward the normal. This occurs because, in glass, light:",
+    reasoning: "Glass has a higher refractive index than air, meaning light travels slower in glass; slowing down while crossing an interface at an angle bends the ray toward the normal.",
+    difficulty: 0.3,
+    options: [
+      { text: "Travels slower than it does in air", correct: true },
+      { text: "Travels faster than it does in air", errorType: "sign_or_direction_reversal", why: "Reverses the actual relative speed of light in a denser medium." },
+      { text: "Changes color", errorType: "outside_knowledge_not_supported_by_passage", why: "Refraction bends the path of light; it does not change its frequency or perceived color." },
+      { text: "Loses energy and is partially absorbed", errorType: "prerequisite_misconception", why: "Refraction is a change in direction due to speed change, not primarily an absorption phenomenon." },
+    ],
+  },
+  {
+    concept: "waves_sound_and_optics",
+    stem: "Two sound waves of the same frequency and amplitude arrive at a point exactly out of phase (180° apart). The result is:",
+    reasoning: "Waves 180° out of phase undergo destructive interference: their displacements cancel, ideally producing silence at that point (for waves of equal amplitude).",
+    difficulty: 0.2,
+    options: [
+      { text: "Destructive interference, reducing the sound intensity", correct: true },
+      { text: "Constructive interference, doubling the sound intensity", errorType: "sign_or_direction_reversal", why: "Constructive interference occurs for waves in phase, not 180° out of phase." },
+      { text: "No interference, since sound waves cannot interfere", errorType: "prerequisite_misconception", why: "All waves, including sound, can interfere; this is a defining wave property." },
+      { text: "A frequency shift in the resulting wave", errorType: "outside_knowledge_not_supported_by_passage", why: "Interference changes amplitude at a point; it does not change the frequency of the waves involved." },
+    ],
+  },
+
+  // --- fluids_and_pressure (2) ---
+  {
+    concept: "fluids_and_pressure",
+    stem: "According to Pascal's principle, a pressure applied to an enclosed, incompressible fluid is:",
+    reasoning: "Pascal's principle states that pressure applied to a confined fluid is transmitted equally to every point in the fluid and to the walls of its container.",
+    difficulty: 0.0,
+    options: [
+      { text: "Transmitted equally throughout the fluid", correct: true },
+      { text: "Concentrated only near the point of application", errorType: "prerequisite_misconception", why: "Contradicts the defining behavior of an enclosed incompressible fluid under Pascal's principle." },
+      { text: "Absorbed and dissipated as heat", errorType: "outside_knowledge_not_supported_by_passage", why: "Not a relevant mechanism for describing pressure transmission in Pascal's principle." },
+      { text: "Only transmitted downward, following gravity", errorType: "sign_or_direction_reversal", why: "Pascal's principle transmits pressure in all directions, not just downward." },
+    ],
+  },
+  {
+    concept: "fluids_and_pressure",
+    stem: "An object floats in water with 80% of its volume submerged. Compared to water, the object's density is:",
+    reasoning: "By Archimedes' principle, a floating object displaces a weight of fluid equal to its own weight; the fraction submerged equals the ratio of the object's density to the fluid's density, so the object's density is 0.80 times that of water.",
+    difficulty: 0.4,
+    options: [
+      { text: "80% of the density of water", correct: true },
+      { text: "125% of the density of water", errorType: "reciprocal_or_inverted_relationship", why: "Inverts the ratio between submerged fraction and relative density." },
+      { text: "Exactly equal to the density of water", errorType: "prerequisite_misconception", why: "Equal density would mean the object is fully submerged (neutrally buoyant), not 80%." },
+      { text: "20% of the density of water", errorType: "sign_or_direction_reversal", why: "Uses the unsubmerged fraction instead of the submerged fraction." },
+    ],
+  },
+
+  // --- passage: cp_pka_titration (5) ---
+  {
+    concept: "amino_acid_pKa_reasoning",
+    type: "passage",
+    passage: "cp_pka_titration",
+    stem: "According to the passage, the pH region where the glycine solution most strongly resists change upon addition of NaOH is:",
+    reasoning: "The passage states the solution resists pH change 'near each pKa' — this is passage-specific and cannot be answered from outside knowledge of pKa alone without that framing.",
+    difficulty: 0.4,
+    sirs: 2,
+    options: [
+      { text: "Near the isoelectric point only", errorType: "passage_detail_misread_or_over_extrapolated", why: "Conflates the isoelectric point (charge-neutral) with the buffering regions (near each pKa)." },
+      { text: "Near pH 2.3 and near pH 9.6", correct: true },
+      { text: "At pH 7, regardless of the titratable groups", errorType: "outside_knowledge_not_supported_by_passage", why: "Imports a generic 'neutral pH' assumption not supported by the passage." },
+      { text: "Uniformly across the entire titration", errorType: "true_statement_that_does_not_answer_the_question", why: "Ignores that the passage explicitly contrasts near-pKa vs. far-from-pKa behavior." },
+    ],
+  },
+  {
+    concept: "amino_acid_pKa_reasoning",
+    type: "passage",
+    passage: "cp_pka_titration",
+    stem: "The passage states the isoelectric point falls at the average of the two pKa values. For glycine as described, this pH is closest to:",
+    reasoning: "(2.3 + 9.6) / 2 = 5.95, closest to 6.0.",
+    difficulty: 0.2,
+    sirs: 2,
+    options: [
+      { text: "6.0", correct: true },
+      { text: "2.3", errorType: "passage_detail_misread_or_over_extrapolated", why: "Uses only pKa1 instead of averaging both values as the passage describes." },
+      { text: "9.6", errorType: "passage_detail_misread_or_over_extrapolated", why: "Uses only pKa2 instead of averaging both values." },
+      { text: "11.9", errorType: "correct_concept_wrong_step_in_sequence", why: "Sums the two pKa values but fails to divide by two to get the average." },
+    ],
+  },
+  {
+    concept: "amino_acid_pKa_reasoning",
+    type: "passage",
+    passage: "cp_pka_titration",
+    stem: "Far from either pKa described in the passage, adding the same increment of NaOH produces:",
+    reasoning: "The passage explicitly contrasts the buffered, near-pKa regions with the region far from either pKa, stating the same increment there 'produces a much larger pH change.'",
+    difficulty: 0.1,
+    sirs: 1,
+    options: [
+      { text: "A much larger pH change than near a pKa", correct: true },
+      { text: "The same pH change as near a pKa", errorType: "passage_detail_misread_or_over_extrapolated", why: "Directly contradicts the passage's explicit contrast between the two regions." },
+      { text: "No pH change at all", errorType: "true_statement_that_does_not_answer_the_question", why: "The passage never claims zero change; it claims a larger change, not none." },
+      { text: "A change that depends on the researcher's stirring rate", errorType: "outside_knowledge_not_supported_by_passage", why: "Introduces an experimental variable never mentioned in the passage." },
+    ],
+  },
+  {
+    concept: "acid_base_titration",
+    type: "passage",
+    passage: "cp_pka_titration",
+    stem: "Based on the passage, at pH 2.3, the dominant equilibrium being buffered involves which functional group of glycine?",
+    reasoning: "The passage assigns pKa1 ≈ 2.3 to the carboxyl group specifically, so buffering at that pH is governed by the carboxyl group's protonation equilibrium.",
+    difficulty: 0.3,
+    sirs: 2,
+    options: [
+      { text: "The carboxyl group", correct: true },
+      { text: "The amino group", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage assigns the amino group to pKa2 ≈ 9.6, not 2.3." },
+      { text: "The side-chain R group", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes glycine as diprotic with only two titratable groups, not a third ionizable side chain." },
+      { text: "The peptide backbone nitrogen", errorType: "outside_knowledge_not_supported_by_passage", why: "Not a titratable group discussed anywhere in the passage." },
+    ],
+  },
+  {
+    concept: "acid_base_titration",
+    type: "passage",
+    passage: "cp_pka_titration",
+    stem: "If a second amino acid had only one titratable group with pKa ≈ 4.0, its titration curve, compared to glycine's as described, would show:",
+    reasoning: "The passage describes glycine's curve as having two distinct buffering regions (one per titratable group); an amino acid with only one titratable group would show a single buffering region and a single equivalence point instead of two.",
+    difficulty: 0.5,
+    sirs: 3,
+    options: [
+      { text: "A single buffering region and equivalence point, instead of the two glycine shows", correct: true },
+      { text: "Two buffering regions, identical to glycine's curve", errorType: "outside_knowledge_not_supported_by_passage", why: "A single titratable group cannot produce two separate buffering regions." },
+      { text: "No buffering region at all", errorType: "prerequisite_misconception", why: "Any titratable group with a pKa in range produces a buffering region near that pKa." },
+      { text: "The same isoelectric point as glycine", errorType: "outside_knowledge_not_supported_by_passage", why: "A different pKa profile would generally produce a different isoelectric point." },
+    ],
+  },
+
+  // --- passage: cp_circuit_design (5) ---
+  {
+    concept: "circuits_and_ohms_law",
+    type: "passage",
+    passage: "cp_circuit_design",
+    stem: "According to the passage, at low temperature, the output voltage across the fixed resistor is small because:",
+    reasoning: "The passage states that at low temperature the thermistor's resistance is much larger than the fixed resistor's, so nearly all the supply voltage drops across the thermistor, leaving little for the fixed resistor.",
+    difficulty: 0.2,
+    sirs: 1,
+    options: [
+      { text: "Most of the supply voltage drops across the high-resistance thermistor", correct: true },
+      { text: "The circuit draws no current at low temperature", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage describes a voltage divider still carrying current, just distributed unevenly." },
+      { text: "The fixed resistor's resistance increases at low temperature", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes the fixed resistor as constant; only the thermistor's resistance changes with temperature." },
+      { text: "The 9-volt supply outputs less voltage at low temperature", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage gives no indication the supply voltage itself varies with temperature." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    type: "passage",
+    passage: "cp_circuit_design",
+    stem: "As temperature rises in the circuit described, the output voltage across the fixed 100-ohm resistor:",
+    reasoning: "As the thermistor's resistance falls toward 100 ohms, per the passage, a larger share of the total voltage drops across the fixed resistor, so the output voltage rises with temperature.",
+    difficulty: 0.1,
+    sirs: 1,
+    options: [
+      { text: "Increases", correct: true },
+      { text: "Decreases", errorType: "sign_or_direction_reversal", why: "Reverses the direction described in the passage for rising temperature." },
+      { text: "Stays constant", errorType: "passage_detail_misread_or_over_extrapolated", why: "The passage explicitly describes a changing output voltage as temperature changes." },
+      { text: "Drops to zero", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage describes a gradual voltage-divider shift, not a drop to zero." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    type: "passage",
+    passage: "cp_circuit_design",
+    stem: "If the thermistor's resistance exactly equals the fixed resistor's 100 ohms, the output voltage across the fixed resistor would be:",
+    reasoning: "In a series voltage divider with two equal resistances, the total supply voltage splits evenly, so the output voltage would be half the 9-volt supply, or 4.5 V.",
+    difficulty: 0.4,
+    sirs: 2,
+    options: [
+      { text: "4.5 V", correct: true },
+      { text: "9 V", errorType: "correct_concept_wrong_step_in_sequence", why: "Assumes all the voltage drops across the fixed resistor, ignoring the equal-resistance thermistor's share." },
+      { text: "0 V", errorType: "sign_or_direction_reversal", why: "Assumes none of the voltage drops across the fixed resistor, the opposite extreme." },
+      { text: "100 V", errorType: "unit_or_order_of_magnitude_error", why: "Confuses the resistance value (100 ohms) with a voltage value." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    type: "passage",
+    passage: "cp_circuit_design",
+    stem: "The passage notes that if the fixed resistor were placed in parallel with the thermistor instead of in series, the combined resistance would always be less than the smaller individual resistance. This is because, in a parallel combination:",
+    reasoning: "In parallel, current has multiple paths, so the combined resistance is always lower than any single branch's resistance — adding a parallel path can only make it easier, never harder, for current to flow overall.",
+    difficulty: 0.5,
+    sirs: 2,
+    options: [
+      { text: "Current has multiple available paths, reducing overall opposition to flow", correct: true },
+      { text: "Resistances simply add together, as in a series circuit", errorType: "passage_detail_misread_or_over_extrapolated", why: "Describes series combination behavior, which the passage explicitly contrasts with parallel behavior." },
+      { text: "Voltage divides evenly regardless of resistance values", errorType: "outside_knowledge_not_supported_by_passage", why: "In a parallel circuit, voltage across each branch is equal by definition, but that isn't what determines combined resistance being lower than either branch." },
+      { text: "The thermistor stops conducting current entirely", errorType: "outside_knowledge_not_supported_by_passage", why: "Nothing in the passage suggests the thermistor stops conducting in a parallel arrangement." },
+    ],
+  },
+  {
+    concept: "circuits_and_ohms_law",
+    type: "passage",
+    passage: "cp_circuit_design",
+    stem: "The passage implies that the simple voltage-divider relationship used to interpret the sensor's output would break down in the parallel configuration mainly because:",
+    reasoning: "The voltage-divider formula depends on the two resistors splitting a single series voltage in proportion to their resistances; in parallel, both components share the same voltage rather than dividing it, so that specific relationship no longer describes the circuit.",
+    difficulty: 0.6,
+    sirs: 3,
+    options: [
+      { text: "The two components would no longer divide the supply voltage between them in series", correct: true },
+      { text: "The thermistor's resistance would no longer depend on temperature", errorType: "outside_knowledge_not_supported_by_passage", why: "The passage gives no reason to think the thermistor's temperature dependence would change in a different circuit topology." },
+      { text: "Parallel circuits cannot carry current from a 9-volt supply", errorType: "outside_knowledge_not_supported_by_passage", why: "Nothing about a parallel arrangement prevents current flow from the same supply." },
+      { text: "The output would need to be measured in a different unit", errorType: "outside_knowledge_not_supported_by_passage", why: "Voltage remains the relevant unit regardless of circuit topology; the passage never suggests otherwise." },
+    ],
+  },
+];

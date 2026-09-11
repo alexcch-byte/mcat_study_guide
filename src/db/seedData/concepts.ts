@@ -1,0 +1,79 @@
+import type { ConceptDef, ConceptEdgeDef } from "./types";
+
+/**
+ * Concept taxonomy (§2). Category codes are taxonomy labels only, per
+ * §10.0 — they're a reasonable approximation of the AAMC content outline,
+ * not a verified 1:1 mapping.
+ */
+export const concepts: ConceptDef[] = [
+  // --- Chem/Phys -----------------------------------------------------------
+  { name: "log_math_estimation", section: "cp", aamcCategory: "5A", estLearnMinutes: 8 },
+  { name: "acid_base_titration", section: "cp", aamcCategory: "5A", estLearnMinutes: 12 },
+  { name: "amino_acid_pKa_reasoning", section: "cp", aamcCategory: "5A", estLearnMinutes: 15 },
+  { name: "buffers_and_henderson_hasselbalch", section: "cp", aamcCategory: "5A", estLearnMinutes: 12 },
+  { name: "equilibrium_and_le_chatelier", section: "cp", aamcCategory: "5B", estLearnMinutes: 12 },
+  { name: "redox_and_electrochemistry", section: "cp", aamcCategory: "5C", estLearnMinutes: 14 },
+  { name: "thermodynamics_and_enthalpy", section: "cp", aamcCategory: "4E", estLearnMinutes: 14 },
+  { name: "gas_laws_and_kinetic_theory", section: "cp", aamcCategory: "4B", estLearnMinutes: 10 },
+  { name: "kinematics_and_forces", section: "cp", aamcCategory: "4A", estLearnMinutes: 10 },
+  { name: "circuits_and_ohms_law", section: "cp", aamcCategory: "4C", estLearnMinutes: 12 },
+  { name: "waves_sound_and_optics", section: "cp", aamcCategory: "4D", estLearnMinutes: 12 },
+  { name: "fluids_and_pressure", section: "cp", aamcCategory: "4B", estLearnMinutes: 10 },
+
+  // --- Bio/Biochem -----------------------------------------------------------
+  { name: "amino_acid_structure", section: "bb", aamcCategory: "1A", estLearnMinutes: 10 },
+  { name: "peptide_bond_formation", section: "bb", aamcCategory: "1A", estLearnMinutes: 10 },
+  { name: "protein_secondary_structure", section: "bb", aamcCategory: "1A", estLearnMinutes: 12 },
+  { name: "enzyme_kinetics_and_inhibition", section: "bb", aamcCategory: "1B", estLearnMinutes: 15 },
+  { name: "cell_membrane_transport", section: "bb", aamcCategory: "2A", estLearnMinutes: 12 },
+  { name: "dna_replication", section: "bb", aamcCategory: "1D", estLearnMinutes: 12 },
+  { name: "transcription_and_translation", section: "bb", aamcCategory: "1D", estLearnMinutes: 14 },
+  { name: "glycolysis_and_cellular_respiration", section: "bb", aamcCategory: "1C", estLearnMinutes: 15 },
+  { name: "mendelian_genetics", section: "bb", aamcCategory: "3A", estLearnMinutes: 14 },
+  { name: "mitosis_and_the_cell_cycle", section: "bb", aamcCategory: "2B", estLearnMinutes: 10 },
+  { name: "muscle_contraction", section: "bb", aamcCategory: "2C", estLearnMinutes: 12 },
+  { name: "hormone_signaling", section: "bb", aamcCategory: "2D", estLearnMinutes: 12 },
+
+  // --- Psych/Soc -----------------------------------------------------------
+  { name: "attribution_theory", section: "ps", aamcCategory: "7A", estLearnMinutes: 10 },
+  { name: "social_identity_theory", section: "ps", aamcCategory: "7B", estLearnMinutes: 10 },
+  { name: "classical_conditioning", section: "ps", aamcCategory: "6A", estLearnMinutes: 10 },
+  { name: "operant_conditioning", section: "ps", aamcCategory: "6A", estLearnMinutes: 10 },
+  { name: "memory_encoding_and_retrieval", section: "ps", aamcCategory: "6B", estLearnMinutes: 12 },
+  { name: "cognitive_dissonance", section: "ps", aamcCategory: "7A", estLearnMinutes: 10 },
+  { name: "conformity_and_obedience", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
+  { name: "stereotypes_and_prejudice", section: "ps", aamcCategory: "8A", estLearnMinutes: 12 },
+  { name: "socioeconomic_status_and_health", section: "ps", aamcCategory: "9A", estLearnMinutes: 12 },
+  { name: "psychosocial_development_stages", section: "ps", aamcCategory: "6C", estLearnMinutes: 12 },
+  { name: "sensation_vs_perception", section: "ps", aamcCategory: "6D", estLearnMinutes: 10 },
+  { name: "group_dynamics_and_groupthink", section: "ps", aamcCategory: "7C", estLearnMinutes: 10 },
+
+  // --- CARS ------------------------------------------------------------------
+  // No content model applies (§1.4) — these are SIRS skill labels, not concepts.
+  { name: "cars_comprehension", section: "cars", aamcCategory: "SIRS1", estLearnMinutes: 5 },
+  { name: "cars_reasoning_within_text", section: "cars", aamcCategory: "SIRS2", estLearnMinutes: 5 },
+  { name: "cars_reasoning_beyond_text", section: "cars", aamcCategory: "SIRS3", estLearnMinutes: 5 },
+];
+
+export const conceptEdges: ConceptEdgeDef[] = [
+  { prereq: "log_math_estimation", dependent: "acid_base_titration", strength: 0.7 },
+  { prereq: "acid_base_titration", dependent: "amino_acid_pKa_reasoning", strength: 0.8 },
+  { prereq: "amino_acid_structure", dependent: "amino_acid_pKa_reasoning", strength: 0.5 },
+  { prereq: "amino_acid_structure", dependent: "peptide_bond_formation", strength: 0.6 },
+  { prereq: "acid_base_titration", dependent: "buffers_and_henderson_hasselbalch", strength: 0.8 },
+  { prereq: "buffers_and_henderson_hasselbalch", dependent: "equilibrium_and_le_chatelier", strength: 0.4 },
+  { prereq: "kinematics_and_forces", dependent: "circuits_and_ohms_law", strength: 0.3 },
+  { prereq: "gas_laws_and_kinetic_theory", dependent: "thermodynamics_and_enthalpy", strength: 0.5 },
+  { prereq: "amino_acid_structure", dependent: "protein_secondary_structure", strength: 0.6 },
+  { prereq: "peptide_bond_formation", dependent: "protein_secondary_structure", strength: 0.5 },
+  { prereq: "protein_secondary_structure", dependent: "enzyme_kinetics_and_inhibition", strength: 0.4 },
+  { prereq: "cell_membrane_transport", dependent: "muscle_contraction", strength: 0.3 },
+  { prereq: "dna_replication", dependent: "transcription_and_translation", strength: 0.7 },
+  { prereq: "transcription_and_translation", dependent: "mendelian_genetics", strength: 0.3 },
+  { prereq: "mitosis_and_the_cell_cycle", dependent: "mendelian_genetics", strength: 0.3 },
+  { prereq: "classical_conditioning", dependent: "operant_conditioning", strength: 0.5 },
+  { prereq: "attribution_theory", dependent: "cognitive_dissonance", strength: 0.3 },
+  { prereq: "social_identity_theory", dependent: "stereotypes_and_prejudice", strength: 0.6 },
+  { prereq: "social_identity_theory", dependent: "group_dynamics_and_groupthink", strength: 0.5 },
+  { prereq: "stereotypes_and_prejudice", dependent: "socioeconomic_status_and_health", strength: 0.3 },
+];
